@@ -16,7 +16,10 @@ export default function PreviewPage() {
   // Next.js Hydration Guard
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   if (!mounted) {
@@ -72,7 +75,7 @@ export default function PreviewPage() {
       {/* Non-dismissable Preview Banner */}
       <div className="bg-primary text-white text-xs font-bold py-2.5 px-4 text-center flex items-center justify-center gap-2 shadow-sm shrink-0">
         <Eye className="h-4 w-4 shrink-0" />
-        <span>This is a preview — changes to the live app won't affect this snapshot</span>
+        <span>This is a preview &mdash; changes to the live app won&apos;t affect this snapshot</span>
       </div>
 
       {/* Preview Header Navbar */}

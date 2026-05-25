@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, Loader2, Sparkles, MessageSquare } from 'lucide-react';
+import { Send, Loader2, Sparkles } from 'lucide-react';
 import { useBuilderStore } from '../../store/useBuilderStore';
 
 export function ConversationalInput() {

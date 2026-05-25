@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
-  Compass, Columns, Share2, Globe, ChevronLeft, ChevronRight, 
-  Check, Play, X, Server, ShieldCheck, ExternalLink, Loader2
+  Compass, Share2, Globe, ChevronLeft, ChevronRight, 
+  Check, X, ExternalLink, Loader2
 } from 'lucide-react';
 import { useBuilderStore } from '../../store/useBuilderStore';
 import { usePreviewStore } from '../../store/usePreviewStore';

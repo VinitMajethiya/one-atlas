@@ -37,10 +37,15 @@ export function TemplateCard({ template }: TemplateCardProps) {
     }
   };
 
-  // Helper to generate random appId for the builder route
+  // Helper to generate deterministic but random-looking appId for the builder route
   const getBuilderUrl = (slug: string) => {
-    const randomId = Math.random().toString(36).substring(2, 10).toUpperCase();
-    return `/builder/${randomId}?template=${slug}`;
+    let hash = 0;
+    for (let i = 0; i < slug.length; i++) {
+      hash = (hash << 5) - hash + slug.charCodeAt(i);
+      hash |= 0;
+    }
+    const cleanHash = Math.abs(hash).toString(36).toUpperCase().substring(0, 8);
+    return `/builder/${cleanHash}?template=${slug}`;
   };
 
   return (

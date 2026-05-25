@@ -14,6 +14,7 @@ import {
 import { NAV_ITEMS } from '../../data/nav';
 import { TEMPLATES } from '../../data/templates';
 import { Badge } from '../shared/Badge';
+import { NavDropdownItem, NavMegaMenuColumn } from '../../types/nav';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -25,8 +26,11 @@ export function Navbar() {
 
   // Close menus on path change
   useEffect(() => {
-    setMobileMenuOpen(false);
-    setActiveDropdown(null);
+    const timer = setTimeout(() => {
+      setMobileMenuOpen(false);
+      setActiveDropdown(null);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   // Click outside listener to close dropdowns
@@ -171,15 +175,15 @@ export function Navbar() {
   };
 
   // Render generic mega menu
-  const renderMegaMenu = (menuItems: any[]) => {
+  const renderMegaMenu = (menuItems: NavMegaMenuColumn[]) => {
     return (
       <div className="absolute top-full left-0 right-0 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-2 animate-fade-in-up">
         <div className="bg-bg-card border border-border-default rounded-xl shadow-xl p-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-          {menuItems.map((col: any, idx: number) => (
+          {menuItems.map((col: NavMegaMenuColumn, idx: number) => (
             <div key={idx} className={idx === 0 ? 'border-r border-border-default/50 pr-8' : 'pl-4'}>
               <h3 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-4">{col.heading}</h3>
               <div className="grid grid-cols-1 gap-4">
-                {col.items.map((item: any, itemIdx: number) => (
+                {col.items.map((item: NavDropdownItem, itemIdx: number) => (
                   <a
                     key={itemIdx}
                     href={item.href}
@@ -203,11 +207,11 @@ export function Navbar() {
   };
 
   // Render generic dropdown menu
-  const renderDropdown = (items: any[]) => {
+  const renderDropdown = (items: NavDropdownItem[]) => {
     return (
       <div className="absolute top-full right-0 w-80 mt-2 bg-bg-card border border-border-default rounded-xl shadow-xl p-4 text-left animate-fade-in-up">
         <div className="space-y-1">
-          {items.map((item: any, idx: number) => (
+          {items.map((item: NavDropdownItem, idx: number) => (
             <a
               key={idx}
               href={item.href}
@@ -357,7 +361,7 @@ export function Navbar() {
                   <div className="px-3 py-1.5 text-xs font-bold text-text-muted uppercase tracking-wider">
                     {item.label}
                   </div>
-                  {item.dropdown && item.dropdown.map((sub: any) => (
+                  {item.dropdown && item.dropdown.map((sub: NavDropdownItem) => (
                     <a
                       key={sub.label}
                       href={sub.href}
@@ -366,12 +370,12 @@ export function Navbar() {
                       {sub.label}
                     </a>
                   ))}
-                  {item.megaMenu && item.megaMenu.map((col: any) => (
+                  {item.megaMenu && item.megaMenu.map((col: NavMegaMenuColumn) => (
                     <div key={col.heading} className="pl-3">
                       <div className="px-3 py-1 text-[11px] font-bold text-text-muted uppercase tracking-wider">
                         {col.heading}
                       </div>
-                      {col.items.map((sub: any) => (
+                      {col.items.map((sub: NavDropdownItem) => (
                         <a
                           key={sub.label}
                           href={sub.href}

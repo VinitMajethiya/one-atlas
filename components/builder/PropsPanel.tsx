@@ -3,7 +3,7 @@
 import React from 'react';
 import { useBuilderStore } from '../../store/useBuilderStore';
 import { ComponentNode } from '../../types/builder';
-import { Eye, EyeOff, Sliders, ToggleLeft, Hash, Edit3 } from 'lucide-react';
+import { Eye, EyeOff, Sliders, ToggleLeft, Edit3 } from 'lucide-react';
 
 export function PropsPanel() {
   const { 

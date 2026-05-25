@@ -3,7 +3,7 @@
 import React from 'react';
 import { 
   Folder, Layout, Table, Columns, BarChart3, FileSpreadsheet, Navigation, 
-  ChevronDown, ChevronRight, Hash
+  ChevronDown
 } from 'lucide-react';
 import { useBuilderStore } from '../../store/useBuilderStore';
 import { ComponentNode } from '../../types/builder';

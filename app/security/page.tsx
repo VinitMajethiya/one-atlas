@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../components/nav/Navbar';
 import Footer from '../../components/shared/Footer';
 import SectionWrapper from '../../components/shared/SectionWrapper';
-import { Lock, FileLock, CheckCircle, Database, ShieldAlert, ArrowRight } from 'lucide-react';
+import { Lock, FileLock, Database, ShieldAlert } from 'lucide-react';
 
 export const metadata = {
   title: 'OneAtlas Security — Compliance and Architecture Standards',

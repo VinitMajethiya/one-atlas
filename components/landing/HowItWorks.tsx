@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, Settings, Zap, ArrowRight } from 'lucide-react';
+import { MessageSquare, Settings, Zap } from 'lucide-react';
 
 export function HowItWorks() {
   const steps = [

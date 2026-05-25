@@ -8,23 +8,23 @@ interface GeneratingOverlayProps {
   onComplete: () => void;
 }
 
+const STEPS = [
+  'Parsing abstract template schema...',
+  'Configuring database tables and indices...',
+  'Assembling layout grids and nav panels...',
+  'Populating mock dataset matrices...',
+  'Deploying app snapshot endpoints...',
+];
+
 export function GeneratingOverlay({ appName, onComplete }: GeneratingOverlayProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
-
-  const steps = [
-    'Parsing abstract template schema...',
-    'Configuring database tables and indices...',
-    'Assembling layout grids and nav panels...',
-    'Populating mock dataset matrices...',
-    'Deploying app snapshot endpoints...',
-  ];
 
   // Steps animation
   useEffect(() => {
     const stepInterval = setInterval(() => {
       setCurrentStep((prev) => {
-        if (prev < steps.length - 1) {
+        if (prev < STEPS.length - 1) {
           return prev + 1;
         } else {
           clearInterval(stepInterval);
@@ -83,7 +83,7 @@ export function GeneratingOverlay({ appName, onComplete }: GeneratingOverlayProp
 
         {/* Step list */}
         <div className="space-y-3.5 text-left bg-bg-card border border-border-default rounded-2xl p-6 shadow-sm">
-          {steps.map((step, idx) => {
+          {STEPS.map((step, idx) => {
             const isCompleted = idx < currentStep;
             const isActive = idx === currentStep;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Shield, Key, History, Server, Check, ArrowRight, MessageSquare } from 'lucide-react';
+import { Shield, Key, History, Server, MessageSquare } from 'lucide-react';
 import Navbar from '../../components/nav/Navbar';
 import Footer from '../../components/shared/Footer';
 import SectionWrapper from '../../components/shared/SectionWrapper';
@@ -98,7 +98,7 @@ export default function EnterprisePage() {
             <span className="text-xs font-bold uppercase tracking-wider text-accent-pink mb-3 block">Corporate Trust</span>
             <div className="bg-bg-subtle border border-border-default rounded-3xl p-8 md:p-12 relative shadow-sm">
               <p className="text-lg md:text-xl font-bold text-text-heading italic leading-relaxed mb-6">
-                "OneAtlas allowed us to build 14 operational tools in a single quarter. Previously, our developers would have spent months writing dashboard layouts. The SOC 2 and Okta integrations made security approval instant."
+                &quot;OneAtlas allowed us to build 14 operational tools in a single quarter. Previously, our developers would have spent months writing dashboard layouts. The SOC 2 and Okta integrations made security approval instant.&quot;
               </p>
               <div>
                 <h4 className="font-extrabold text-text-heading text-sm">Gavin Finch</h4>

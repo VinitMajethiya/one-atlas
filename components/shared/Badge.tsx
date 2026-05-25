@@ -1,13 +1,10 @@
 import React from 'react';
 
-type BadgeVariant = 'category' | 'complexity' | 'tag';
-
 interface BadgeProps {
   label: string;
-  variant?: BadgeVariant;
 }
 
-export function Badge({ label, variant = 'tag' }: BadgeProps) {
+export function Badge({ label }: BadgeProps) {
   const getColorClasses = (val: string) => {
     switch (val) {
       // Complexity

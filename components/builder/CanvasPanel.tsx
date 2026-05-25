@@ -2,14 +2,13 @@
 
 import React from 'react';
 import { useBuilderStore } from '../../store/useBuilderStore';
-import { ComponentNode, SchemaField, AppSchema } from '../../types/builder';
+import { ComponentNode, AppSchema } from '../../types/builder';
 import { 
   AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, Tooltip, ResponsiveContainer 
 } from 'recharts';
 import { 
-  TrendingUp, TrendingDown, Layers, FileSpreadsheet, 
-  HelpCircle, Columns, Plus, AlertTriangle, Play, Loader2
+  Columns, Plus, Loader2
 } from 'lucide-react';
 
 interface CanvasPanelProps {
@@ -24,7 +23,10 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
 
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const activeSchema = previewSchema || storeSchema;
@@ -177,7 +179,7 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
         const title = (node.props.title as string) || 'Database List';
 
         // Select mock data based on template categories
-        let dataRows: any[] = mockCrmContacts;
+        let dataRows: Record<string, string | number | boolean>[] = mockCrmContacts;
         if (activeSchema.templateId === 'hr-dashboard') dataRows = mockHrEmployees;
         else if (activeSchema.templateId === 'admin-panel') {
           dataRows = node.id.includes('logs') ? mockAdminLogs : mockHrEmployees;
@@ -216,11 +218,12 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
                         // Special color pill formatting for status/priority
                         if (f.name === 'status' || f.name === 'priority' || f.name === 'level') {
                           let color = 'bg-gray-50 text-gray-700 border-gray-200/50';
-                          if (['Active', 'Qualified', 'In Stock', 'INFO'].includes(cellVal)) {
+                          const cellValStr = String(cellVal);
+                          if (['Active', 'Qualified', 'In Stock', 'INFO'].includes(cellValStr)) {
                             color = 'bg-emerald-50 text-emerald-700 border-emerald-200/50 dark:bg-emerald-950/20 dark:text-emerald-400';
-                          } else if (['On Leave', 'Contacted', 'Low Stock', 'WARN', 'Open', 'High'].includes(cellVal)) {
+                          } else if (['On Leave', 'Contacted', 'Low Stock', 'WARN', 'Open', 'High'].includes(cellValStr)) {
                             color = 'bg-amber-50 text-amber-700 border-amber-200/50 dark:bg-amber-950/20 dark:text-amber-400';
-                          } else if (['Lost', 'Out of Stock', 'ERROR', 'Urgent'].includes(cellVal)) {
+                          } else if (['Lost', 'Out of Stock', 'ERROR', 'Urgent'].includes(cellValStr)) {
                             color = 'bg-rose-50 text-rose-700 border-rose-200/50 dark:bg-rose-950/20 dark:text-rose-400';
                           }
                           return (
@@ -242,7 +245,7 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
                         }
 
                         return (
-                          <td key={f.id} className="p-3.5 pl-6 truncate max-w-[200px]" title={cellVal}>
+                          <td key={f.id} className="p-3.5 pl-6 truncate max-w-[200px]" title={String(cellVal)}>
                             {cellVal}
                           </td>
                         );
@@ -261,7 +264,13 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
         const title = (node.props.title as string) || 'Pipeline Board';
         const columns = node.fields.filter(f => f.visible);
 
-        const mockKanbanCards: Record<string, any[]> = {
+        interface KanbanCard {
+          id: string;
+          title: string;
+          value: number;
+          contact: string;
+        }
+        const mockKanbanCards: Record<string, KanbanCard[]> = {
           'lead': [
             { id: '1', title: 'Acme Corp Upgrade', value: 4500, contact: 'Carl Finch' },
           ],

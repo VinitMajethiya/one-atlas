@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/nav/Navbar';
 import Footer from '../../components/shared/Footer';
-import { Compass, BookOpen, Terminal, Code, Cpu, ChevronRight, Copy, Check } from 'lucide-react';
+import { BookOpen, ChevronRight, Copy, Check } from 'lucide-react';
 
 interface DocArticle {
   id: string;
@@ -128,7 +128,7 @@ oneatlas pull crm-workspace --dir=./my-app`}
             </ul>
           </div>
           <p className="text-text-body font-medium leading-relaxed">
-            Simply click the "Deploy" button on the builder shell or push your changes using `git push origin main` after enabling our GitHub Integration.
+            Simply click the &quot;Deploy&quot; button on the builder shell or push your changes using `git push origin main` after enabling our GitHub Integration.
           </p>
         </div>
       ),
@@ -184,7 +184,7 @@ oneatlas pull crm-workspace --dir=./my-app`}
             Traditional AI coding builders re-write the entire codebase when a prompt changes. OneAtlas implements **targeted schema mutations**.
           </p>
           <p className="text-text-body font-medium leading-relaxed">
-            If you submit a prompt like "add a status column to contacts", our compiler parses the target node in the schema, appends a new field to the Contacts table, and updates the local state.
+            If you submit a prompt like &quot;add a status column to contacts&quot;, our compiler parses the target node in the schema, appends a new field to the Contacts table, and updates the local state.
           </p>
           <div className="bg-bg-subtle border border-border-default p-4 rounded-xl text-xs font-bold text-primary">
             Benefit: 100% deterministic edits, zero code regressions, and immediate canvas redraws.

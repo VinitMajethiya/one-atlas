@@ -116,7 +116,7 @@ export default function SupportPage() {
 
               {filteredArticles.length === 0 && (
                 <div className="text-center py-8 text-text-muted font-bold text-sm">
-                  No articles matched your query. Try searching for "SSO" or "domains".
+                  No articles matched your query. Try searching for &quot;SSO&quot; or &quot;domains&quot;.
                 </div>
               )}
             </div>
@@ -129,7 +129,7 @@ export default function SupportPage() {
             <div className="text-center mb-10">
               <Mail className="h-8 w-8 text-primary mx-auto mb-4" />
               <h2 className="text-2xl font-extrabold text-text-heading tracking-tight mb-2">Still need assistance?</h2>
-              <p className="text-xs md:text-sm text-text-muted font-semibold">Drop our team an email request and we'll reply within 12 hours.</p>
+              <p className="text-xs md:text-sm text-text-muted font-semibold">Drop our team an email request and we&apos;ll reply within 12 hours.</p>
             </div>
 
             <form onSubmit={handleSubmitContact} className="bg-bg-card border border-border-default rounded-3xl p-8 shadow-sm space-y-4">
