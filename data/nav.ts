@@ -82,11 +82,11 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Community',
     dropdown: [
-      { label: 'Discord', href: 'https://discord.gg/mock-oneatlas', description: 'Chat with other internal tool developers.' },
-      { label: 'GitHub', href: 'https://github.com/mock-oneatlas', description: 'Browse open-source code and star us.' },
-      { label: 'Twitter/X', href: 'https://x.com/mock-oneatlas', description: 'Follow our release announcements.' },
-      { label: 'LinkedIn', href: 'https://linkedin.com/mock-oneatlas', description: 'Check out corporate news.' },
-      { label: 'Reddit', href: 'https://reddit.com/r/mock-oneatlas', description: 'Join community discussions.' },
+      { label: 'Discord', href: 'https://discord.gg/oneatlas', description: 'Chat with other internal tool developers.' },
+      { label: 'GitHub', href: 'https://github.com/oneatlas', description: 'Browse open-source code and star us.' },
+      { label: 'Twitter/X', href: 'https://x.com/oneatlas', description: 'Follow our release announcements.' },
+      { label: 'LinkedIn', href: 'https://linkedin.com/company/oneatlas', description: 'Check out corporate news.' },
+      { label: 'Reddit', href: 'https://reddit.com/r/oneatlas', description: 'Join community discussions.' },
       { label: 'Instagram', href: 'https://instagram.com/oneatlas', description: 'Behind-the-scenes builds and product shots.' },
     ],
   },

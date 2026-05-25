@@ -1,12 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Compass } from 'lucide-react';
-
-const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={props.className}>
-    <path d="M19.27 4.73A10.9 10.9 0 0 0 13.5 3h-.1l-.23.27C15.22 4.14 17 5.76 18.1 7.7a18.8 18.8 0 0 1-5-1.7 19.3 19.3 0 0 1-6.2 0 18.8 18.8 0 0 1-5 1.7C3 5.76 4.78 4.14 6.83 3.27L6.6 3H6.5a10.9 10.9 0 0 0-5.77 1.73A20.9 20.9 0 0 0 .04 17.5a12.8 12.8 0 0 0 5.66 3l1.1-1.3c-1.8-.5-3.3-1.6-4.2-3 2.1 1.2 4.5 1.8 7 1.8s4.9-.6 7-1.8c-.9 1.4-2.4 2.5-4.2 3l1.1 1.3a12.8 12.8 0 0 0 5.66-3 20.9 20.9 0 0 0-1-12.77ZM8 14a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 8 14Zm8 0a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 14Z" />
-  </svg>
-);
+import { Compass, MessageCircle, MessageSquare } from 'lucide-react';
 
 const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={props.className}>
@@ -17,12 +11,6 @@ const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
 const TwitterIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={props.className}>
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
-
-const RedditIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={props.className}>
-    <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-.533 1.027c.18.554.29 1.144.3 1.759.83.18 1.434.92 1.434 1.797 0 1.017-.83 1.847-1.845 1.847-.07 0-.142-.008-.21-.017-.678 2.091-2.399 3.696-4.636 4.364.032.128.05.263.05.402 0 1.017-.83 1.846-1.847 1.846s-1.847-.829-1.847-1.846c0-.14.018-.274.051-.402-2.238-.668-3.958-2.273-4.636-4.364-.069.009-.139.017-.21.017C2.83 14.25 2 13.42 2 12.403c0-.877.604-1.617 1.434-1.797.01-.615.12-1.205.3-1.759a1.25 1.25 0 0 1-.533-1.027c0-.688.562-1.249 1.25-1.249.52 0 .963.322 1.155.779 1.348-.909 3.125-1.482 5.09-1.579l1.096-3.428 2.923.633a1.002 1.002 0 0 1 1.95.275c0 .554-.45.1-.998.1a1.001 1.001 0 0 1-.998-1.001.996.996 0 0 1 .71-.958l-2.723-.591-.986 3.084c1.97.098 3.748.672 5.093 1.582.19-.457.633-.779 1.154-.779zM7 11.25c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm10 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm-5 4c-1.84 0-3.37.94-3.93 2.14a.252.252 0 0 0 .22.36h7.42a.25.25 0 0 0 .22-.36c-.56-1.2-2.09-2.14-3.93-2.14z" />
   </svg>
 );
 
@@ -53,7 +41,7 @@ export function Footer() {
             </p>
             <div className="flex gap-4 flex-wrap">
               <a href="https://discord.gg/oneatlas" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors" title="Discord">
-                <DiscordIcon className="h-5 w-5" />
+                <MessageCircle className="h-5 w-5" />
               </a>
               <a href="https://linkedin.com/company/oneatlas" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors" title="LinkedIn">
                 <LinkedinIcon className="h-5 w-5" />
@@ -62,7 +50,7 @@ export function Footer() {
                 <TwitterIcon className="h-5 w-5" />
               </a>
               <a href="https://reddit.com/r/oneatlas" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors" title="Reddit">
-                <RedditIcon className="h-5 w-5" />
+                <MessageSquare className="h-5 w-5" />
               </a>
               <a href="https://github.com/oneatlas" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors" title="GitHub">
                 <GithubIcon className="h-5 w-5" />
