@@ -14,7 +14,7 @@ import {
 import { NAV_ITEMS } from '../../data/nav';
 import { TEMPLATES } from '../../data/templates';
 import { Badge } from '../shared/Badge';
-import { NavDropdownItem, NavMegaMenuColumn } from '../../types/nav';
+import { NavDropdownItem, MegaMenuColumn } from '../../types/nav';
 import { templateIconClass } from '@/lib/theme';
 
 export function Navbar() {
@@ -177,32 +177,70 @@ export function Navbar() {
   };
 
   // Render generic mega menu
-  const renderMegaMenu = (menuItems: NavMegaMenuColumn[]) => {
+  const renderMegaMenu = (menuItems: MegaMenuColumn[]) => {
+    const isThreeCol = menuItems.length === 3;
     return (
       <div className="absolute top-full left-0 right-0 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-2 animate-fade-in-up">
-        <div className="bg-bg-card border border-border-default rounded-xl shadow-xl p-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-          {menuItems.map((col: NavMegaMenuColumn, idx: number) => (
-            <div key={idx} className={idx === 0 ? 'border-r border-border-default/50 pr-8' : 'pl-4'}>
-              <h3 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-4">{col.heading}</h3>
-              <div className="grid grid-cols-1 gap-4">
-                {col.items.map((item: NavDropdownItem, itemIdx: number) => (
-                  <a
-                    key={itemIdx}
-                    href={item.href}
-                    className="flex items-start gap-4 p-2 rounded-lg hover:bg-bg-subtle transition-all duration-200"
-                  >
-                    <div className="p-2 rounded-lg bg-bg-muted">
-                      {getIcon(item.icon)}
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-text-heading">{item.label}</h4>
-                      <p className="text-xs text-text-muted mt-0.5">{item.description}</p>
-                    </div>
-                  </a>
-                ))}
+        <div 
+          className="bg-white border border-border-default rounded-2xl shadow-lg min-w-[640px] p-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-left"
+          style={{ gridTemplateColumns: `repeat(${menuItems.length}, minmax(0, 1fr))`, gap: '2rem' }}
+        >
+          {menuItems.map((col: MegaMenuColumn, idx: number) => {
+            const isSpotlightCol = isThreeCol && idx === 2;
+
+            return (
+              <div 
+                key={idx} 
+                className={idx < menuItems.length - 1 ? 'border-r border-border-default/50 pr-8' : 'pl-4'}
+              >
+                <h3 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-4">{col.heading}</h3>
+                <div className="flex flex-col gap-4">
+                  {col.items.map((item: NavDropdownItem, itemIdx: number) => {
+                    if (isSpotlightCol) {
+                      return (
+                        <a
+                          key={itemIdx}
+                          href={item.href}
+                          className="block p-4 rounded-xl transition-all duration-200 hover:opacity-90 shadow-sm"
+                          style={{ backgroundColor: 'var(--atlas-accent-lavender)' }}
+                        >
+                          <div className="flex items-center justify-between mb-1.5">
+                            <span className="font-bold text-sm text-text-heading">{item.label}</span>
+                            {item.badge && (
+                              <span className="bg-accent-pink text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full">
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          {item.description && (
+                            <p className="text-xs text-text-body font-medium leading-normal">{item.description}</p>
+                          )}
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <a
+                        key={itemIdx}
+                        href={item.href}
+                        className="flex items-start gap-4 p-2 rounded-lg hover:bg-bg-subtle transition-all duration-200"
+                      >
+                        <div className="p-2 rounded-lg bg-bg-muted">
+                          {getIcon(item.icon)}
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-text-heading">{item.label}</h4>
+                          {item.description && (
+                            <p className="text-xs text-text-muted mt-0.5">{item.description}</p>
+                          )}
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     );
@@ -372,7 +410,7 @@ export function Navbar() {
                       {sub.label}
                     </a>
                   ))}
-                  {item.megaMenu && item.megaMenu.map((col: NavMegaMenuColumn) => (
+                  {item.megaMenu && item.megaMenu.map((col: MegaMenuColumn) => (
                     <div key={col.heading} className="pl-3">
                       <div className="px-3 py-1 text-[11px] font-bold text-text-muted uppercase tracking-wider">
                         {col.heading}

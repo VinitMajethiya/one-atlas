@@ -5,7 +5,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'Product',
     megaMenu: [
       {
-        heading: 'Features',
+        heading: 'Explore Product',
         items: [
           { label: 'Schema Editor', href: '#', description: 'Modify operational apps via live visual schemas.', icon: 'Sliders' },
           { label: 'Instant Deploy', href: '#', description: 'Go live on secure, scalable cloud endpoints in seconds.', icon: 'Zap' },
@@ -14,11 +14,18 @@ export const NAV_ITEMS: NavItem[] = [
         ],
       },
       {
-        heading: 'Sub-Products',
+        heading: 'Popular Tools',
         items: [
           { label: 'Atlas CLI', href: '#', description: 'Sync and version-control schemas from your local terminal.', icon: 'Terminal' },
           { label: 'Integrations', href: '#', description: 'Connect with Postgres, Slack, Stripe, and Salesforce.', icon: 'GitMerge' },
           { label: 'Audit Logs', href: '#', description: 'Track configuration revisions and access controls.', icon: 'FileText' },
+        ],
+      },
+      {
+        heading: 'Spotlight',
+        items: [
+          { label: 'OneAtlas Live Sandbox', href: '/generate', description: 'Build and test visual schemas in real-time.', badge: 'NEW' },
+          { label: 'Enterprise Security Audit', href: '/security', description: 'Learn about SOC 2 and customer-managed KMS vault setups.', badge: 'HOT' },
         ],
       },
     ],
@@ -65,21 +72,22 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Resources',
     dropdown: [
-      { label: 'Documentation', href: '/docs', description: 'Developer guides, concept sheets, and API specs.', icon: 'BookOpen' },
+      { label: 'Docs', href: '/docs', description: 'Developer guides, concept sheets, and API specs.', icon: 'BookOpen' },
       { label: 'Help Center', href: '/support', description: 'Search articles or contact customer support.', icon: 'LifeBuoy' },
       { label: 'Blog', href: '/blog', description: 'Company updates, design advice, and customer stories.', icon: 'Bookmark' },
-      { label: 'Product Updates', href: '/docs', description: 'See what is new in version 2.4 of the schema editor.', icon: 'Bell' },
-      { label: 'Video Guides', href: '#', description: 'Watch building tutorials on our YouTube channel.', icon: 'Video' },
+      { label: 'Updates', href: '/docs', description: 'See what is new in version 2.4 of the schema editor.', icon: 'Bell' },
+      { label: 'YouTube', href: 'https://youtube.com/@oneatlas', description: 'Watch building tutorials on our YouTube channel.', icon: 'Video' },
     ],
   },
   {
     label: 'Community',
     dropdown: [
-      { label: 'Discord Server', href: 'https://discord.gg/mock-oneatlas', description: 'Chat with other internal tool developers.' },
-      { label: 'GitHub Repository', href: 'https://github.com/mock-oneatlas', description: 'Browse open-source code and star us.' },
-      { label: 'Twitter / X', href: 'https://x.com/mock-oneatlas', description: 'Follow our release announcements.' },
+      { label: 'Discord', href: 'https://discord.gg/mock-oneatlas', description: 'Chat with other internal tool developers.' },
+      { label: 'GitHub', href: 'https://github.com/mock-oneatlas', description: 'Browse open-source code and star us.' },
+      { label: 'Twitter/X', href: 'https://x.com/mock-oneatlas', description: 'Follow our release announcements.' },
       { label: 'LinkedIn', href: 'https://linkedin.com/mock-oneatlas', description: 'Check out corporate news.' },
-      { label: 'Subreddit', href: 'https://reddit.com/r/mock-oneatlas', description: 'Join community discussions.' },
+      { label: 'Reddit', href: 'https://reddit.com/r/mock-oneatlas', description: 'Join community discussions.' },
+      { label: 'Instagram', href: 'https://instagram.com/oneatlas', description: 'Behind-the-scenes builds and product shots.' },
     ],
   },
 ];

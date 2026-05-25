@@ -3,6 +3,12 @@ export interface NavDropdownItem {
   href: string;
   description?: string;
   icon?: string;
+  badge?: string;
+}
+
+export interface MegaMenuColumn {
+  heading: string;
+  items: NavDropdownItem[];
 }
 
 export interface NavMegaMenuColumn {
@@ -14,5 +20,5 @@ export interface NavItem {
   label: string;
   href?: string;
   dropdown?: NavDropdownItem[];
-  megaMenu?: NavMegaMenuColumn[];
+  megaMenu?: MegaMenuColumn[];
 }

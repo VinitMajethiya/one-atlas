@@ -25,10 +25,10 @@ export default function LandingPage() {
         <HowItWorks />
         <ModelsTicker />
         <TemplatesShowcase />
+        <PricingPreview />
         <AtlasForRoles />
         <EnterpriseTeaser />
         <SecurityTeaser />
-        <PricingPreview />
         <FAQSection />
       </main>
       <Footer />
