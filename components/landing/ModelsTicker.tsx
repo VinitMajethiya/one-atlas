@@ -18,7 +18,7 @@ export function ModelsTicker() {
   const doubleModels = [...models, ...models, ...models];
 
   return (
-    <section className="w-full py-8 bg-bg-card border-b border-border-default overflow-hidden select-none">
+    <section className="w-full py-8 bg-bg-subtle border-b border-border-default overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-4 mb-4 flex items-center justify-center gap-2 text-xs font-bold text-text-muted uppercase tracking-widest">
         <Cpu className="h-4.5 w-4.5 text-primary" />
         <span>Build with the latest model architectures</span>

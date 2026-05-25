@@ -15,6 +15,7 @@ import { NAV_ITEMS } from '../../data/nav';
 import { TEMPLATES } from '../../data/templates';
 import { Badge } from '../shared/Badge';
 import { NavDropdownItem, NavMegaMenuColumn } from '../../types/nav';
+import { templateIconClass } from '@/lib/theme';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -58,31 +59,32 @@ export function Navbar() {
 
   // Dynamic Icon mapping for resources
   const getIcon = (iconName?: string) => {
+    const cls = `h-5 w-5 ${templateIconClass(iconName)}`;
     switch (iconName) {
-      case 'BookOpen': return <BookOpen className="h-5 w-5 text-primary" />;
-      case 'LifeBuoy': return <LifeBuoy className="h-5 w-5 text-accent-pink" />;
-      case 'Bookmark': return <Bookmark className="h-5 w-5 text-accent-orange" />;
-      case 'Bell': return <Bell className="h-5 w-5 text-accent-teal" />;
-      case 'Video': return <Video className="h-5 w-5 text-accent-blue" />;
-      case 'Briefcase': return <Briefcase className="h-5 w-5 text-indigo-500" />;
-      case 'Users': return <Users className="h-5 w-5 text-teal-500" />;
-      case 'Sliders': return <Sliders className="h-5 w-5 text-amber-500" />;
-      case 'BarChart2': return <BarChart2 className="h-5 w-5 text-rose-500" />;
-      case 'Package': return <Package className="h-5 w-5 text-orange-500" />;
-      case 'HelpCircle': return <HelpCircle className="h-5 w-5 text-sky-500" />;
-      case 'Zap': return <Zap className="h-5 w-5 text-yellow-500" />;
-      case 'CheckSquare': return <CheckSquare className="h-5 w-5 text-emerald-500" />;
-      case 'Terminal': return <Terminal className="h-5 w-5 text-gray-500" />;
-      case 'GitMerge': return <GitMerge className="h-5 w-5 text-purple-500" />;
-      case 'FileText': return <FileText className="h-5 w-5 text-blue-500" />;
-      case 'Code': return <Code className="h-5 w-5 text-indigo-500" />;
-      case 'Layers': return <Layers className="h-5 w-5 text-rose-500" />;
-      case 'Activity': return <Activity className="h-5 w-5 text-emerald-500" />;
-      case 'DollarSign': return <DollarSign className="h-5 w-5 text-green-500" />;
-      case 'Heart': return <Heart className="h-5 w-5 text-red-500" />;
-      case 'ShoppingBag': return <ShoppingBag className="h-5 w-5 text-orange-500" />;
-      case 'Cloud': return <Cloud className="h-5 w-5 text-sky-500" />;
-      default: return <Compass className="h-5 w-5 text-primary" />;
+      case 'BookOpen': return <BookOpen className={cls} />;
+      case 'LifeBuoy': return <LifeBuoy className={cls} />;
+      case 'Bookmark': return <Bookmark className={cls} />;
+      case 'Bell': return <Bell className={cls} />;
+      case 'Video': return <Video className={cls} />;
+      case 'Briefcase': return <Briefcase className={cls} />;
+      case 'Users': return <Users className={cls} />;
+      case 'Sliders': return <Sliders className={cls} />;
+      case 'BarChart2': return <BarChart2 className={cls} />;
+      case 'Package': return <Package className={cls} />;
+      case 'HelpCircle': return <HelpCircle className={cls} />;
+      case 'Zap': return <Zap className={cls} />;
+      case 'CheckSquare': return <CheckSquare className={cls} />;
+      case 'Terminal': return <Terminal className={cls} />;
+      case 'GitMerge': return <GitMerge className={cls} />;
+      case 'FileText': return <FileText className={cls} />;
+      case 'Code': return <Code className={cls} />;
+      case 'Layers': return <Layers className={cls} />;
+      case 'Activity': return <Activity className={cls} />;
+      case 'DollarSign': return <DollarSign className={cls} />;
+      case 'Heart': return <Heart className={cls} />;
+      case 'ShoppingBag': return <ShoppingBag className={cls} />;
+      case 'Cloud': return <Cloud className={cls} />;
+      default: return <Compass className={cls} />;
     }
   };
 
@@ -312,7 +314,7 @@ export function Navbar() {
             
             <Link
               href="/generate"
-              className="bg-primary hover:bg-primary-light text-white font-bold text-sm px-4 py-2 rounded-lg shadow-sm hover:shadow transition-all duration-200"
+              className="btn-gradient-hero font-bold text-sm px-4 py-2 rounded-lg shadow-sm hover:shadow transition-all duration-200"
             >
               Start Building
             </Link>
@@ -410,7 +412,7 @@ export function Navbar() {
             </Link>
             <Link
               href="/generate"
-              className="block w-full text-center bg-primary hover:bg-primary-light text-white font-bold text-sm px-4 py-2 rounded-lg shadow-sm"
+              className="block w-full text-center btn-gradient-hero font-bold text-sm px-4 py-2 rounded-lg shadow-sm"
             >
               Start Building
             </Link>

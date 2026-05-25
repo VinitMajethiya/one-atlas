@@ -42,7 +42,7 @@ export function AtlasForRoles() {
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 bg-bg-subtle border-b border-border-default transition-colors duration-300">
+    <section className="w-full py-16 md:py-24 bg-bg-default border-b border-border-default transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span className="text-xs font-bold uppercase tracking-wider text-primary mb-3 block">Organization Alignment</span>
         <h2 className="text-3xl md:text-5xl font-extrabold text-text-heading mb-6 tracking-tight">
@@ -60,7 +60,7 @@ export function AtlasForRoles() {
             >
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-xl bg-bg-subtle text-text-heading">
+                  <div className="p-2 rounded-xl bg-accent-lavender text-text-heading border border-primary/15">
                     {item.icon}
                   </div>
                   <h3 className="font-extrabold text-text-heading text-lg">{item.role}</h3>

@@ -8,6 +8,13 @@ const globalForPrisma = globalThis as unknown as {
 
 let prismaInstance: PrismaClient;
 
+if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL?.startsWith('postgresql')) {
+  throw new Error(
+    'Production requires a PostgreSQL DATABASE_URL. ' +
+    'Current value does not start with postgresql://'
+  );
+}
+
 if (globalForPrisma.prisma) {
   prismaInstance = globalForPrisma.prisma;
 } else {

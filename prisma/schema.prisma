@@ -23,6 +23,25 @@ model User {
   organization   Organization? @relation(fields: [organizationId], references: [id])
   apps           App[]
   createdAt      DateTime      @default(now())
+
+  // Metadata & auth extensions
+  role          String        @default("user")
+  plan          String        @default("free")
+  auth_provider String?
+  verified      Boolean       @default(false)
+  passwordHash  String?
+
+  // Relations to new tables
+  clones        Clone[]
+  workspaces    Workspace[]
+  events        Event[]
+  searchLogs    SearchLog[]
+  authAttempts  AuthAttempt[]
+  aiSessions    AiSession[]
+  shares        Share[]
+  favorites     Favorite[]
+  notifications Notification[]
+  activityLogs  ActivityLog[]
 }
 
 model App {
@@ -41,6 +60,11 @@ model App {
   previews       PreviewSnapshot[]
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
+
+  // New relations
+  workspaces     Workspace[]
+  deployments    Deployment[]
+  changes        Change[]
 }
 
 model Template {
@@ -58,6 +82,39 @@ model Template {
   children       Template[] @relation("TemplateInheritance")
   apps           App[]
   createdAt      DateTime   @default(now())
+
+  // New metadata fields
+  subtitle             String?
+  features             String[]
+  screenshots          String[]
+  author               String               @default("OneAtlas")
+  author_verified      Boolean              @default(false)
+  price_type           String               @default("free")
+  price_amount         Float                @default(0)
+  clone_count          Int                  @default(0)
+  rating               Float                @default(0)
+  usage_velocity       Float                @default(0)
+  version              String               @default("1.0.0")
+  ai_ready             Boolean              @default(true)
+  backend_enabled      Boolean              @default(true)
+  realtime_enabled     Boolean              @default(false)
+  deployment_ready     Boolean              @default(true)
+  permissions_required String[]
+  integrations         String[]
+  workflows            String[]
+  entities             String[]
+  health_score         Float                @default(0)
+  status               String               @default("published")
+  visibility           Boolean              @default(true)
+
+  // Relations to new tables
+  clones               Clone[]
+  events               Event[]
+  aiSessions           AiSession[]
+  shares               Share[]
+  favorites            Favorite[]
+  activityLogs         ActivityLog[]
+  featuredCollections  FeaturedCollection[]
 }
 
 model RuntimeSchema {
@@ -97,4 +154,175 @@ model PreviewSnapshot {
   schema    Json
   expiresAt DateTime?
   createdAt DateTime  @default(now())
+}
+
+// ==========================================
+// NEW TABLES FOR TELEMETRY & CLONE FLOW
+// ==========================================
+
+model Clone {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  templateId        String
+  template          Template @relation(fields: [templateId], references: [id])
+  workspaceId       String?
+  workspace         Workspace? @relation(fields: [workspaceId], references: [id])
+  status            String   // idle/browsing/hovering/previewing/auth_checking/plan_checking/queued/workspace_creating/ai_context/generating/validating/deploying/success/error
+  validation_result Json?
+  createdAt         DateTime @default(now())
+}
+
+model Workspace {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  appId           String?
+  app             App?     @relation(fields: [appId], references: [id])
+  orgId           String?
+  name            String
+  status          String
+  permissions     Json
+  bootstrapConfig Json?
+  createdAt       DateTime @default(now())
+  deployments     Deployment[]
+  clones          Clone[]
+  activityLogs    ActivityLog[]
+}
+
+model Deployment {
+  id                   String       @id @default(cuid())
+  appId                String
+  app                  App          @relation(fields: [appId], references: [id])
+  workspaceId          String
+  workspace            Workspace    @relation(fields: [workspaceId], references: [id])
+  env                  String
+  status               String
+  url                  String?
+  buildLog             String[]
+  rollbackDeploymentId String?
+  rollbackDeployment   Deployment?  @relation("RollbackRelation", fields: [rollbackDeploymentId], references: [id])
+  rolledBackBy         Deployment[] @relation("RollbackRelation")
+  createdAt            DateTime     @default(now())
+}
+
+model Event {
+  id         String   @id @default(cuid())
+  eventType  String
+  templateId String?
+  template   Template? @relation(fields: [templateId], references: [id])
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id])
+  metadata   Json
+  createdAt  DateTime @default(now())
+}
+
+model SearchLog {
+  id          String   @id @default(cuid())
+  query       String
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
+  resultCount Int
+  filters     Json
+  createdAt   DateTime @default(now())
+}
+
+model AuthAttempt {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  provider  String?
+  success   Boolean
+  ip        String?
+  createdAt DateTime @default(now())
+}
+
+model AiSession {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
+  templateId     String
+  template       Template @relation(fields: [templateId], references: [id])
+  prompt         String
+  context        Json
+  styleTokens    Json
+  schemaSnapshot Json
+  status         String
+  createdAt      DateTime @default(now())
+  changes        Change[]
+}
+
+model Share {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  templateId String
+  template   Template @relation(fields: [templateId], references: [id])
+  shareUrl   String
+  createdAt  DateTime @default(now())
+}
+
+model Favorite {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  templateId String
+  template   Template @relation(fields: [templateId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model Change {
+  id         String    @id @default(cuid())
+  appId      String
+  app        App       @relation(fields: [appId], references: [id])
+  sessionId  String
+  aiSession  AiSession @relation(fields: [sessionId], references: [id])
+  patch      Json
+  appliedAt  DateTime  @default(now())
+  rolledBack Boolean   @default(false)
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String
+  title     String
+  body      String
+  read      Boolean  @default(false)
+  metadata  Json
+  createdAt DateTime @default(now())
+}
+
+model ActivityLog {
+  id          String     @id @default(cuid())
+  userId      String
+  user        User       @relation(fields: [userId], references: [id])
+  templateId  String?
+  template    Template?  @relation(fields: [templateId], references: [id])
+  workspaceId String?
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id])
+  action      String
+  metadata    Json
+  createdAt   DateTime   @default(now())
+}
+
+model FeaturedCollection {
+  id         String   @id @default(cuid())
+  templateId String
+  template   Template @relation(fields: [templateId], references: [id])
+  position   Int
+  metadata   Json
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+}
+
+model Backup {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  status      String
+  size        String
+  description String
+  payload     Json
+  targetTable String
 }

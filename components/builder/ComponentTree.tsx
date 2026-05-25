@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useBuilderStore } from '../../store/useBuilderStore';
 import { ComponentNode } from '../../types/builder';
+import { builderNodeIconClass } from '@/lib/theme';
 
 export function ComponentTree() {
   const { schema, selectedNodeId, selectNode } = useBuilderStore();
@@ -14,14 +15,15 @@ export function ComponentTree() {
   if (!schema) return null;
 
   const getIcon = (type: string) => {
+    const cls = `h-4 w-4 ${builderNodeIconClass(type)}`;
     switch (type) {
-      case 'layout': return <Layout className="h-4 w-4 text-indigo-500" />;
-      case 'table': return <Table className="h-4 w-4 text-teal-500" />;
-      case 'kanban': return <Columns className="h-4 w-4 text-amber-500" />;
-      case 'chart': return <BarChart3 className="h-4 w-4 text-rose-500" />;
-      case 'form': return <FileSpreadsheet className="h-4 w-4 text-orange-500" />;
-      case 'nav': return <Navigation className="h-4 w-4 text-sky-500" />;
-      default: return <Folder className="h-4 w-4 text-primary" />;
+      case 'layout': return <Layout className={cls} />;
+      case 'table': return <Table className={cls} />;
+      case 'kanban': return <Columns className={cls} />;
+      case 'chart': return <BarChart3 className={cls} />;
+      case 'form': return <FileSpreadsheet className={cls} />;
+      case 'nav': return <Navigation className={cls} />;
+      default: return <Folder className={cls} />;
     }
   };
 

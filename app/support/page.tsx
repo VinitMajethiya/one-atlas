@@ -162,7 +162,7 @@ export default function SupportPage() {
               </div>
 
               {formSubmitted ? (
-                <div className="bg-emerald-50 text-emerald-800 border border-emerald-200 p-4 rounded-xl text-xs font-bold text-center">
+                <div className="bg-tint-teal text-accent-green border border-accent-teal/25 p-4 rounded-xl text-xs font-bold text-center">
                   Request successfully sent! Our team will contact you shortly.
                 </div>
               ) : (

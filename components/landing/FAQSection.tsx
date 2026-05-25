@@ -47,7 +47,7 @@ export function FAQSection() {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-bg-subtle transition-colors duration-300">
+    <section className="w-full py-16 md:py-24 bg-bg-muted transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span className="text-xs font-bold uppercase tracking-wider text-primary mb-3 block">Got Questions?</span>
         <h2 className="text-3xl md:text-5xl font-extrabold text-text-heading mb-6 tracking-tight">

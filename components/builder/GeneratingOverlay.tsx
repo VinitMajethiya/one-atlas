@@ -76,7 +76,7 @@ export function GeneratingOverlay({ appName, onComplete }: GeneratingOverlayProp
         {/* Progress bar container */}
         <div className="w-full bg-bg-subtle border border-border-default h-2.5 rounded-full overflow-hidden mb-8 shadow-inner">
           <div
-            className="h-full bg-gradient-to-r from-primary via-accent-pink to-accent-orange transition-all duration-300"
+            className="h-full bg-gradient-hero transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>

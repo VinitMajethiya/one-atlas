@@ -217,14 +217,14 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
 
                         // Special color pill formatting for status/priority
                         if (f.name === 'status' || f.name === 'priority' || f.name === 'level') {
-                          let color = 'bg-gray-50 text-gray-700 border-gray-200/50';
+                          let color = 'bg-bg-muted text-text-body border-border-default';
                           const cellValStr = String(cellVal);
                           if (['Active', 'Qualified', 'In Stock', 'INFO'].includes(cellValStr)) {
-                            color = 'bg-emerald-50 text-emerald-700 border-emerald-200/50 dark:bg-emerald-950/20 dark:text-emerald-400';
+                            color = 'bg-tint-teal text-accent-green border-accent-teal/30';
                           } else if (['On Leave', 'Contacted', 'Low Stock', 'WARN', 'Open', 'High'].includes(cellValStr)) {
-                            color = 'bg-amber-50 text-amber-700 border-amber-200/50 dark:bg-amber-950/20 dark:text-amber-400';
+                            color = 'bg-tint-yellow text-dark-navy border-accent-yellow/40';
                           } else if (['Lost', 'Out of Stock', 'ERROR', 'Urgent'].includes(cellValStr)) {
-                            color = 'bg-rose-50 text-rose-700 border-rose-200/50 dark:bg-rose-950/20 dark:text-rose-400';
+                            color = 'bg-tint-pink text-accent-pink border-accent-pink/30';
                           }
                           return (
                             <td key={f.id} className="p-3.5 pl-6">
@@ -294,7 +294,7 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
           >
             <div className="flex justify-between items-center pb-2 border-b border-border-subtle">
               <h4 className="font-extrabold text-sm text-text-heading flex items-center gap-1.5">
-                <Columns className="h-4 w-4 text-amber-500" />
+                <Columns className="h-4 w-4 text-accent-yellow" />
                 {title}
               </h4>
               <button className="p-1 rounded bg-bg-subtle border border-border-default text-text-muted hover:text-primary">

@@ -7,8 +7,9 @@ import { useGenerateApp } from '../../hooks/useGenerateApp';
 import { Compass, Sparkles, Loader2, ArrowRight } from 'lucide-react';
 import Navbar from '../../components/nav/Navbar';
 import Footer from '../../components/shared/Footer';
+import { PageErrorBoundary } from '../../components/shared/PageErrorBoundary';
 
-export default function GeneratePage() {
+function GeneratePage() {
   const router = useRouter();
   const [prompt, setPrompt] = useState('');
   const { generate, loading, error } = useGenerateApp();
@@ -26,9 +27,9 @@ export default function GeneratePage() {
   };
 
   const quickTemplates = [
-    { name: 'CRM Workspace', slug: 'crm-workspace', color: 'border-indigo-500/30 text-indigo-500 hover:bg-indigo-500/5' },
-    { name: 'HR Dashboard', slug: 'hr-dashboard', color: 'border-emerald-500/30 text-emerald-500 hover:bg-emerald-500/5' },
-    { name: 'Admin Panel', slug: 'admin-panel', color: 'border-purple-500/30 text-purple-500 hover:bg-purple-500/5' },
+    { name: 'CRM Workspace', slug: 'crm-workspace', color: 'border-primary/30 text-primary hover:bg-primary/5' },
+    { name: 'HR Dashboard', slug: 'hr-dashboard', color: 'border-accent-teal/30 text-accent-teal hover:bg-accent-teal/5' },
+    { name: 'Admin Panel', slug: 'admin-panel', color: 'border-primary-light/30 text-primary-light hover:bg-primary-light/5' },
   ];
 
   return (
@@ -64,7 +65,7 @@ export default function GeneratePage() {
             </div>
 
             {error && (
-              <div className="bg-rose-50 dark:bg-rose-950/20 text-rose-700 dark:text-rose-400 border border-rose-100 dark:border-rose-900/50 p-4.5 rounded-2xl text-xs font-bold text-left leading-relaxed">
+              <div className="alert-error rounded-2xl p-4.5 text-left">
                 {error}
               </div>
             )}
@@ -72,7 +73,7 @@ export default function GeneratePage() {
             <button
               type="submit"
               disabled={loading || prompt.trim() === ''}
-              className="w-full bg-primary hover:bg-primary-light text-white font-bold text-sm py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:bg-bg-subtle disabled:text-text-muted border border-transparent disabled:border-border-default"
+              className="w-full btn-gradient-hero font-bold text-sm py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:border disabled:border-border-default"
             >
               {loading ? (
                 <>
@@ -117,5 +118,13 @@ export default function GeneratePage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function GeneratePageWithErrorBoundary() {
+  return (
+    <PageErrorBoundary>
+      <GeneratePage />
+    </PageErrorBoundary>
   );
 }

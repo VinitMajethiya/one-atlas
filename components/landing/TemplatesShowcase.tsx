@@ -5,29 +5,19 @@ import Link from 'next/link';
 import { Briefcase, Users, Sliders, BarChart2, Package, HelpCircle, Eye, ArrowRight } from 'lucide-react';
 import { TEMPLATES } from '../../data/templates';
 import { Badge } from '../shared/Badge';
+import { templateBorderHover, templateIconClass } from '@/lib/theme';
 
 export function TemplatesShowcase() {
   const getIcon = (iconName: string) => {
+    const cls = templateIconClass(iconName);
     switch (iconName) {
-      case 'Briefcase': return <Briefcase className="h-5 w-5 text-indigo-500" />;
-      case 'Users': return <Users className="h-5 w-5 text-teal-500" />;
-      case 'Sliders': return <Sliders className="h-5 w-5 text-amber-500" />;
-      case 'BarChart2': return <BarChart2 className="h-5 w-5 text-rose-500" />;
-      case 'Package': return <Package className="h-5 w-5 text-orange-500" />;
-      case 'HelpCircle': return <HelpCircle className="h-5 w-5 text-sky-500" />;
-      default: return <Briefcase className="h-5 w-5 text-primary" />;
-    }
-  };
-
-  const getBorderColorClass = (color: string) => {
-    switch (color) {
-      case 'indigo': return 'hover:border-indigo-500/30';
-      case 'teal': return 'hover:border-emerald-500/30';
-      case 'amber': return 'hover:border-amber-500/30';
-      case 'rose': return 'hover:border-rose-500/30';
-      case 'orange': return 'hover:border-orange-500/30';
-      case 'sky': return 'hover:border-sky-500/30';
-      default: return 'hover:border-primary/30';
+      case 'Briefcase': return <Briefcase className={`h-5 w-5 ${cls}`} />;
+      case 'Users': return <Users className={`h-5 w-5 ${cls}`} />;
+      case 'Sliders': return <Sliders className={`h-5 w-5 ${cls}`} />;
+      case 'BarChart2': return <BarChart2 className={`h-5 w-5 ${cls}`} />;
+      case 'Package': return <Package className={`h-5 w-5 ${cls}`} />;
+      case 'HelpCircle': return <HelpCircle className={`h-5 w-5 ${cls}`} />;
+      default: return <Briefcase className={`h-5 w-5 ${cls}`} />;
     }
   };
 
@@ -69,7 +59,7 @@ export function TemplatesShowcase() {
           {TEMPLATES.map((tpl) => (
             <div
               key={tpl.id}
-              className={`snap-start shrink-0 w-[320px] md:w-[360px] bg-bg-card border border-border-default rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 ${getBorderColorClass(tpl.color)}`}
+              className={`snap-start shrink-0 w-[320px] md:w-[360px] bg-bg-card border border-border-default rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 ${templateBorderHover(tpl.color)}`}
             >
               <div>
                 <div className="flex justify-between items-center mb-4">

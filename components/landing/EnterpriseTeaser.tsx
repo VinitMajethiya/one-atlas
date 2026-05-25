@@ -26,7 +26,7 @@ export function EnterpriseTeaser() {
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 bg-bg-default border-b border-border-default transition-colors duration-300">
+    <section className="w-full py-16 md:py-24 bg-accent-lavender/40 border-b border-border-default transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
@@ -41,7 +41,7 @@ export function EnterpriseTeaser() {
             </p>
             <Link
               href="/enterprise"
-              className="group inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow transition-all"
+              className="group inline-flex items-center gap-2 btn-gradient-hero font-bold text-sm px-6 py-3.5 rounded-xl shadow transition-all"
             >
               <span>Learn about Enterprise</span>
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

@@ -56,15 +56,15 @@ export function SecurityTeaser() {
 
             {/* Badges */}
             <div className="flex flex-wrap gap-3 mb-8">
-              <span className="bg-bg-card border border-border-default px-3 py-2 rounded-xl text-xs font-bold text-text-heading flex items-center gap-1.5 shadow-sm">
+              <span className="bg-tint-teal border border-accent-teal/25 px-3 py-2 rounded-xl text-xs font-bold text-accent-green flex items-center gap-1.5 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-accent-teal" />
                 SOC 2 Type II
               </span>
-              <span className="bg-bg-card border border-border-default px-3 py-2 rounded-xl text-xs font-bold text-text-heading flex items-center gap-1.5 shadow-sm">
+              <span className="bg-tint-teal border border-accent-teal/25 px-3 py-2 rounded-xl text-xs font-bold text-accent-green flex items-center gap-1.5 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-accent-teal" />
                 GDPR Ready
               </span>
-              <span className="bg-bg-card border border-border-default px-3 py-2 rounded-xl text-xs font-bold text-text-heading flex items-center gap-1.5 shadow-sm">
+              <span className="bg-tint-teal border border-accent-teal/25 px-3 py-2 rounded-xl text-xs font-bold text-accent-green flex items-center gap-1.5 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-accent-teal" />
                 ISO 27001
               </span>

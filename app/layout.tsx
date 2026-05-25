@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '../components/shared/ThemeProvider';
+import OfflineState from '../components/shared/OfflineState';
 
 const inter = Inter({
   variable: '--font-sans',
@@ -27,6 +28,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <OfflineState />
           {children}
         </ThemeProvider>
       </body>

@@ -8,26 +8,26 @@ export function HowItWorks() {
       title: 'Describe your app',
       description: 'Input your requirements in plain English. Our engine translates prompts into unified functional components.',
       icon: <MessageSquare className="h-6 w-6 text-primary" />,
-      color: 'bg-primary/10 text-primary',
+      color: 'bg-tint-teal text-accent-green border border-accent-teal/25',
     },
     {
       num: '02',
       title: 'Schema is generated',
       description: 'Review the automatically structured database tables, field visibility toggles, and panel layouts.',
       icon: <Settings className="h-6 w-6 text-accent-pink" />,
-      color: 'bg-accent-pink/10 text-accent-pink',
+      color: 'bg-tint-pink text-accent-pink border border-accent-pink/25',
     },
     {
       num: '03',
       title: 'Deploy instantly',
       description: 'Click deploy to push your app to a secure global endpoint. Instantly invite your team to log in.',
       icon: <Zap className="h-6 w-6 text-accent-teal" />,
-      color: 'bg-accent-teal/10 text-accent-teal',
+      color: 'bg-tint-yellow text-dark-navy border border-accent-yellow/35',
     },
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 bg-bg-subtle border-t border-b border-border-default transition-colors duration-300">
+    <section className="w-full py-16 md:py-24 bg-bg-muted border-t border-b border-border-default transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span className="text-xs font-bold uppercase tracking-wider text-primary mb-3 block">Process Flow</span>
         <h2 className="text-3xl md:text-5xl font-extrabold text-text-heading mb-6 tracking-tight">

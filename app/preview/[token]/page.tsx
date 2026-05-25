@@ -49,7 +49,7 @@ export default function PreviewPage() {
     return (
       <div className="h-screen flex flex-col items-center justify-center bg-bg-default grid-mesh px-6 text-center select-none">
         <div className="max-w-md w-full bg-bg-card border border-border-default rounded-3xl p-8 shadow-xl">
-          <div className="w-12 h-12 bg-rose-50 dark:bg-rose-950/20 text-rose-600 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-rose-100 dark:border-rose-900/50">
+          <div className="w-12 h-12 bg-tint-pink text-accent-pink rounded-2xl flex items-center justify-center mx-auto mb-6 border border-accent-pink/25">
             <AlertTriangle className="h-6 w-6" />
           </div>
           

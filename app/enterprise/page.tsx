@@ -109,7 +109,7 @@ export default function EnterprisePage() {
         </SectionWrapper>
 
         {/* CTA Section */}
-        <SectionWrapper className="bg-primary text-white text-center py-20">
+        <SectionWrapper className="section-gradient-hero text-center py-20">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
               Ready to Secure your Internal Tool Stack?

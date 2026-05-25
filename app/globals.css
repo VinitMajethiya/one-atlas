@@ -1,174 +1,437 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  
-  /* Brand colors */
-  --color-primary: var(--primary);
-  --color-primary-light: #7A73FF;
-  --color-dark-navy: #0A2540;
-  --color-dark-surface: #1A1F36;
-  
-  --color-accent-pink: #FF5996;
-  --color-accent-orange: #FFB17A;
-  --color-accent-teal: #00D4B1;
-  --color-accent-cyan: #00D4FF;
-  --color-accent-yellow: #F8BC42;
-  --color-accent-lavender: #E8E7FF;
-  --color-accent-green: #00A37A;
-  --color-accent-blue: #00B8E6;
+@source "../app/**/*.{tsx,ts,jsx,js}";
+@source "../components/**/*.{tsx,ts,jsx,js}";
+@source "../data/**/*.{tsx,ts,jsx,js}";
 
-  /* Semantic UI tokens mapped to variables */
-  --color-bg-default: var(--bg-default-var);
-  --color-bg-subtle: var(--bg-subtle-var);
-  --color-bg-muted: var(--bg-muted-var);
-  --color-bg-card: var(--bg-card-var);
-  
-  --color-text-heading: var(--text-heading-var);
-  --color-text-body: var(--text-body-var);
-  --color-text-muted: var(--text-muted-var);
-  
-  --color-border-default: var(--border-default-var);
-  --color-border-subtle: var(--border-subtle-var);
-  
-  --color-tint-teal: var(--tint-teal-var);
-  --color-tint-orange: var(--tint-orange-var);
-  --color-tint-pink: var(--tint-pink-var);
-  --color-tint-yellow: var(--tint-yellow-var);
-
-  --animate-ticker: ticker 30s linear infinite;
-  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-fade-in-up: fadeInUp 0.5s ease-out forwards;
-}
-
+/* Home Atlas — runtime tokens (light) */
 :root {
-  --primary: #635BFF;
-  
-  /* Light Mode Backgrounds */
-  --bg-default-var: #FAFBFF;
-  --bg-subtle-var: #F6F9FC;
-  --bg-muted-var: #EFF3F8;
-  --bg-card-var: #FFFFFF;
-  
-  /* Light Mode Text */
-  --text-heading-var: #0A2540;
-  --text-body-var: #425466;
-  --text-muted-var: #697386;
-  
-  /* Light Mode Borders */
-  --border-default-var: #E3E8EE;
-  --border-subtle-var: #EDF1F6;
-  
-  /* Light Mode Tints */
-  --tint-teal-var: #E0FBF4;
-  --tint-orange-var: #FFE9DC;
-  --tint-pink-var: #FFE3EE;
-  --tint-yellow-var: #FFF4DE;
+  --atlas-primary:        #635BFF;
+  --atlas-primary-light:  #7A73FF;
+  --atlas-dark-navy:      #0A2540;
+  --atlas-dark-surface:   #1A1F36;
+
+  --atlas-accent-pink:     #FF5996;
+  --atlas-accent-orange:   #FFB17A;
+  --atlas-accent-teal:     #00D4B1;
+  --atlas-accent-cyan:     #00D4FF;
+  --atlas-accent-yellow:   #F8BC42;
+  --atlas-accent-lavender: #E8E7FF;
+  --atlas-accent-green:    #00A37A;
+  --atlas-accent-blue:     #00B8E6;
+
+  --atlas-bg-default: #FAFBFF;
+  --atlas-bg-subtle:  #F6F9FC;
+  --atlas-bg-muted:   #EFF3F8;
+  --atlas-bg-card:    #FFFFFF;
+
+  --atlas-text-heading: #0A2540;
+  --atlas-text-body:    #425466;
+  --atlas-text-muted:   #697386;
+
+  --atlas-border-default: #E3E8EE;
+  --atlas-border-subtle:  #EDF1F6;
+
+  --atlas-tint-teal:   #E0FBF4;
+  --atlas-tint-orange: #FFE9DC;
+  --atlas-tint-pink:   #FFE3EE;
+  --atlas-tint-yellow: #FFF4DE;
 
   --nav-bg: rgba(255, 255, 255, 0.85);
-  --gradient-hero-var: linear-gradient(135deg, #635BFF, #9B6CFB, #FF5996, #FF9173);
+  --gradient-hero: linear-gradient(to right, #635BFF, #9B6CFB, #FF5996, #FF9173);
 }
 
 .dark {
-  --primary: #7A73FF;
-  
-  /* Dark Mode Backgrounds */
-  --bg-default-var: #070913;
-  --bg-subtle-var: #0C0F22;
-  --bg-muted-var: #151934;
-  --bg-card-var: #10142C;
-  
-  /* Dark Mode Text */
-  --text-heading-var: #F4F6FA;
-  --text-body-var: #A0AEC0;
-  --text-muted-var: #718096;
-  
-  /* Dark Mode Borders */
-  --border-default-var: #1E2548;
-  --border-subtle-var: #171E3C;
-  
-  /* Dark Mode Tints */
-  --tint-teal-var: #082924;
-  --tint-orange-var: #381A12;
-  --tint-pink-var: #361021;
-  --tint-yellow-var: #34270F;
+  --atlas-primary:       #7A73FF;
+  --atlas-primary-light: #9B94FF;
+
+  --atlas-bg-default: #070913;
+  --atlas-bg-subtle:  #0C0F22;
+  --atlas-bg-muted:   #151934;
+  --atlas-bg-card:    #10142C;
+
+  --atlas-text-heading: #F4F6FA;
+  --atlas-text-body:    #A0AEC0;
+  --atlas-text-muted:   #718096;
+
+  --atlas-border-default: #1E2548;
+  --atlas-border-subtle:  #171E3C;
+
+  --atlas-tint-teal:   #082924;
+  --atlas-tint-orange: #381A12;
+  --atlas-tint-pink:   #361021;
+  --atlas-tint-yellow: #34270F;
 
   --nav-bg: rgba(7, 9, 19, 0.85);
 }
 
+/* Tailwind utilities → atlas runtime vars */
+@theme inline {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --color-primary:        var(--atlas-primary);
+  --color-primary-light:  var(--atlas-primary-light);
+  --color-dark-navy:      var(--atlas-dark-navy);
+  --color-dark-surface:   var(--atlas-dark-surface);
+
+  --color-accent-pink:     var(--atlas-accent-pink);
+  --color-accent-orange:   var(--atlas-accent-orange);
+  --color-accent-teal:     var(--atlas-accent-teal);
+  --color-accent-cyan:     var(--atlas-accent-cyan);
+  --color-accent-yellow:   var(--atlas-accent-yellow);
+  --color-accent-lavender: var(--atlas-accent-lavender);
+  --color-accent-green:    var(--atlas-accent-green);
+  --color-accent-blue:     var(--atlas-accent-blue);
+
+  --color-bg-default: var(--atlas-bg-default);
+  --color-bg-subtle:  var(--atlas-bg-subtle);
+  --color-bg-muted:   var(--atlas-bg-muted);
+  --color-bg-card:    var(--atlas-bg-card);
+
+  --color-text-heading: var(--atlas-text-heading);
+  --color-text-body:    var(--atlas-text-body);
+  --color-text-muted:   var(--atlas-text-muted);
+
+  --color-border-default: var(--atlas-border-default);
+  --color-border-subtle:  var(--atlas-border-subtle);
+
+  --color-tint-teal:   var(--atlas-tint-teal);
+  --color-tint-orange: var(--atlas-tint-orange);
+  --color-tint-pink:   var(--atlas-tint-pink);
+  --color-tint-yellow: var(--atlas-tint-yellow);
+
+  --animate-ticker:     ticker 30s linear infinite;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-fade-in-up: fadeInUp 0.5s ease-out forwards;
+}
+
 @keyframes ticker {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 body {
-  background-color: var(--bg-default-var);
-  color: var(--text-body-var);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--atlas-bg-default);
+  color: var(--atlas-text-body);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text-heading-var);
+  color: var(--atlas-text-heading);
 }
 
 p {
-  color: var(--text-body-var);
+  color: var(--atlas-text-body);
 }
 
 ::placeholder {
-  color: var(--text-muted-var);
+  color: var(--atlas-text-muted);
   opacity: 1;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-default-var);
-}
+::-webkit-scrollbar       { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--atlas-bg-default); }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-default-var);
+  background: var(--atlas-border-default);
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted-var);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--atlas-text-muted); }
 
-/* Glassmorphism navbar styling */
 .glass-nav {
   background-color: var(--nav-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-default-var);
+  border-bottom: 1px solid var(--atlas-border-default);
 }
 
-/* Grid mesh pattern helper */
 .grid-mesh {
   background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(99, 91, 255, 0.05) 1px, transparent 1px),
+  background-image:
+    linear-gradient(to right,  rgba(99, 91, 255, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(99, 91, 255, 0.05) 1px, transparent 1px);
 }
 .dark .grid-mesh {
-  background-image: 
-    linear-gradient(to right, rgba(122, 115, 255, 0.03) 1px, transparent 1px),
+  background-image:
+    linear-gradient(to right,  rgba(122, 115, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(122, 115, 255, 0.03) 1px, transparent 1px);
 }
+
+.hero-gradient-bar {
+  height: 4px;
+  width: 100%;
+  background-image: var(--gradient-hero);
+}
+
+.bg-gradient-hero {
+  background-image: var(--gradient-hero);
+}
+
+.text-gradient-hero {
+  display: inline-block;
+  background-image: var(--gradient-hero);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-gradient-hero {
+  background-image: var(--gradient-hero);
+  color: #ffffff;
+  transition: filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-gradient-hero:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.btn-gradient-hero:disabled {
+  background-image: none;
+  background-color: var(--atlas-bg-subtle);
+  color: var(--atlas-text-muted);
+}
+
+.section-gradient-hero {
+  background-image: var(--gradient-hero);
+  color: #ffffff;
+}
+
+.alert-error {
+  background-color: var(--atlas-tint-pink);
+  color: var(--atlas-accent-pink);
+  border: 1px solid color-mix(in srgb, var(--atlas-accent-pink) 25%, transparent);
+}
+
+/* --- Phase 3: 15 Microinteractions Keyframes & Classes --- */
+
+@keyframes cardHover {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.02); }
+}
+
+@keyframes modalOpen {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes buttonRipple {
+  from { transform: scale(0); opacity: 0.5; }
+  to { transform: scale(4); opacity: 0; }
+}
+
+@keyframes checkmarkBounce {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideIn {
+  from { transform: translate(-50%, 100px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@keyframes tooltipFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes scrollReveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes counterAnim {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes toastSlide {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Animations Utilities */
+
+/* 1. Card Hover — 200ms */
+.micro-hover-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.micro-hover-card:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.06), 0 10px 10px -5px rgba(0,0,0,0.03);
+}
+
+/* 2. Modal Open — 300ms */
+.micro-modal-open {
+  animation: modalOpen 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 3. Button Ripple — 400ms */
+.micro-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.micro-ripple::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+.micro-ripple:active::after {
+  animation: buttonRipple 0.4s ease-out;
+}
+
+/* 4. Loading Skeleton — 1.5s loop */
+.micro-shimmer {
+  background: linear-gradient(90deg, var(--atlas-bg-subtle) 25%, var(--atlas-border-default) 50%, var(--atlas-bg-subtle) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* 5. Success Checkmark — 500ms */
+.micro-checkmark {
+  animation: checkmarkBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 6. Counter Animation — 800ms */
+.micro-counter {
+  animation: counterAnim 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 7. Modal Fade — 200ms */
+.micro-modal-fade {
+  animation: modalFadeIn 0.2s ease-out forwards;
+}
+
+/* 8. Scroll Reveal — 400ms */
+.micro-scroll-reveal {
+  animation: scrollReveal 0.4s ease-out forwards;
+}
+
+/* 9. Toast Feedback — 300ms */
+.micro-slide-toast {
+  animation: toastSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 10. Toggle Switch — 200ms */
+.micro-toggle {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+}
+
+/* 11. Chip Select — 150ms */
+.micro-chip-select {
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.micro-chip-select:active {
+  transform: scale(0.95);
+}
+
+/* 12. Progress Step — 300ms */
+.micro-progress-step {
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* 13. Inline Edit — 150ms */
+.micro-inline-edit {
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* 14. Tooltip — 200ms (300ms hover delay) */
+.micro-tooltip-container .micro-tooltip-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease 0.3s, transform 0.2s ease 0.3s;
+  transform: translateY(4px);
+}
+.micro-tooltip-container:hover .micro-tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* 15. Counter Animation on mount — 800ms */
+.micro-counter-mount {
+  animation: counterAnim 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Spec-compliant Microinteractions */
+
+/* 1. Card Hover — 200ms */
+.card-hover { transition: transform 200ms, box-shadow 200ms; }
+.card-hover:hover { transform: scale(1.02); }
+
+/* 2. Modal Open — 300ms */
+@keyframes modal-open { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.modal-open { animation: modal-open 300ms ease forwards; }
+
+/* 3. Button Ripple — 400ms */
+@keyframes ripple { from { transform: scale(0); opacity: 0.6; } to { transform: scale(4); opacity: 0; } }
+.ripple-effect { animation: ripple 400ms ease-out; }
+
+/* 4. Loading Skeleton — 1.5s loop */
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+.skeleton { animation: shimmer 1.5s infinite linear; }
+
+/* 5. Success Checkmark — 500ms */
+@keyframes checkmark { from { transform: scale(0); } to { transform: scale(1) rotate(0deg); } }
+.success-check { animation: checkmark 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+/* 6. Counter Animation — 800ms */
+@keyframes count-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.counter-animate { animation: count-up 800ms ease forwards; }
+
+/* 7. Modal Fade Close — 200ms */
+@keyframes modal-close { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.95); } }
+.modal-close { animation: modal-close 200ms ease forwards; }
+
+/* 8. Scroll Reveal — 400ms */
+@keyframes scroll-reveal { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.scroll-reveal { animation: scroll-reveal 400ms ease forwards; }
+
+/* 9. Toast Slide-In — 300ms */
+@keyframes toast-in { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.toast-enter { animation: toast-in 300ms ease forwards; }
+
+/* 10. Toggle Switch — 200ms */
+.toggle-switch { transition: background-color 200ms, transform 200ms; }
+
+/* 11. Chip Select — 150ms */
+@keyframes chip-select { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
+.chip-select { animation: chip-select 150ms ease; }
+
+/* 12. Progress Step — 300ms */
+.progress-step { transition: width 300ms ease, background-color 300ms ease; }
+
+/* 13. Inline Edit — 150ms */
+.inline-edit-enter { transition: border-color 150ms, box-shadow 150ms; }
+
+/* 14. Tooltip — 200ms (300ms hover delay) */
+@keyframes tooltip-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.tooltip { animation: tooltip-in 200ms ease forwards; transition-delay: 300ms; }
+
+/* 15. Counter on Mount — 800ms requestAnimationFrame */
+.counter-mount { animation: count-up 800ms ease forwards; }
+
+

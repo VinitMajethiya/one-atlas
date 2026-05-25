@@ -29,6 +29,7 @@ export function Hero() {
 
   return (
     <div className="relative overflow-hidden bg-bg-default grid-mesh pt-20 pb-16 md:pt-32 md:pb-28">
+      <div className="hero-gradient-bar absolute top-0 left-0 right-0 z-20" aria-hidden />
       {/* Dynamic Background Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none dark:bg-primary/5" />
       <div className="absolute top-1/3 right-10 w-[300px] h-[300px] bg-accent-pink/10 rounded-full blur-[90px] pointer-events-none dark:bg-accent-pink/5" />
@@ -36,14 +37,14 @@ export function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Release Pill */}
-        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary border border-primary/20 dark:bg-primary/20 dark:text-primary-light px-3.5 py-1 rounded-full text-xs font-bold mb-8 animate-fade-in-up">
+        <div className="inline-flex items-center gap-2 bg-accent-lavender text-primary border border-primary/20 dark:bg-primary/20 dark:text-primary-light px-3.5 py-1 rounded-full text-xs font-bold mb-8 animate-fade-in-up">
           <Compass className="h-3.5 w-3.5 animate-spin-slow" />
           <span>Introducing OneAtlas 2.4 — Schema Builder Live</span>
         </div>
 
         {/* Headings */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-text-heading max-w-4xl mx-auto leading-none mb-6 animate-fade-in-up">
-          Build operational apps at the speed of <span className="bg-gradient-to-r from-primary via-accent-pink to-accent-orange bg-clip-text text-transparent">thought.</span>
+          Build operational apps at the speed of <span className="text-gradient-hero">thought.</span>
         </h1>
 
         <p className="text-base md:text-xl text-text-body max-w-2xl mx-auto mb-10 leading-relaxed font-medium animate-fade-in-up">
@@ -64,7 +65,7 @@ export function Hero() {
             <button
               type="submit"
               disabled={loading || prompt.trim() === ''}
-              className="bg-primary hover:bg-primary-light text-white font-bold text-xs md:text-sm px-6 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5 shrink-0 disabled:bg-bg-subtle disabled:text-text-muted border border-transparent disabled:border-border-default"
+              className="btn-gradient-hero font-bold text-xs md:text-sm px-6 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5 shrink-0 disabled:border disabled:border-border-default"
             >
               {loading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -76,7 +77,7 @@ export function Hero() {
           </form>
 
           {error && (
-            <div className="bg-rose-50 dark:bg-rose-950/20 text-rose-700 dark:text-rose-400 border border-rose-100 dark:border-rose-900/50 p-4 rounded-xl text-xs font-bold mt-3 text-left leading-relaxed">
+            <div className="alert-error mt-3 text-left">
               {error}
             </div>
           )}
@@ -116,7 +117,7 @@ export function Hero() {
             </div>
             
             {/* Hover overlay play button */}
-            <div className="relative z-10 p-5 rounded-full bg-primary text-white shadow-lg group-hover:scale-110 transition-transform duration-350 cursor-pointer">
+            <div className="relative z-10 p-5 rounded-full bg-gradient-hero text-white shadow-lg group-hover:scale-110 transition-transform duration-350 cursor-pointer">
               <Play className="h-8 w-8 fill-current ml-1" />
             </div>
           </div>
