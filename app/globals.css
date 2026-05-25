@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Brand colors */
+  --color-primary: var(--primary);
+  --color-primary-light: #7A73FF;
+  --color-dark-navy: #0A2540;
+  --color-dark-surface: #1A1F36;
+  
+  --color-accent-pink: #FF5996;
+  --color-accent-orange: #FFB17A;
+  --color-accent-teal: #00D4B1;
+  --color-accent-cyan: #00D4FF;
+  --color-accent-yellow: #F8BC42;
+  --color-accent-lavender: #E8E7FF;
+  --color-accent-green: #00A37A;
+  --color-accent-blue: #00B8E6;
+
+  /* Semantic UI tokens mapped to variables */
+  --color-bg-default: var(--bg-default-var);
+  --color-bg-subtle: var(--bg-subtle-var);
+  --color-bg-muted: var(--bg-muted-var);
+  --color-bg-card: var(--bg-card-var);
+  
+  --color-text-heading: var(--text-heading-var);
+  --color-text-body: var(--text-body-var);
+  --color-text-muted: var(--text-muted-var);
+  
+  --color-border-default: var(--border-default-var);
+  --color-border-subtle: var(--border-subtle-var);
+  
+  --color-tint-teal: var(--tint-teal-var);
+  --color-tint-orange: var(--tint-orange-var);
+  --color-tint-pink: var(--tint-pink-var);
+  --color-tint-yellow: var(--tint-yellow-var);
+
+  --animate-ticker: ticker 30s linear infinite;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-fade-in-up: fadeInUp 0.5s ease-out forwards;
+}
+
+:root {
+  --primary: #635BFF;
+  
+  /* Light Mode Backgrounds */
+  --bg-default-var: #FAFBFF;
+  --bg-subtle-var: #F6F9FC;
+  --bg-muted-var: #EFF3F8;
+  --bg-card-var: #FFFFFF;
+  
+  /* Light Mode Text */
+  --text-heading-var: #0A2540;
+  --text-body-var: #425466;
+  --text-muted-var: #697386;
+  
+  /* Light Mode Borders */
+  --border-default-var: #E3E8EE;
+  --border-subtle-var: #EDF1F6;
+  
+  /* Light Mode Tints */
+  --tint-teal-var: #E0FBF4;
+  --tint-orange-var: #FFE9DC;
+  --tint-pink-var: #FFE3EE;
+  --tint-yellow-var: #FFF4DE;
+
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --gradient-hero-var: linear-gradient(135deg, #635BFF, #9B6CFB, #FF5996, #FF9173);
+}
+
+.dark {
+  --primary: #7A73FF;
+  
+  /* Dark Mode Backgrounds */
+  --bg-default-var: #070913;
+  --bg-subtle-var: #0C0F22;
+  --bg-muted-var: #151934;
+  --bg-card-var: #10142C;
+  
+  /* Dark Mode Text */
+  --text-heading-var: #F4F6FA;
+  --text-body-var: #A0AEC0;
+  --text-muted-var: #718096;
+  
+  /* Dark Mode Borders */
+  --border-default-var: #1E2548;
+  --border-subtle-var: #171E3C;
+  
+  /* Dark Mode Tints */
+  --tint-teal-var: #082924;
+  --tint-orange-var: #381A12;
+  --tint-pink-var: #361021;
+  --tint-yellow-var: #34270F;
+
+  --nav-bg: rgba(7, 9, 19, 0.85);
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  background-color: var(--bg-default-var);
+  color: var(--text-body-var);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-default-var);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-default-var);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted-var);
+}
+
+/* Glassmorphism navbar styling */
+.glass-nav {
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-default-var);
+}
+
+/* Grid mesh pattern helper */
+.grid-mesh {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(99, 91, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 91, 255, 0.05) 1px, transparent 1px);
+}
+.dark .grid-mesh {
+  background-image: 
+    linear-gradient(to right, rgba(122, 115, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(122, 115, 255, 0.03) 1px, transparent 1px);
+}
