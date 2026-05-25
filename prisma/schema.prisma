@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  users     User[]
+  apps      App[]
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id             String        @id @default(cuid())
+  email          String        @unique
+  name           String?
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  apps           App[]
+  createdAt      DateTime      @default(now())
+}
+
+model App {
+  id             String           @id @default(cuid())
+  name           String
+  userId         String?
+  user           User?            @relation(fields: [userId], references: [id])
+  organizationId String?
+  organization   Organization?    @relation(fields: [organizationId], references: [id])
+  templateId     String
+  template       Template         @relation(fields: [templateId], references: [id])
+  currentVersion Int              @default(1)
+  schema         RuntimeSchema?
+  versions       SchemaVersion[]
+  mutations      SchemaMutation[]
+  previews       PreviewSnapshot[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+}
+
+model Template {
+  id             String     @id @default(cuid())
+  name           String
+  slug           String     @unique
+  category       String
+  complexity     String
+  description    String
+  components     String[]
+  tags           String[]
+  schemaDefaults Json
+  parentId       String?
+  parent         Template?  @relation("TemplateInheritance", fields: [parentId], references: [id])
+  children       Template[] @relation("TemplateInheritance")
+  apps           App[]
+  createdAt      DateTime   @default(now())
+}
+
+model RuntimeSchema {
+  id        String   @id @default(cuid())
+  appId     String   @unique
+  app       App      @relation(fields: [appId], references: [id])
+  content   Json
+  version   Int      @default(1)
+  updatedAt DateTime @updatedAt
+}
+
+model SchemaVersion {
+  id        String   @id @default(cuid())
+  appId     String
+  app       App      @relation(fields: [appId], references: [id])
+  version   Int
+  content   Json
+  createdAt DateTime @default(now())
+}
+
+model SchemaMutation {
+  id           String   @id @default(cuid())
+  appId        String
+  app          App      @relation(fields: [appId], references: [id])
+  instruction  String
+  mutationType String
+  result       String
+  version      Int
+  createdAt    DateTime @default(now())
+}
+
+model PreviewSnapshot {
+  id        String    @id @default(cuid())
+  appId     String
+  app       App       @relation(fields: [appId], references: [id])
+  token     String    @unique
+  schema    Json
+  expiresAt DateTime?
+  createdAt DateTime  @default(now())
+}

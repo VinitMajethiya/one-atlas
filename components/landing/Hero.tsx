@@ -1,8 +1,32 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Play, Compass } from 'lucide-react';
+import { ArrowRight, Play, Compass, Loader2, Sparkles } from 'lucide-react';
+import { useGenerateApp } from '@/hooks/useGenerateApp';
 
 export function Hero() {
+  const [prompt, setPrompt] = useState('');
+  const { generate, loading, error } = useGenerateApp();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (prompt.trim() !== '') {
+      generate(prompt);
+    }
+  };
+
+  const handleExampleClick = (val: string) => {
+    setPrompt(val);
+  };
+
+  const examples = [
+    'CRM for sales deals',
+    'employee onboarding checklist',
+    'inventory warehouse tracker',
+    'support ticket helpdesk',
+  ];
+
   return (
     <div className="relative overflow-hidden bg-bg-default grid-mesh pt-20 pb-16 md:pt-32 md:pb-28">
       {/* Dynamic Background Glows */}
@@ -26,23 +50,52 @@ export function Hero() {
           Generate secure, database-backed CRMs, HR dashboards, and internal workflows from templates or simple natural language prompts. Ready to deploy in seconds.
         </p>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up">
-          <Link
-            href="/templates"
-            className="group w-full sm:w-auto bg-primary hover:bg-primary-light text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2"
-          >
-            <span>Start Building</span>
-            <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          
-          <Link
-            href="/templates"
-            className="w-full sm:w-auto bg-bg-card hover:bg-bg-subtle text-text-heading border border-border-default font-bold px-8 py-4 rounded-xl shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2"
-          >
-            <Play className="h-4 w-4 fill-current text-text-muted" />
-            <span>Browse Templates</span>
-          </Link>
+        {/* Action Prompt Form */}
+        <div className="max-w-xl mx-auto mb-10 animate-fade-in-up">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 bg-bg-card border border-border-default hover:border-primary/20 focus-within:border-primary p-2 rounded-2xl shadow-md transition-all">
+            <input
+              type="text"
+              disabled={loading}
+              placeholder="Describe the app you want to build..."
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              className="flex-grow bg-transparent px-4 py-3 text-xs md:text-sm font-semibold focus:outline-none text-text-heading disabled:opacity-75"
+            />
+            <button
+              type="submit"
+              disabled={loading || prompt.trim() === ''}
+              className="bg-primary hover:bg-primary-light text-white font-bold text-xs md:text-sm px-6 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5 shrink-0 disabled:bg-bg-subtle disabled:text-text-muted border border-transparent disabled:border-border-default"
+            >
+              {loading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Sparkles className="h-4 w-4 fill-current" />
+              )}
+              <span>{loading ? 'Building...' : 'Generate'}</span>
+            </button>
+          </form>
+
+          {error && (
+            <div className="bg-rose-50 dark:bg-rose-950/20 text-rose-700 dark:text-rose-400 border border-rose-100 dark:border-rose-900/50 p-4 rounded-xl text-xs font-bold mt-3 text-left leading-relaxed">
+              {error}
+            </div>
+          )}
+
+          {/* Prompt Suggestion Chips */}
+          <div className="flex flex-wrap justify-center gap-2 mt-4 text-xs font-semibold text-text-body items-center">
+            <span className="text-[10px] font-bold text-text-muted uppercase tracking-wider">Try:</span>
+            {examples.map((ex) => (
+              <button
+                key={ex}
+                type="button"
+                onClick={() => handleExampleClick(ex)}
+                disabled={loading}
+                className="bg-bg-subtle hover:bg-bg-muted border border-border-default/80 px-2.5 py-1 rounded-lg transition-all text-[11px] font-bold cursor-pointer"
+              >
+                &quot;{ex}&quot;
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Mock Interface Preview Container */}

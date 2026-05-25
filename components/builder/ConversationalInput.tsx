@@ -2,39 +2,51 @@
 
 import React, { useState } from 'react';
 import { Send, Loader2, Sparkles } from 'lucide-react';
+import { useParams } from 'next/navigation';
 import { useBuilderStore } from '../../store/useBuilderStore';
 
 export function ConversationalInput() {
-  const { schema, addConversationEntry, updateComponentProps } = useBuilderStore();
+  const params = useParams();
+  const appId = params?.appId as string;
+
+  const { schema, addConversationEntry, setSchema } = useBuilderStore();
   const [prompt, setPrompt] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [lastError, setLastError] = useState<string | null>(null);
 
   if (!schema) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (prompt.trim() === '') return;
+    if (prompt.trim() === '' || !appId) return;
 
     const instruction = prompt.trim();
     setIsProcessing(true);
+    setLastError(null);
     addConversationEntry(instruction);
     setPrompt('');
 
-    // Simulated Compilation Delay
-    setTimeout(() => {
-      setIsProcessing(false);
+    try {
+      const res = await fetch(`/api/apps/${appId}/edit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ instruction }),
+      });
 
-      // Easter Egg: If they ask to modify title, add cols or fields, let's do it!
-      const lower = instruction.toLowerCase();
-      
-      if (lower.includes('title') || lower.includes('rename')) {
-        // Find crm table or header layout and adjust titles
-        updateComponentProps('crm-header', { title: 'AI CRM' });
-        updateComponentProps('crm-table', { title: 'AI Contacts Workspace' });
+      const json = await res.json();
+
+      if (!res.ok) {
+        setLastError(json.error?.message || 'Could not apply that instruction.');
+        alert(json.error?.message || 'Could not apply that instruction.');
+        return;
       }
-      
-      alert(`AI Agent processed instruction: \n"${instruction}"\n\nResult: Applied targeted schema modifications.`);
-    }, 2000);
+
+      setSchema(json.data.schema);
+    } catch {
+      setLastError('Network error. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (

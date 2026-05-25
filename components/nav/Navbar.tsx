@@ -311,7 +311,7 @@ export function Navbar() {
             </Link>
             
             <Link
-              href="/templates"
+              href="/generate"
               className="bg-primary hover:bg-primary-light text-white font-bold text-sm px-4 py-2 rounded-lg shadow-sm hover:shadow transition-all duration-200"
             >
               Start Building
@@ -409,7 +409,7 @@ export function Navbar() {
               Login
             </Link>
             <Link
-              href="/templates"
+              href="/generate"
               className="block w-full text-center bg-primary hover:bg-primary-light text-white font-bold text-sm px-4 py-2 rounded-lg shadow-sm"
             >
               Start Building

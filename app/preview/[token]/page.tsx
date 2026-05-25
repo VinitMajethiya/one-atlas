@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { usePreviewStore } from '../../../store/usePreviewStore';
 import CanvasPanel from '../../../components/builder/CanvasPanel';
 import { Compass, AlertTriangle, Eye, ArrowLeft } from 'lucide-react';
 
@@ -11,27 +10,39 @@ export default function PreviewPage() {
   const params = useParams();
   const token = params?.token as string;
   
-  const snapshots = usePreviewStore((state) => state.snapshots);
+  const [snapshot, setSnapshot] = useState<{ schema: any; createdAt: string } | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Next.js Hydration Guard
-  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setMounted(true);
-    }, 0);
-    return () => clearTimeout(timer);
-  }, []);
+    if (!token) {
+      setIsLoading(false);
+      return;
+    }
 
-  if (!mounted) {
+    async function fetchSnapshot() {
+      try {
+        const res = await fetch(`/api/preview/${token}`);
+        if (!res.ok) throw new Error('Snapshot not found');
+        const json = await res.json();
+        setSnapshot(json.data);
+      } catch (err) {
+        console.error('Error fetching preview snapshot:', err);
+        setSnapshot(null);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchSnapshot();
+  }, [token]);
+
+  if (isLoading) {
     return (
       <div className="h-screen flex flex-col items-center justify-center bg-bg-default text-text-muted">
-        <div className="text-xs font-bold font-mono">Hydrating preview snapshot...</div>
+        <div className="text-xs font-bold font-mono">Loading preview snapshot...</div>
       </div>
     );
   }
-
-  // Look up snapshot
-  const snapshot = token ? snapshots[token] : null;
 
   // Render 404 state if token is unknown
   if (!snapshot) {

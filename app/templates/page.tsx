@@ -19,16 +19,37 @@ function TemplatesContent() {
   const activeCategory = searchParams.get('category');
   const activeComplexity = searchParams.get('complexity');
 
-  // Filter templates list
-  const filteredTemplates = TEMPLATES.filter((tpl) => {
-    if (activeCategory && tpl.category.toLowerCase() !== activeCategory.toLowerCase()) {
-      return false;
+  const [templates, setTemplates] = React.useState<any[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    async function fetchTemplates() {
+      setLoading(true);
+      try {
+        const catQuery = activeCategory ? `&category=${activeCategory}` : '';
+        const compQuery = activeComplexity ? `&complexity=${activeComplexity}` : '';
+        const res = await fetch(`/api/templates?page=1&limit=24${catQuery}${compQuery}`);
+        if (!res.ok) throw new Error();
+        const json = await res.json();
+        setTemplates(json.data || []);
+      } catch {
+        // Fallback to local static template records
+        const fallback = TEMPLATES.filter((tpl) => {
+          if (activeCategory && tpl.category.toLowerCase() !== activeCategory.toLowerCase()) {
+            return false;
+          }
+          if (activeComplexity && tpl.complexity.toLowerCase() !== activeComplexity.toLowerCase()) {
+            return false;
+          }
+          return true;
+        });
+        setTemplates(fallback);
+      } finally {
+        setLoading(false);
+      }
     }
-    if (activeComplexity && tpl.complexity.toLowerCase() !== activeComplexity.toLowerCase()) {
-      return false;
-    }
-    return true;
-  });
+    fetchTemplates();
+  }, [activeCategory, activeComplexity]);
 
   // URL State Syncer
   const handleFilterChange = (key: string, value: string | null) => {
@@ -66,16 +87,20 @@ function TemplatesContent() {
         {/* Right Cards Grid */}
         <div className="lg:col-span-3">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTemplates.map((tpl) => (
-              <TemplateCard key={tpl.id} template={tpl} />
-            ))}
+            {loading ? (
+              <div className="col-span-full text-center py-16 text-text-muted font-bold text-sm bg-bg-card border border-border-default rounded-2xl">
+                Loading templates database...
+              </div>
+            ) : templates.length === 0 ? (
+              <div className="col-span-full text-center py-16 text-text-muted font-bold text-sm bg-bg-card border border-border-default rounded-2xl">
+                No blueprints match your filter criteria. Try resetting filters.
+              </div>
+            ) : (
+              templates.map((tpl) => (
+                <TemplateCard key={tpl.id} template={tpl} />
+              ))
+            )}
           </div>
-
-          {filteredTemplates.length === 0 && (
-            <div className="text-center py-16 text-text-muted font-bold text-sm bg-bg-card border border-border-default rounded-2xl">
-              No blueprints match your filter criteria. Try resetting filters.
-            </div>
-          )}
         </div>
       </div>
 

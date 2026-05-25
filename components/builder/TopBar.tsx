@@ -7,7 +7,7 @@ import {
   Check, X, ExternalLink, Loader2
 } from 'lucide-react';
 import { useBuilderStore } from '../../store/useBuilderStore';
-import { usePreviewStore } from '../../store/usePreviewStore';
+import { useParams } from 'next/navigation';
 
 export function TopBar() {
   const { 
@@ -15,11 +15,13 @@ export function TopBar() {
     toggleLeftPanel, toggleRightPanel, updateAppName 
   } = useBuilderStore();
 
-  const saveSnapshot = usePreviewStore((state) => state.saveSnapshot);
+  const params = useParams();
+  const appId = params?.appId as string;
 
   const [isEditingName, setIsEditingName] = useState(false);
   const [nameInput, setNameInput] = useState(schema?.appName || 'Workspace App');
   const [copiedLink, setCopiedLink] = useState(false);
+  const [shareLoading, setShareLoading] = useState(false);
   
   // Deploy Dialog State
   const [deployOpen, setDeployOpen] = useState(false);
@@ -42,24 +44,29 @@ export function TopBar() {
     }
   };
 
-  // Generate random token and share/copy link
-  const handleShare = () => {
-    const token = 'tok_' + Math.random().toString(36).substring(2, 12).toLowerCase();
-    
-    // Save snapshot in persisted store
-    saveSnapshot(token, schema);
+  // Generate token and share/copy link via API
+  const handleShare = async () => {
+    if (!appId) return;
+    setShareLoading(true);
+    try {
+      const res = await fetch(`/api/apps/${appId}/preview`, { method: 'POST' });
+      const json = await res.json();
+      if (!res.ok) throw new Error();
 
-    // Create url
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const shareUrl = `${origin}/preview/${token}`;
-
-    navigator.clipboard.writeText(shareUrl);
-    setCopiedLink(true);
-    setTimeout(() => setCopiedLink(false), 2000);
+      const shareUrl = json.data.previewUrl;
+      navigator.clipboard.writeText(shareUrl);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2000);
+    } catch {
+      alert('Failed to generate shareable preview snapshot.');
+    } finally {
+      setShareLoading(false);
+    }
   };
 
   // Simulated Deploy Lifecycle
   const handleDeployStart = () => {
+    if (!appId) return;
     setDeployOpen(true);
     setDeployStep(1);
 
@@ -69,13 +76,22 @@ export function TopBar() {
     }, 1800);
 
     // Step 2 -> Step 3
-    setTimeout(() => {
-      const deployToken = 'live_' + Math.random().toString(36).substring(2, 10);
-      const origin = typeof window !== 'undefined' ? window.location.origin : '';
-      setDeployUrl(`${origin}/preview/${deployToken}`);
-      
-      // Save snapshot for the deploy URL too!
-      saveSnapshot(deployToken, schema);
+    setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/apps/${appId}/preview`, { method: 'POST' });
+        const json = await res.json();
+        if (res.ok) {
+          setDeployUrl(json.data.previewUrl);
+        } else {
+          const deployToken = 'live_' + Math.random().toString(36).substring(2, 10);
+          const origin = typeof window !== 'undefined' ? window.location.origin : '';
+          setDeployUrl(`${origin}/preview/${deployToken}`);
+        }
+      } catch {
+        const deployToken = 'live_' + Math.random().toString(36).substring(2, 10);
+        const origin = typeof window !== 'undefined' ? window.location.origin : '';
+        setDeployUrl(`${origin}/preview/${deployToken}`);
+      }
       setDeployStep(3);
     }, 3800);
   };
@@ -143,10 +159,17 @@ export function TopBar() {
       <div className="flex items-center gap-3">
         <button
           onClick={handleShare}
-          className="bg-bg-card hover:bg-bg-subtle text-text-heading border border-border-default font-bold text-xs px-3.5 py-2 rounded-lg shadow-sm hover:shadow transition-all flex items-center gap-1.5"
+          disabled={shareLoading}
+          className="bg-bg-card hover:bg-bg-subtle text-text-heading border border-border-default font-bold text-xs px-3.5 py-2 rounded-lg shadow-sm hover:shadow transition-all flex items-center gap-1.5 disabled:opacity-75"
         >
-          {copiedLink ? <Check className="h-4 w-4 text-accent-green" /> : <Share2 className="h-4 w-4 text-text-muted" />}
-          <span>{copiedLink ? 'Copied!' : 'Share'}</span>
+          {shareLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : copiedLink ? (
+            <Check className="h-4 w-4 text-accent-green" />
+          ) : (
+            <Share2 className="h-4 w-4 text-text-muted" />
+          )}
+          <span>{shareLoading ? 'Sharing...' : copiedLink ? 'Copied!' : 'Share'}</span>
         </button>
 
         <button
