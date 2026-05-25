@@ -7,7 +7,9 @@ import { useTheme } from 'next-themes';
 import { 
   Compass, Menu, X, Sun, Moon, ChevronDown, 
   BookOpen, LifeBuoy, Bookmark, Bell, Video,
-  Briefcase, Users, Sliders, BarChart2, Package, HelpCircle
+  Briefcase, Users, Sliders, BarChart2, Package, HelpCircle,
+  Zap, CheckSquare, Terminal, GitMerge, FileText, Code, Layers,
+  Activity, DollarSign, Heart, ShoppingBag, Cloud
 } from 'lucide-react';
 import { NAV_ITEMS } from '../../data/nav';
 import { TEMPLATES } from '../../data/templates';
@@ -64,6 +66,18 @@ export function Navbar() {
       case 'BarChart2': return <BarChart2 className="h-5 w-5 text-rose-500" />;
       case 'Package': return <Package className="h-5 w-5 text-orange-500" />;
       case 'HelpCircle': return <HelpCircle className="h-5 w-5 text-sky-500" />;
+      case 'Zap': return <Zap className="h-5 w-5 text-yellow-500" />;
+      case 'CheckSquare': return <CheckSquare className="h-5 w-5 text-emerald-500" />;
+      case 'Terminal': return <Terminal className="h-5 w-5 text-gray-500" />;
+      case 'GitMerge': return <GitMerge className="h-5 w-5 text-purple-500" />;
+      case 'FileText': return <FileText className="h-5 w-5 text-blue-500" />;
+      case 'Code': return <Code className="h-5 w-5 text-indigo-500" />;
+      case 'Layers': return <Layers className="h-5 w-5 text-rose-500" />;
+      case 'Activity': return <Activity className="h-5 w-5 text-emerald-500" />;
+      case 'DollarSign': return <DollarSign className="h-5 w-5 text-green-500" />;
+      case 'Heart': return <Heart className="h-5 w-5 text-red-500" />;
+      case 'ShoppingBag': return <ShoppingBag className="h-5 w-5 text-orange-500" />;
+      case 'Cloud': return <Cloud className="h-5 w-5 text-sky-500" />;
       default: return <Compass className="h-5 w-5 text-primary" />;
     }
   };
@@ -219,7 +233,7 @@ export function Navbar() {
 
   return (
     <div ref={navRef} className="sticky top-0 z-50 w-full glass-nav transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 text-text-heading font-bold text-lg select-none">
@@ -235,7 +249,7 @@ export function Navbar() {
 
               if (hasMega || hasDropdown) {
                 return (
-                  <div key={item.label} className="relative">
+                  <div key={item.label} className={hasDropdown ? "relative" : ""}>
                     <button
                       onClick={() => toggleDropdown(item.label)}
                       className={`flex items-center gap-1 px-3 py-2 text-sm font-semibold rounded-lg hover:bg-bg-subtle hover:text-primary transition-all duration-200 ${

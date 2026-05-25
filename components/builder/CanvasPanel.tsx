@@ -22,6 +22,11 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
   const selectedNodeId = useBuilderStore((state) => state.selectedNodeId);
   const selectNode = useBuilderStore((state) => state.selectNode);
 
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const activeSchema = previewSchema || storeSchema;
 
   if (!activeSchema) {
@@ -336,7 +341,11 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
             </div>
 
             <div className="w-full h-64 md:h-72">
-              {chartType === 'area' && (
+              {!mounted ? (
+                <div className="w-full h-full bg-bg-subtle/50 animate-pulse rounded-xl flex items-center justify-center text-xs font-bold text-text-muted">
+                  Rendering interactive analytics...
+                </div>
+              ) : chartType === 'area' ? (
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={mockAnalyticsChartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                     <defs>
@@ -351,9 +360,7 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
                     <Area type="monotone" dataKey="volume" stroke="#635BFF" strokeWidth={2} fillOpacity={1} fill="url(#colorVolume)" />
                   </AreaChart>
                 </ResponsiveContainer>
-              )}
-
-              {chartType === 'bar' && (
+              ) : chartType === 'bar' ? (
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={mockAnalyticsChartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                     <XAxis dataKey="step" stroke="#697386" fontSize={10} tickLine={false} />
@@ -362,9 +369,7 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
                     <Bar dataKey="visitors" fill="#FF5996" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
-              )}
-
-              {chartType === 'pie' && (
+              ) : chartType === 'pie' ? (
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -389,7 +394,7 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
                     <Tooltip contentStyle={{ fontSize: '11px', borderRadius: '8px' }} />
                   </PieChart>
                 </ResponsiveContainer>
-              )}
+              ) : null}
             </div>
           </div>
         );
