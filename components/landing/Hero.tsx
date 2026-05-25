@@ -102,7 +102,7 @@ export function Hero() {
         <div className="mt-16 md:mt-20 border border-border-default bg-bg-card rounded-2xl shadow-2xl p-2 md:p-3 max-w-5xl mx-auto animate-fade-in-up">
           <div className="bg-bg-subtle rounded-xl overflow-hidden border border-border-subtle aspect-video relative flex flex-col items-center justify-center group">
             {/* Mock screenshot placeholder */}
-            <div className="absolute inset-0 bg-cover bg-center opacity-90 dark:opacity-75" style={{ backgroundImage: `url('/api/placeholder/1000/600')` }} />
+            <div className="absolute inset-0 bg-cover bg-center opacity-90 dark:opacity-75" style={{ backgroundImage: `url('/dashboard_preview.png')` }} />
             
             {/* Visual Interface Elements */}
             <div className="absolute inset-0 bg-gradient-to-t from-bg-default/80 to-transparent flex flex-col justify-end p-6 md:p-10 text-left">
