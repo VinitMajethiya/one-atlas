@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
           workspace_id: workspaceId
         }
       }
-    }).catch(err => console.error('Failed to create deploy_start event:', err));
+    }).catch((err: unknown) => console.error('Failed to create deploy_start event:', err));
 
     return NextResponse.json({
       deployment_id: deployment.id,

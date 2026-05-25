@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
           prompt
         }
       }
-    }).catch(err => console.error('Failed to create ai_customize_open event:', err));
+    }).catch((err: unknown) => console.error('Failed to create ai_customize_open event:', err));
 
     return NextResponse.json({ session_id: session.id });
   } catch (error) {

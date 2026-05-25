@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
           action: eventType,
           metadata: metadata || {}
         }
-      }).catch(err => console.error('Failed to write ActivityLog:', err));
+      }).catch((err: unknown) => console.error('Failed to write ActivityLog:', err));
     }
 
     function getNotificationTitle(type: string): string {
@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
               resultCount: metadata.result_count || 0,
               filters: metadata.filters || {},
             }
-          }).catch(err => console.error('Failed secondary search log write:', err));
+          }).catch((err: unknown) => console.error('Failed secondary search log write:', err));
         }
         break;
 
@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
             provider: metadata?.provider || 'credentials',
             success: metadata?.success || false,
           }
-        }).catch(err => console.error('Failed secondary auth attempt write:', err));
+        }).catch((err: unknown) => console.error('Failed secondary auth attempt write:', err));
         break;
 
       case 'ai_customize_open':
@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
               schemaSnapshot: metadata.schema_snapshot || {},
               status: 'active',
             }
-          }).catch(err => console.error('Failed secondary AI session write:', err));
+          }).catch((err: unknown) => console.error('Failed secondary AI session write:', err));
         }
         break;
 
@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
               templateId: metadata.template_id,
               shareUrl: metadata.share_url,
             }
-          }).catch(err => console.error('Failed secondary share write:', err));
+          }).catch((err: unknown) => console.error('Failed secondary share write:', err));
         }
         break;
 
@@ -126,7 +126,7 @@ export async function POST(req: NextRequest) {
           await prisma.clone.update({
             where: { id: metadata.clone_id },
             data: { status: 'running' }
-          }).catch(err => console.error('Failed to update clone status:', err));
+          }).catch((err: unknown) => console.error('Failed to update clone status:', err));
         }
         break;
 
@@ -135,7 +135,7 @@ export async function POST(req: NextRequest) {
           await prisma.deployment.update({
             where: { id: metadata.deployment_id },
             data: { status: 'running' }
-          }).catch(err => console.error('Failed to update deployment status:', err));
+          }).catch((err: unknown) => console.error('Failed to update deployment status:', err));
         }
         break;
 
@@ -150,7 +150,7 @@ export async function POST(req: NextRequest) {
               rollbackDeploymentId: metadata.rollback_deployment_id,
               buildLog: ['Initiating rollback to deployment ' + metadata.rollback_deployment_id]
             }
-          }).catch(err => console.error('Failed to create rollback deployment:', err));
+          }).catch((err: unknown) => console.error('Failed to create rollback deployment:', err));
         }
         break;
 
@@ -163,7 +163,7 @@ export async function POST(req: NextRequest) {
               patch: metadata.patch,
               rolledBack: false
             }
-          }).catch(err => console.error('Failed secondary change write:', err));
+          }).catch((err: unknown) => console.error('Failed secondary change write:', err));
           
           await prisma.schemaVersion.create({
             data: {
@@ -171,7 +171,7 @@ export async function POST(req: NextRequest) {
               version: metadata.version || 1,
               content: metadata.changes || {},
             }
-          }).catch(err => console.error('Failed secondary schemaVersion write:', err));
+          }).catch((err: unknown) => console.error('Failed secondary schemaVersion write:', err));
         }
         break;
 
@@ -210,7 +210,7 @@ export async function POST(req: NextRequest) {
           body: getNotificationBody(eventType, metadata),
           metadata: metadata || {},
         }
-      }).catch(err => console.error('Failed to create notification:', err));
+      }).catch((err: unknown) => console.error('Failed to create notification:', err));
     }
 
     return NextResponse.json({ success: true, event_id: dbEvent.id });

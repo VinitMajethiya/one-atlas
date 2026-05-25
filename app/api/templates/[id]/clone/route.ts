@@ -56,7 +56,7 @@ export async function POST(
           workspace_id: workspaceId || null
         }
       }
-    }).catch(err => console.error('Failed to create clone_start event:', err));
+    }).catch((err: unknown) => console.error('Failed to create clone_start event:', err));
 
     return NextResponse.json({
       clone_id: clone.id,

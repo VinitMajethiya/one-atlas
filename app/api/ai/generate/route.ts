@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
           prompt: userPrompt || session.prompt
         }
       }
-    }).catch(err => console.error('Failed to create ai_generate event:', err));
+    }).catch((err: unknown) => console.error('Failed to create ai_generate event:', err));
 
     return NextResponse.json({
       success: true,

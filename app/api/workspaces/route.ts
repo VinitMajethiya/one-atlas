@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
           org_id: orgId || null
         }
       }
-    }).catch(err => console.error('Failed to create workspace event:', err));
+    }).catch((err: unknown) => console.error('Failed to create workspace event:', err));
 
     return NextResponse.json({ workspace_id: workspace.id });
   } catch (error) {

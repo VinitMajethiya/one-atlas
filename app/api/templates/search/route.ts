@@ -76,7 +76,7 @@ export async function GET(req: NextRequest) {
         resultCount: total,
         filters: { category: category || null, complexity: complexity || null }
       }
-    }).catch(err => console.error('Failed to log search log:', err));
+    }).catch((err: unknown) => console.error('Failed to log search log:', err));
 
     // Create Search event
     await prisma.event.create({
@@ -85,7 +85,7 @@ export async function GET(req: NextRequest) {
         userId,
         metadata: { query: q, result_count: total, filters: { category, complexity } }
       }
-    }).catch(err => console.error('Failed to create search event:', err));
+    }).catch((err: unknown) => console.error('Failed to create search event:', err));
 
   } catch (error) {
     console.error('Search error:', error);
