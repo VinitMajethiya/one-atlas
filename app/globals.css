@@ -123,6 +123,19 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-heading-var);
+}
+
+p {
+  color: var(--text-body-var);
+}
+
+::placeholder {
+  color: var(--text-muted-var);
+  opacity: 1;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
