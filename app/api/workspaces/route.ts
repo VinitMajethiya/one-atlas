@@ -62,7 +62,7 @@ export async function GET(req: NextRequest) {
       orderBy: { createdAt: 'desc' }
     });
 
-    const result = workspaces.map(w => ({
+    const result = workspaces.map((w: any) => ({
       workspace_id: w.id,
       name: w.name,
       status: w.status,

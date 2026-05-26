@@ -5,7 +5,7 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const idsString = searchParams.get('ids') || '';
-    const ids = idsString.split(',').filter(id => id.trim() !== '');
+    const ids = idsString.split(',').filter((id: string) => id.trim() !== '');
 
     if (ids.length === 0) {
       return NextResponse.json([]);

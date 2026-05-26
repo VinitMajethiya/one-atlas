@@ -20,8 +20,8 @@ export async function GET(
     }
 
     const rawWorkflows = template.workflows || [];
-    const workflowNodes = rawWorkflows.map((flowString, index) => {
-      const parts = flowString.split('->').map(p => p.trim());
+    const workflowNodes = (rawWorkflows as string[]).map((flowString: string, index: number) => {
+      const parts = flowString.split('->').map((p: string) => p.trim());
       const trigger = parts[0] || 'Trigger Event';
       const action = parts[1] || 'Action Execution';
 

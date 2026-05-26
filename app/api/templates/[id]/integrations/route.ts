@@ -53,7 +53,7 @@ export async function GET(
       'Greenhouse': { logo: 'Briefcase', description: 'Import candidate applications and screen events.', type: 'hr' },
     };
 
-    const details = (template.integrations || []).map(name => {
+    const details = (template.integrations || []).map((name: any) => {
       const meta = integrationMetadata[name] || { logo: 'Layers', description: 'Sync events and metadata properties.', type: 'custom' };
       return {
         name,
