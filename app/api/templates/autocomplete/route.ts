@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
       take: 8
     });
 
-    const suggestions = templates.map(t => ({
+    const suggestions = templates.map((t: any) => ({
       id: t.id,
       name: t.name,
       slug: t.slug,

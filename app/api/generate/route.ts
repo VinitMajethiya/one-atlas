@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const templateMeta = templates.find((t) => t.id === match.templateId);
+    const templateMeta = templates.find((t: any) => t.id === match.templateId);
     const appName = `My ${templateMeta!.name}`;
     const result = await createAppFromTemplate(match.templateId, appName);
 
