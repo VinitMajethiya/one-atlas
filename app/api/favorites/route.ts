@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    return NextResponse.json(favorites.map(f => f.template));
+    return NextResponse.json(favorites.map((f: any) => f.template));
   } catch (error) {
     console.error('Error fetching favorites:', error);
     return NextResponse.json(
