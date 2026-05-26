@@ -39,7 +39,7 @@ export function PricingPreview() {
                 
                 <div className="flex items-baseline mb-8">
                   <span className="text-3xl md:text-4xl font-extrabold text-text-heading">
-                    {tier.priceMonthly === 9999 ? 'Custom' : `$${tier.priceMonthly}`}
+                    {tier.priceMonthly === 9999 ? 'Custom' : `₹${Math.round(tier.priceMonthly * 80).toLocaleString('en-IN')}`}
                   </span>
                   {tier.priceMonthly !== 9999 && (
                     <span className="text-sm font-semibold text-text-muted ml-1.5">/ month</span>

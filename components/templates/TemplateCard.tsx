@@ -171,7 +171,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
 
         {/* Floating Price Badge */}
         <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-lg text-white font-bold text-[10px] uppercase tracking-wider shadow-sm">
-          {template.priceType === 'free' ? 'Free' : `$${template.priceAmount}/mo`}
+          {template.priceType === 'free' ? 'Free' : `₹${Math.round(template.priceAmount * 80).toLocaleString('en-IN')}/mo`}
         </div>
 
         {/* Favorite Save Button */}

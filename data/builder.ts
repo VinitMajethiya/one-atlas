@@ -331,7 +331,7 @@ export const BUILDER_SCHEMAS: Record<string, AppSchema> = {
                   { id: 'an-user', name: 'activeUsers', type: 'number', label: 'Active Users', required: true, visible: true },
                   { id: 'an-signup', name: 'newSignups', type: 'number', label: 'New Signups', required: true, visible: true },
                   { id: 'an-conv', name: 'conversionRate', type: 'number', label: 'Conversion Rate %', required: true, visible: true },
-                  { id: 'an-arr', name: 'annualRunRate', type: 'number', label: 'ARR ($)', required: true, visible: true },
+                  { id: 'an-arr', name: 'annualRunRate', type: 'number', label: 'ARR (₹)', required: true, visible: true },
                 ],
                 props: {
                   columns: 4,
@@ -346,7 +346,7 @@ export const BUILDER_SCHEMAS: Record<string, AppSchema> = {
                 fields: [],
                 props: {
                   chartType: 'area',
-                  title: 'Daily Gross Volume (USD)',
+                  title: 'Daily Gross Volume (INR)',
                   xAxisKey: 'date',
                   yAxisKey: 'volume',
                 },

@@ -11,9 +11,14 @@ import { Check, X } from 'lucide-react';
 export default function PricingPage() {
   const [isAnnual, setIsAnnual] = useState(false);
 
+  const formatRupees = (usdAmount: number) => {
+    if (usdAmount === 0) return '₹0';
+    return '₹' + Math.round(usdAmount * 80).toLocaleString('en-IN');
+  };
+
   const getPriceDisplay = (monthly: number, annualRate: number) => {
     if (monthly === 9999) return 'Custom';
-    return isAnnual ? `$${annualRate}` : `$${monthly}`;
+    return isAnnual ? formatRupees(annualRate) : formatRupees(monthly);
   };
 
   const pricingFaqs = [

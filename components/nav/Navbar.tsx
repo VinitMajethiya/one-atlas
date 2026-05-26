@@ -182,7 +182,7 @@ export function Navbar() {
     return (
       <div className="absolute top-full left-0 right-0 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-2 animate-fade-in-up">
         <div 
-          className="bg-white border border-border-default rounded-2xl shadow-lg min-w-[640px] p-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-left"
+          className="bg-bg-card border border-border-default rounded-2xl shadow-lg min-w-[640px] p-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-left"
           style={{ gridTemplateColumns: `repeat(${menuItems.length}, minmax(0, 1fr))`, gap: '2rem' }}
         >
           {menuItems.map((col: MegaMenuColumn, idx: number) => {

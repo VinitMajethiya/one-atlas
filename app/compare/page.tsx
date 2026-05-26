@@ -184,7 +184,7 @@ function CompareContent() {
                     {tpl.priceType}
                   </span>
                   <span className="text-[11px] text-text-muted font-mono block mt-0.5">
-                    {tpl.priceType === 'free' ? 'No cost' : `$${tpl.priceAmount}/mo`}
+                    {tpl.priceType === 'free' ? 'No cost' : `₹${Math.round(tpl.priceAmount * 80).toLocaleString('en-IN')}/mo`}
                   </span>
                 </td>
               ))}
