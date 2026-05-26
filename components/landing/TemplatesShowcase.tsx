@@ -33,12 +33,12 @@ export function TemplatesShowcase() {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-bg-default border-b border-border-default transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-[60px] lg:py-[120px] bg-bg-default border-b border-border-default transition-standard">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-primary mb-3 block">Instant Bases</span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-text-heading tracking-tight">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-primary mb-3 block">Instant Bases</span>
+            <h2 className="text-[48px] font-[650] leading-[1] tracking-[-0.03em] text-text-heading">
               Pre-built Operational Blueprints
             </h2>
             <p className="text-text-body font-medium mt-2 max-w-xl">
@@ -59,7 +59,7 @@ export function TemplatesShowcase() {
           {TEMPLATES.map((tpl) => (
             <div
               key={tpl.id}
-              className={`snap-start shrink-0 w-[320px] md:w-[360px] bg-bg-card border border-border-default rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 ${templateBorderHover(tpl.color)}`}
+              className={`snap-start shrink-0 w-[320px] md:w-[360px] bg-white border border-[#E5E7EB] rounded-[24px] p-[28px] flex flex-col justify-between shadow-standard transition-standard ${templateBorderHover(tpl.color)}`}
             >
               <div>
                 <div className="flex justify-between items-center mb-4">
@@ -72,23 +72,23 @@ export function TemplatesShowcase() {
                   </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-text-heading mb-2">{tpl.name}</h3>
+                <h3 className="text-[22px] font-semibold text-text-heading mb-2">{tpl.name}</h3>
                 <p className="text-sm text-text-body font-medium line-clamp-3 mb-6 leading-relaxed">
                   {tpl.description}
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 mt-4 border-t border-border-subtle pt-4">
+              <div className="grid grid-cols-2 gap-3 mt-4 border-t border-border-default pt-4">
                 <Link
                   href={getBuilderUrl(tpl.slug)}
-                  className="bg-primary hover:bg-primary-light text-white font-bold text-xs py-2.5 rounded-lg transition-colors flex items-center justify-center gap-1.5"
+                  className="btn-primary text-xs w-full"
                 >
                   <span>Use Template</span>
                 </Link>
                 
                 <Link
                   href={`/templates?template=${tpl.slug}`}
-                  className="bg-bg-subtle hover:bg-bg-muted text-text-heading border border-border-default font-bold text-xs py-2.5 rounded-lg transition-colors flex items-center justify-center gap-1.5"
+                  className="btn-secondary text-xs w-full gap-1.5"
                 >
                   <Eye className="h-3.5 w-3.5" />
                   <span>Preview</span>

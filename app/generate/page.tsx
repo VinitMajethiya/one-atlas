@@ -36,7 +36,7 @@ function GeneratePage() {
     <>
       <Navbar />
       <main className="flex-grow flex items-center justify-center bg-bg-default grid-mesh py-16 px-4">
-        <div className="max-w-2xl w-full bg-bg-card border border-border-default rounded-3xl p-8 md:p-12 shadow-xl relative z-10 text-center select-none">
+        <div className="max-w-2xl w-full bg-bg-card border border-border-default rounded-3xl p-8 md:p-12 shadow-standard relative z-10 text-center select-none">
           <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-primary border border-primary/20">
             <Compass className="h-6 w-6 text-primary animate-pulse-slow" />
           </div>
@@ -73,7 +73,7 @@ function GeneratePage() {
             <button
               type="submit"
               disabled={loading || prompt.trim() === ''}
-              className="w-full btn-gradient-hero font-bold text-sm py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:border disabled:border-border-default"
+              className="w-full btn-gradient-hero font-bold text-sm py-4 rounded-xl shadow-standard transition-standard flex items-center justify-center gap-2 disabled:border disabled:border-border-default"
             >
               {loading ? (
                 <>

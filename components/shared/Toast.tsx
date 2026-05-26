@@ -29,7 +29,7 @@ export default function ToastContainer() {
         return (
           <div
             key={toast.id}
-            className={`flex items-start gap-3 p-4 border rounded-2xl shadow-lg backdrop-blur-md transition-all duration-300 pointer-events-auto animate-slide-in ${typeColor}`}
+            className={`flex items-start gap-3 p-4 border rounded-2xl shadow-standard backdrop-blur-md transition-standard pointer-events-auto animate-slide-in ${typeColor}`}
           >
             <div className="shrink-0 pt-0.5">{icon}</div>
             <div className="flex-1 space-y-1">

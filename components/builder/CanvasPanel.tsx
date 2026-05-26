@@ -101,7 +101,7 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
   // ----------------------------------------------------
   const renderComponent = (node: ComponentNode): React.ReactNode => {
     const borderClass = isSelected(node.id) 
-      ? 'ring-2 ring-primary ring-offset-2 dark:ring-offset-bg-default' 
+      ? 'ring-2 ring-primary ring-offset-2 ' 
       : 'hover:ring-1 hover:ring-primary/40';
 
     switch (node.type) {
@@ -476,7 +476,7 @@ export function CanvasPanel({ readOnly = false, previewSchema }: CanvasPanelProp
   };
 
   return (
-    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-bg-subtle/40 dark:bg-bg-subtle/10 grid-mesh min-h-full">
+    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-bg-subtle/40 grid-mesh min-h-full">
       {activeSchema.components.map((comp) => renderComponent(comp))}
     </div>
   );

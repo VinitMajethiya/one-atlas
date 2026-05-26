@@ -269,7 +269,7 @@ function TemplatesContent() {
           </form>
 
           {showSuggestions && suggestions.length > 0 && (
-            <div className="absolute top-full left-0 right-0 z-30 mt-2 bg-bg-card border border-border-default rounded-2xl shadow-xl overflow-hidden divide-y divide-border-subtle max-h-60 overflow-y-auto">
+            <div className="absolute top-full left-0 right-0 z-30 mt-2 bg-bg-card border border-border-default rounded-2xl shadow-standard overflow-hidden divide-y divide-border-subtle max-h-60 overflow-y-auto">
               {suggestions.map((s) => (
                 <div
                   key={s.id}
@@ -414,7 +414,7 @@ function TemplatesContent() {
 
       {/* Floating Compare Tray */}
       {compareList.length >= 2 && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-black/85 backdrop-blur-md border border-white/10 rounded-2xl py-3.5 px-5 shadow-2xl flex items-center gap-6 animate-slide-in">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-black/85 backdrop-blur-md border border-white/10 rounded-2xl py-3.5 px-5 shadow-standard flex items-center gap-6 animate-slide-in">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-accent-blue animate-pulse" />
             <span className="text-xs font-bold font-mono text-white tracking-wider">

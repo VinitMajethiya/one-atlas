@@ -7,10 +7,10 @@ import { PRICING_TIERS } from '../../data/pricing';
 
 export function PricingPreview() {
   return (
-    <section className="w-full py-16 md:py-24 bg-bg-default border-b border-border-default transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span className="text-xs font-bold uppercase tracking-wider text-primary mb-3 block">Flexible Plans</span>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-text-heading mb-6 tracking-tight">
+    <section className="w-full py-[60px] lg:py-[120px] bg-bg-default border-b border-border-default transition-standard">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8 text-center">
+        <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-primary mb-3 block">Flexible Plans</span>
+        <h2 className="text-[48px] font-[650] leading-[1] tracking-[-0.03em] text-text-heading mb-6">
           Simple, Transparent Pricing
         </h2>
         <p className="text-text-body font-medium max-w-xl mx-auto mb-16">
@@ -21,14 +21,14 @@ export function PricingPreview() {
           {PRICING_TIERS.map((tier) => (
             <div
               key={tier.name}
-              className={`bg-bg-card border rounded-2xl p-8 text-left shadow-sm flex flex-col justify-between relative hover:shadow-md transition-all duration-300 ${
+              className={`bg-white border text-left shadow-standard flex flex-col justify-between relative transition-standard rounded-[24px] p-[28px] ${
                 tier.popular 
-                  ? 'border-primary ring-2 ring-primary/20 scale-100 md:scale-105 z-10' 
+                  ? 'border-[1.5px] border-[#FF6600] z-10' 
                   : 'border-border-default'
               }`}
             >
               {tier.popular && (
-                <span className="absolute top-0 right-6 -translate-y-1/2 bg-primary text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
+                <span className="absolute top-0 right-6 -translate-y-1/2 bg-primary text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-[var(--radius-sm)] shadow-sm">
                   Most Popular
                 </span>
               )}
@@ -46,7 +46,7 @@ export function PricingPreview() {
                   )}
                 </div>
 
-                <ul className="space-y-3 mb-8 border-t border-border-subtle pt-6">
+                <ul className="space-y-3 mb-8 border-t border-border-default pt-6">
                   {tier.features.slice(0, 4).map((f) => (
                     <li key={f} className="flex items-start gap-2.5 text-xs text-text-body font-semibold">
                       <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
@@ -58,11 +58,7 @@ export function PricingPreview() {
 
               <Link
                 href="/pricing"
-                className={`w-full text-center py-3 rounded-xl font-bold text-xs transition-all ${
-                  tier.popular
-                    ? 'bg-primary hover:bg-primary-light text-white shadow-sm'
-                    : 'bg-bg-subtle hover:bg-bg-muted text-text-heading border border-border-default'
-                }`}
+                className={tier.popular ? 'btn-primary w-full text-xs font-bold' : 'btn-secondary w-full text-xs font-bold'}
               >
                 {tier.cta}
               </Link>

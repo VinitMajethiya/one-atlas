@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { mapDbTemplateToFrontend } from '@/lib/theme';
 
 export async function GET(req: NextRequest) {
   try {
@@ -28,7 +29,9 @@ export async function GET(req: NextRequest) {
       })
     }).catch(console.error);
 
-    return NextResponse.json(templates);
+    const mappedTemplates = templates.map(mapDbTemplateToFrontend);
+
+    return NextResponse.json(mappedTemplates);
   } catch (error) {
     console.error('Error fetching compare templates:', error);
     return NextResponse.json(

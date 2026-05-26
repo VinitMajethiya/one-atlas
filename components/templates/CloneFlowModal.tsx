@@ -400,7 +400,7 @@ export default function CloneFlowModal({ templateId, templateName, isOpen, onClo
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="w-full max-w-2xl bg-bg-card border border-border-default rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+      <div className="w-full max-w-2xl bg-bg-card border border-border-default rounded-3xl overflow-hidden shadow-standard flex flex-col max-h-[85vh]">
         
         {/* Modal Header */}
         <div className="px-6 py-4 border-b border-border-default flex items-center justify-between bg-bg-subtle">
@@ -459,7 +459,7 @@ export default function CloneFlowModal({ templateId, templateName, isOpen, onClo
               </p>
               <button
                 onClick={startCloneFlow}
-                className="bg-primary hover:bg-primary-light text-white font-bold text-xs px-6 py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5 mx-auto"
+                className="bg-primary hover:bg-primary-light text-white font-bold text-xs px-6 py-3 rounded-xl shadow-standard transition-all flex items-center justify-center gap-1.5 mx-auto"
               >
                 <Play className="w-4 h-4 fill-current" />
                 <span>Begin Cloud Provisioning</span>
@@ -488,8 +488,7 @@ export default function CloneFlowModal({ templateId, templateName, isOpen, onClo
           )}
 
           {buildLog.length > 0 && (
-            <pre className="mt-4 p-3 bg-bg-subtle border border-border-default rounded-xl text-xs font-mono text-text-muted 
-                            max-h-48 overflow-y-auto scrollbar-thin">
+            <pre className="mt-4 p-3 bg-bg-subtle border border-border-default rounded-xl text-xs font-mono text-text-muted max-h-48 overflow-y-auto scrollbar-thin">
               {buildLog.map((line, i) => (
                 <div key={i}>{line}</div>
               ))}
@@ -576,7 +575,7 @@ export default function CloneFlowModal({ templateId, templateName, isOpen, onClo
               <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">
                 <Link
                   href={`/workspaces/${store.workspaceId}`}
-                  className="bg-accent-blue hover:bg-accent-blue/90 text-white font-bold text-xs px-5 py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5"
+                  className="bg-accent-blue hover:bg-accent-blue/90 text-white font-bold text-xs px-5 py-3 rounded-xl shadow-standard transition-all flex items-center justify-center gap-1.5"
                 >
                   <span>Open Sandbox Workspace</span>
                   <ArrowRight className="w-4 h-4" />

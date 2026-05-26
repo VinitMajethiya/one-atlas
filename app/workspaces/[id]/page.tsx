@@ -120,7 +120,7 @@ function WorkspaceDetailsContent() {
           {isDeployed && deployment.url && (
             <a
               href={deployment.url}
-              className="bg-primary hover:bg-primary/95 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all shadow-md shadow-primary/10 flex items-center gap-1.5 hover:scale-[1.01] active:scale-[0.99]"
+              className="bg-primary hover:bg-primary/95 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all shadow-standard shadow-primary/10 flex items-center gap-1.5 hover:scale-[1.01] active:scale-[0.99]"
             >
               Open App
             </a>

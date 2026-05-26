@@ -45,8 +45,8 @@ export function TemplateFilters({ category, complexity, onFilterChange }: Templa
           <button
             onClick={() => onFilterChange('category', null)}
             className={`w-full text-left px-3 py-2 text-xs md:text-sm font-semibold rounded-lg transition-colors ${
-              category === null
-                ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light'
+              !category
+                ? 'bg-primary/10 text-primary'
                 : 'text-text-body hover:bg-bg-subtle'
             }`}
           >
@@ -57,8 +57,8 @@ export function TemplateFilters({ category, complexity, onFilterChange }: Templa
               key={cat}
               onClick={() => onFilterChange('category', cat.toLowerCase())}
               className={`w-full text-left px-3 py-2 text-xs md:text-sm font-semibold rounded-lg transition-colors ${
-                category === cat.toLowerCase()
-                  ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light'
+                category?.toLowerCase() === cat.toLowerCase()
+                  ? 'bg-primary/10 text-primary'
                   : 'text-text-body hover:bg-bg-subtle'
               }`}
             >
@@ -75,8 +75,8 @@ export function TemplateFilters({ category, complexity, onFilterChange }: Templa
           <button
             onClick={() => onFilterChange('complexity', null)}
             className={`w-full text-left px-3 py-2 text-xs md:text-sm font-semibold rounded-lg transition-colors ${
-              complexity === null
-                ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light'
+              !complexity
+                ? 'bg-primary/10 text-primary'
                 : 'text-text-body hover:bg-bg-subtle'
             }`}
           >
@@ -87,8 +87,8 @@ export function TemplateFilters({ category, complexity, onFilterChange }: Templa
               key={comp}
               onClick={() => onFilterChange('complexity', comp.toLowerCase())}
               className={`w-full text-left px-3 py-2 text-xs md:text-sm font-semibold rounded-lg transition-colors ${
-                complexity === comp.toLowerCase()
-                  ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light'
+                complexity?.toLowerCase() === comp.toLowerCase()
+                  ? 'bg-primary/10 text-primary'
                   : 'text-text-body hover:bg-bg-subtle'
               }`}
             >

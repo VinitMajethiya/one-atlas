@@ -123,7 +123,7 @@ function CompareContent() {
         </p>
       </div>
 
-      <div className="overflow-x-auto rounded-3xl border border-border-default bg-bg-card shadow-lg">
+      <div className="overflow-x-auto rounded-3xl border border-border-default bg-bg-card shadow-standard">
         <table className="w-full border-collapse text-left">
           <thead>
             <tr className="border-b border-border-default bg-bg-subtle/50">
@@ -281,7 +281,7 @@ function CompareContent() {
                 <td key={tpl.id} className="p-5 border-l border-border-default">
                   <button
                     onClick={() => handleUseTemplate(tpl.id, tpl.name)}
-                    className="w-full bg-primary hover:bg-primary/95 text-white font-bold text-xs py-2.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 group"
+                    className="w-full bg-primary hover:bg-primary/95 text-white font-bold text-xs py-2.5 rounded-xl transition-all shadow-standard flex items-center justify-center gap-1.5 group"
                   >
                     <span>Use Blueprint</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

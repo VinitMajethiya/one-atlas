@@ -84,7 +84,7 @@ export function AdminAuditLogViewer() {
                 )}
               </div>
               {log.metadata && Object.keys(log.metadata).length > 0 && (
-                <pre className="text-[9px] font-mono bg-black/5 dark:bg-black/45 p-2 rounded-lg border border-border-subtle overflow-x-auto text-text-muted max-h-20 mt-1">
+                <pre className="text-[9px] font-mono bg-black/5 p-2 rounded-lg border border-border-subtle overflow-x-auto text-text-muted max-h-20 mt-1">
                   {JSON.stringify(log.metadata, null, 2)}
                 </pre>
               )}

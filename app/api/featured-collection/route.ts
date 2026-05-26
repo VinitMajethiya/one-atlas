@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { mapFeaturedToFrontend } from '@/lib/theme';
 
 export async function GET(_req: NextRequest) {
   try {
@@ -19,7 +20,9 @@ export async function GET(_req: NextRequest) {
       }
     });
 
-    return NextResponse.json(featured, {
+    const mappedFeatured = featured.map(mapFeaturedToFrontend);
+
+    return NextResponse.json(mappedFeatured, {
       headers: { 'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=120' }
     });
   } catch (error) {

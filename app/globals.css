@@ -4,106 +4,132 @@
 @source "../components/**/*.{tsx,ts,jsx,js}";
 @source "../data/**/*.{tsx,ts,jsx,js}";
 
-/* Home Atlas — runtime tokens (light) */
+/* OneAtlas Design System — Canonical Tokens */
 :root {
-  --atlas-primary:        #635BFF;
-  --atlas-primary-light:  #7A73FF;
-  --atlas-dark-navy:      #0A2540;
-  --atlas-dark-surface:   #1A1F36;
+  /* Backgrounds */
+  --bg-primary: #F5F5EE;
+  --bg-secondary: #FFFFFF;
 
-  --atlas-accent-pink:     #FF5996;
-  --atlas-accent-orange:   #FFB17A;
-  --atlas-accent-teal:     #00D4B1;
-  --atlas-accent-cyan:     #00D4FF;
-  --atlas-accent-yellow:   #F8BC42;
-  --atlas-accent-lavender: #E8E7FF;
-  --atlas-accent-green:    #00A37A;
-  --atlas-accent-blue:     #00B8E6;
+  /* Text */
+  --text-primary: #111111;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
 
-  --atlas-bg-default: #FAFBFF;
-  --atlas-bg-subtle:  #F6F9FC;
-  --atlas-bg-muted:   #EFF3F8;
-  --atlas-bg-card:    #FFFFFF;
+  /* Border */
+  --border-color: #E5E7EB;
 
-  --atlas-text-heading: #0A2540;
-  --atlas-text-body:    #425466;
-  --atlas-text-muted:   #697386;
+  /* Accent */
+  --accent-primary: #FF6600;
+  --accent-hover: #E65C00;
 
-  --atlas-border-default: #E3E8EE;
-  --atlas-border-subtle:  #EDF1F6;
+  /* Border Radius */
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
 
-  --atlas-tint-teal:   #E0FBF4;
-  --atlas-tint-orange: #FFE9DC;
-  --atlas-tint-pink:   #FFE3EE;
-  --atlas-tint-yellow: #FFF4DE;
-
-  --nav-bg: rgba(255, 255, 255, 0.85);
-  --gradient-hero: linear-gradient(to right, #635BFF, #9B6CFB, #FF5996, #FF9173);
+  /* Shadow */
+  --shadow-default: 0 1px 2px rgba(0,0,0,0.02), 0 4px 24px rgba(0,0,0,0.03);
 }
 
-.dark {
-  --atlas-primary:       #7A73FF;
-  --atlas-primary-light: #9B94FF;
-
-  --atlas-bg-default: #070913;
-  --atlas-bg-subtle:  #0C0F22;
-  --atlas-bg-muted:   #151934;
-  --atlas-bg-card:    #10142C;
-
-  --atlas-text-heading: #F4F6FA;
-  --atlas-text-body:    #A0AEC0;
-  --atlas-text-muted:   #718096;
-
-  --atlas-border-default: #1E2548;
-  --atlas-border-subtle:  #171E3C;
-
-  --atlas-tint-teal:   #082924;
-  --atlas-tint-orange: #381A12;
-  --atlas-tint-pink:   #361021;
-  --atlas-tint-yellow: #34270F;
-  --atlas-accent-lavender: #17153a;
-
-  --nav-bg: rgba(7, 9, 19, 0.85);
-}
-
-/* Tailwind utilities → atlas runtime vars */
+/* Tailwind utilities → canonical design tokens */
 @theme inline {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
-  --color-primary:        var(--atlas-primary);
-  --color-primary-light:  var(--atlas-primary-light);
-  --color-dark-navy:      var(--atlas-dark-navy);
-  --color-dark-surface:   var(--atlas-dark-surface);
+  /* Primary color class mappings */
+  --color-primary:        var(--accent-primary);
+  --color-primary-light:  var(--accent-hover);
 
-  --color-accent-pink:     var(--atlas-accent-pink);
-  --color-accent-orange:   var(--atlas-accent-orange);
-  --color-accent-teal:     var(--atlas-accent-teal);
-  --color-accent-cyan:     var(--atlas-accent-cyan);
-  --color-accent-yellow:   var(--atlas-accent-yellow);
-  --color-accent-lavender: var(--atlas-accent-lavender);
-  --color-accent-green:    var(--atlas-accent-green);
-  --color-accent-blue:     var(--atlas-accent-blue);
+  /* Background mappings */
+  --color-bg-default:     var(--bg-primary);
+  --color-bg-subtle:      var(--bg-primary);
+  --color-bg-muted:       var(--bg-primary);
+  --color-bg-card:        var(--bg-secondary);
 
-  --color-bg-default: var(--atlas-bg-default);
-  --color-bg-subtle:  var(--atlas-bg-subtle);
-  --color-bg-muted:   var(--atlas-bg-muted);
-  --color-bg-card:    var(--atlas-bg-card);
+  /* Text mappings */
+  --color-text-heading:   var(--text-primary);
+  --color-text-body:      var(--text-secondary);
+  --color-text-muted:     var(--text-muted);
 
-  --color-text-heading: var(--atlas-text-heading);
-  --color-text-body:    var(--atlas-text-body);
-  --color-text-muted:   var(--atlas-text-muted);
+  /* Border mappings */
+  --color-border-default: var(--border-color);
+  --color-border-subtle:  var(--border-color);
 
-  --color-border-default: var(--atlas-border-default);
-  --color-border-subtle:  var(--atlas-border-subtle);
+  /* Neon Accent Token Fallbacks */
+  --color-accent-pink:     var(--accent-primary);     /* #FF6600 — intentional highlight */
+  --color-accent-orange:   var(--accent-primary);     /* #FF6600 — intentional highlight */
+  --color-accent-teal:     var(--text-muted);         /* #9CA3AF — neutral fallback */
+  --color-accent-cyan:     var(--text-muted);         /* #9CA3AF — neutral fallback */
+  --color-accent-yellow:   var(--text-muted);         /* #9CA3AF — neutral fallback */
+  --color-accent-green:    var(--text-muted);         /* #9CA3AF — neutral fallback */
+  --color-accent-blue:     var(--text-muted);         /* #9CA3AF — neutral fallback */
+  --color-accent-lavender: var(--bg-primary);         /* #F5F5EE — neutral bg fallback */
 
-  --color-tint-teal:   var(--atlas-tint-teal);
-  --color-tint-orange: var(--atlas-tint-orange);
-  --color-tint-pink:   var(--atlas-tint-pink);
-  --color-tint-yellow: var(--atlas-tint-yellow);
+  /* Soft Tint Fallbacks */
+  --color-tint-pink:       var(--bg-primary);         /* #F5F5EE */
+  --color-tint-orange:     var(--bg-primary);         /* #F5F5EE */
+  --color-tint-teal:       var(--bg-primary);         /* #F5F5EE */
+  --color-tint-yellow:     var(--bg-primary);         /* #F5F5EE */
+
+  /* Legacy tokens mapped to canonical values */
+  --color-dark-navy:      var(--text-primary);
+  --color-dark-surface:   var(--text-primary);
 
   --animate-ticker:     ticker 30s linear infinite;
   --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-fade-in-up: fadeInUp 0.5s ease-out forwards;
+}
+
+@layer utilities {
+  .shadow-standard {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02), 0 4px 24px rgba(0,0,0,0.03);
+  }
+
+  .transition-standard {
+    transition: all 0.2s ease;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    background: #FF6600;
+    color: white;
+    border-radius: 12px;
+    height: 48px;
+    padding: 0 22px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-primary:hover {
+    background: #E65C00;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    color: #111111;
+    border-radius: 12px;
+    height: 48px;
+    padding: 0 22px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-secondary:hover {
+    background: #FAFAFA;
+  }
 }
 
 @keyframes ticker {
@@ -117,98 +143,34 @@
 }
 
 body {
-  background-color: var(--atlas-bg-default);
-  color: var(--atlas-text-body);
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--atlas-text-heading);
+  color: var(--text-primary);
 }
 
 p {
-  color: var(--atlas-text-body);
+  color: var(--text-secondary);
 }
 
 ::placeholder {
-  color: var(--atlas-text-muted);
+  color: var(--text-muted);
   opacity: 1;
 }
 
 ::-webkit-scrollbar       { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--atlas-bg-default); }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
 ::-webkit-scrollbar-thumb {
-  background: var(--atlas-border-default);
+  background: var(--border-color);
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--atlas-text-muted); }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-.glass-nav {
-  background-color: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--atlas-border-default);
-}
-
-.grid-mesh {
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right,  rgba(99, 91, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 91, 255, 0.05) 1px, transparent 1px);
-}
-.dark .grid-mesh {
-  background-image:
-    linear-gradient(to right,  rgba(122, 115, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(122, 115, 255, 0.03) 1px, transparent 1px);
-}
-
-.hero-gradient-bar {
-  height: 4px;
-  width: 100%;
-  background-image: var(--gradient-hero);
-}
-
-.bg-gradient-hero {
-  background-image: var(--gradient-hero);
-}
-
-.text-gradient-hero {
-  display: inline-block;
-  background-image: var(--gradient-hero);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.btn-gradient-hero {
-  background-image: var(--gradient-hero);
-  color: #ffffff;
-  transition: filter 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-gradient-hero:hover:not(:disabled) {
-  filter: brightness(1.06);
-}
-
-.btn-gradient-hero:disabled {
-  background-image: none;
-  background-color: var(--atlas-bg-subtle);
-  color: var(--atlas-text-muted);
-}
-
-.section-gradient-hero {
-  background-image: var(--gradient-hero);
-  color: #ffffff;
-}
-
-.alert-error {
-  background-color: var(--atlas-tint-pink);
-  color: var(--atlas-accent-pink);
-  border: 1px solid color-mix(in srgb, var(--atlas-accent-pink) 25%, transparent);
-}
-
-/* --- Phase 3: 15 Microinteractions Keyframes & Classes --- */
+/* --- Microinteraction Keyframes & Classes --- */
 
 @keyframes cardHover {
   0% { transform: scale(1); }
@@ -306,7 +268,7 @@ p {
 
 /* 4. Loading Skeleton — 1.5s loop */
 .micro-shimmer {
-  background: linear-gradient(90deg, var(--atlas-bg-subtle) 25%, var(--atlas-border-default) 50%, var(--atlas-bg-subtle) 75%);
+  background: linear-gradient(90deg, var(--bg-primary) 25%, var(--border-color) 50%, var(--bg-primary) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite linear;
 }
@@ -392,7 +354,6 @@ p {
 .ripple-effect { animation: ripple 400ms ease-out; }
 
 /* 4. Loading Skeleton — 1.5s loop */
-@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
 .skeleton { animation: shimmer 1.5s infinite linear; }
 
 /* 5. Success Checkmark — 500ms */
@@ -434,5 +395,3 @@ p {
 
 /* 15. Counter on Mount — 800ms requestAnimationFrame */
 .counter-mount { animation: count-up 800ms ease forwards; }
-
-

@@ -8,7 +8,7 @@ export default function Loading() {
     <>
       <Navbar />
       <main className="flex-grow flex items-center justify-center bg-bg-default py-16 px-4">
-        <SectionWrapper className="max-w-2xl w-full bg-bg-card border border-border-default rounded-3xl p-8 md:p-12 shadow-xl animate-pulse text-center space-y-6">
+        <SectionWrapper className="max-w-2xl w-full bg-bg-card border border-border-default rounded-3xl p-8 md:p-12 shadow-standard animate-pulse text-center space-y-6">
           {/* Logo Icon Skeleton */}
           <div className="w-12 h-12 bg-bg-subtle border border-border-subtle rounded-2xl mx-auto" />
 

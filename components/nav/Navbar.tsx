@@ -3,9 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useTheme } from 'next-themes';
 import { 
-  Compass, Menu, X, Sun, Moon, ChevronDown, 
+  Compass, Menu, X, ChevronDown, 
   BookOpen, LifeBuoy, Bookmark, Bell, Video,
   Briefcase, Users, Sliders, BarChart2, Package, HelpCircle,
   Zap, CheckSquare, Terminal, GitMerge, FileText, Code, Layers,
@@ -19,9 +18,9 @@ import { templateIconClass } from '@/lib/theme';
 
 export function Navbar() {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -33,6 +32,16 @@ export function Navbar() {
     }, 0);
     return () => clearTimeout(timer);
   }, [pathname]);
+
+  // Scroll listener for navbar background
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 0);
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // check initial state
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Click outside listener to close dropdowns
   useEffect(() => {
@@ -106,19 +115,19 @@ export function Navbar() {
     const recentTemplates = TEMPLATES.slice(2, 5);
 
     return (
-      <div className="absolute top-full left-0 right-0 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-2 focus-trap animate-fade-in-up">
-        <div className="bg-bg-card border border-border-default rounded-xl shadow-xl p-8 grid grid-cols-1 md:grid-cols-12 gap-8 text-left">
+      <div className="absolute top-full left-0 right-0 mx-auto max-w-7xl px-5 lg:px-8 mt-2 focus-trap animate-fade-in-up">
+        <div className="bg-bg-card border border-border-default rounded-[var(--radius-lg)] shadow-standard p-8 grid grid-cols-1 md:grid-cols-12 gap-8 text-left">
           {/* Column 1: By Category */}
-          <div className="col-span-3 border-r border-border-default/50 pr-6">
+          <div className="col-span-3 border-r border-border-default pr-6">
             <h3 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-4">By Category</h3>
             <div className="grid grid-cols-1 gap-2">
               {categories.map((cat) => (
                 <Link
                   key={cat}
                   href={`/templates?category=${cat.toLowerCase()}`}
-                  className="group flex items-center justify-between p-2 rounded-lg hover:bg-bg-subtle transition-all duration-200"
+                  className="group flex items-center justify-between p-2 rounded-lg hover:bg-bg-default transition-standard"
                 >
-                  <span className="text-sm font-semibold text-text-heading group-hover:text-primary transition-colors">{cat} Applications</span>
+                  <span className="text-[15px] font-medium text-[#4B5563] group-hover:text-[#111111] transition-colors">{cat} Applications</span>
                   <span className="text-xs text-text-muted group-hover:translate-x-1 transition-transform">→</span>
                 </Link>
               ))}
@@ -126,21 +135,21 @@ export function Navbar() {
           </div>
 
           {/* Column 2: Featured Templates */}
-          <div className="col-span-5 border-r border-border-default/50 px-6">
+          <div className="col-span-5 border-r border-border-default px-6">
             <h3 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-4">Featured Templates</h3>
             <div className="space-y-4">
               {featuredTemplates.map((tpl) => (
                 <Link
                   key={tpl.id}
                   href={`/templates?template=${tpl.slug}`}
-                  className="flex items-start gap-4 p-3 rounded-lg border border-border-subtle hover:border-primary/30 hover:bg-bg-subtle transition-all duration-200"
+                  className="flex items-start gap-4 p-3 rounded-lg border border-border-default hover:border-[#FFB380] hover:bg-bg-default transition-standard"
                 >
-                  <div className="p-2.5 rounded-lg bg-bg-muted text-primary">
+                  <div className="p-2.5 rounded-lg bg-bg-default text-primary">
                     {getIcon(tpl.icon)}
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <h4 className="text-sm font-bold text-text-heading">{tpl.name}</h4>
+                      <h4 className="text-[15px] font-medium text-text-heading">{tpl.name}</h4>
                       <Badge label={tpl.complexity} />
                     </div>
                     <p className="text-xs text-text-muted line-clamp-2">{tpl.description}</p>
@@ -155,14 +164,14 @@ export function Navbar() {
             <div>
               <h3 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-4">Explore</h3>
               <div className="space-y-3">
-                <Link href="/templates" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-light transition-colors mb-3">
+                <Link href="/templates" className="inline-flex items-center gap-2 text-[15px] font-bold text-[#FF6600] hover:text-[#E65C00] transition-colors mb-3">
                   View all templates <span className="transition-transform group-hover:translate-x-1">→</span>
                 </Link>
-                <div className="border-t border-border-subtle pt-3">
+                <div className="border-t border-border-default pt-3">
                   <span className="text-[11px] font-bold text-text-muted uppercase tracking-wider block mb-2">Recently Added</span>
                   <div className="space-y-2">
                     {recentTemplates.map((tpl) => (
-                      <Link key={tpl.id} href={`/templates?template=${tpl.slug}`} className="block text-xs font-semibold text-text-heading hover:text-primary transition-colors">
+                      <Link key={tpl.id} href={`/templates?template=${tpl.slug}`} className="block text-xs font-semibold text-text-heading hover:text-[#FF6600] transition-colors">
                         {tpl.name}
                       </Link>
                     ))}
@@ -180,9 +189,9 @@ export function Navbar() {
   const renderMegaMenu = (menuItems: MegaMenuColumn[]) => {
     const isThreeCol = menuItems.length === 3;
     return (
-      <div className="absolute top-full left-0 right-0 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-2 animate-fade-in-up">
+      <div className="absolute top-full left-0 right-0 mx-auto max-w-7xl px-5 lg:px-8 mt-2 animate-fade-in-up">
         <div 
-          className="bg-bg-card border border-border-default rounded-2xl shadow-lg min-w-[640px] p-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-left"
+          className="bg-bg-card border border-border-default rounded-[var(--radius-lg)] shadow-standard min-w-[640px] p-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-left"
           style={{ gridTemplateColumns: `repeat(${menuItems.length}, minmax(0, 1fr))`, gap: '2rem' }}
         >
           {menuItems.map((col: MegaMenuColumn, idx: number) => {
@@ -191,7 +200,7 @@ export function Navbar() {
             return (
               <div 
                 key={idx} 
-                className={idx < menuItems.length - 1 ? 'border-r border-border-default/50 pr-8' : 'pl-4'}
+                className={idx < menuItems.length - 1 ? 'border-r border-border-default pr-8' : 'pl-4'}
               >
                 <h3 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-4">{col.heading}</h3>
                 <div className="flex flex-col gap-4">
@@ -201,13 +210,12 @@ export function Navbar() {
                         <a
                           key={itemIdx}
                           href={item.href}
-                          className="block p-4 rounded-xl transition-all duration-200 hover:opacity-90 shadow-sm"
-                          style={{ backgroundColor: 'var(--atlas-accent-lavender)' }}
+                          className="block p-4 rounded-[var(--radius-sm)] transition-standard hover:opacity-90 shadow-standard bg-bg-default"
                         >
                           <div className="flex items-center justify-between mb-1.5">
-                            <span className="font-bold text-sm text-text-heading">{item.label}</span>
+                            <span className="font-bold text-[15px] text-text-heading">{item.label}</span>
                             {item.badge && (
-                              <span className="bg-accent-pink text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full">
+                              <span className="bg-[#FF6600] text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-[var(--radius-sm)]">
                                 {item.badge}
                               </span>
                             )}
@@ -223,13 +231,13 @@ export function Navbar() {
                       <a
                         key={itemIdx}
                         href={item.href}
-                        className="flex items-start gap-4 p-2 rounded-lg hover:bg-bg-subtle transition-all duration-200"
+                        className="flex items-start gap-4 p-2 rounded-lg hover:bg-bg-default transition-standard"
                       >
-                        <div className="p-2 rounded-lg bg-bg-muted">
+                        <div className="p-2 rounded-lg bg-bg-default">
                           {getIcon(item.icon)}
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-text-heading">{item.label}</h4>
+                          <h4 className="text-[15px] font-medium text-text-heading">{item.label}</h4>
                           {item.description && (
                             <p className="text-xs text-text-muted mt-0.5">{item.description}</p>
                           )}
@@ -249,21 +257,21 @@ export function Navbar() {
   // Render generic dropdown menu
   const renderDropdown = (items: NavDropdownItem[]) => {
     return (
-      <div className="absolute top-full right-0 w-80 mt-2 bg-bg-card border border-border-default rounded-xl shadow-xl p-4 text-left animate-fade-in-up">
+      <div className="absolute top-full right-0 w-80 mt-2 bg-bg-card border border-border-default rounded-[var(--radius-sm)] shadow-standard p-4 text-left animate-fade-in-up">
         <div className="space-y-1">
           {items.map((item: NavDropdownItem, idx: number) => (
             <a
               key={idx}
               href={item.href}
-              className="flex items-start gap-3 p-3 rounded-lg hover:bg-bg-subtle transition-all duration-200"
+              className="flex items-start gap-3 p-3 rounded-lg hover:bg-bg-default transition-standard"
             >
               {item.icon && (
-                <div className="p-1.5 rounded-lg bg-bg-muted mt-0.5">
+                <div className="p-1.5 rounded-lg bg-bg-default mt-0.5">
                   {getIcon(item.icon)}
                 </div>
               )}
               <div>
-                <h4 className="text-sm font-bold text-text-heading">{item.label}</h4>
+                <h4 className="text-[15px] font-medium text-text-heading">{item.label}</h4>
                 {item.description && (
                   <p className="text-xs text-text-muted mt-0.5">{item.description}</p>
                 )}
@@ -276,9 +284,19 @@ export function Navbar() {
   };
 
   return (
-    <div ref={navRef} className="sticky top-0 z-50 w-full glass-nav transition-colors duration-300">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <div
+      ref={navRef}
+      className="sticky top-0 z-50 w-full transition-standard"
+      style={scrolled ? {
+        backgroundColor: 'rgba(245, 245, 238, 0.95)',
+        backdropFilter: 'blur(8px)',
+        borderBottom: '1px solid #E5E7EB',
+      } : {
+        backgroundColor: 'transparent',
+      }}
+    >
+      <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
+        <div className="flex justify-between items-center h-[72px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 text-text-heading font-bold text-lg select-none">
             <Compass className="h-6 w-6 text-primary animate-pulse-slow" />
@@ -286,7 +304,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-8">
             {NAV_ITEMS.map((item) => {
               const hasMega = item.megaMenu || item.label === 'Templates';
               const hasDropdown = item.dropdown;
@@ -296,12 +314,12 @@ export function Navbar() {
                   <div key={item.label} className={hasDropdown ? "relative" : ""}>
                     <button
                       onClick={() => toggleDropdown(item.label)}
-                      className={`flex items-center gap-1 px-3 py-2 text-sm font-semibold rounded-lg hover:bg-bg-subtle hover:text-primary transition-all duration-200 ${
-                        activeDropdown === item.label ? 'text-primary bg-bg-subtle' : 'text-text-body'
+                      className={`flex items-center gap-1 px-3 py-2 text-[15px] font-medium rounded-lg hover:bg-bg-default hover:text-[#111111] transition-standard ${
+                        activeDropdown === item.label ? 'text-[#FF6600] bg-bg-default' : 'text-[#4B5563]'
                       }`}
                     >
                       <span>{item.label}</span>
-                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${activeDropdown === item.label ? 'rotate-180 text-primary' : 'text-text-muted'}`} />
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${activeDropdown === item.label ? 'rotate-180 text-[#FF6600]' : 'text-text-muted'}`} />
                     </button>
 
                     {activeDropdown === item.label && (
@@ -321,8 +339,8 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href || '#'}
-                  className={`px-3 py-2 text-sm font-semibold rounded-lg hover:bg-bg-subtle hover:text-primary transition-all duration-200 ${
-                    pathname === item.href ? 'text-primary bg-bg-subtle' : 'text-text-body'
+                  className={`px-3 py-2 text-[15px] font-medium rounded-lg hover:bg-bg-default hover:text-[#111111] transition-standard ${
+                    pathname === item.href ? 'text-[#FF6600] bg-bg-default' : 'text-[#4B5563]'
                   }`}
                 >
                   {item.label}
@@ -331,48 +349,28 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Right actions: theme, Login, Start Building */}
+          {/* Right actions: Login, Start Building */}
           <div className="hidden lg:flex items-center gap-4">
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-lg text-text-muted hover:text-primary hover:bg-bg-subtle transition-all duration-200"
-              aria-label="Toggle theme"
-            >
-              <Sun className="h-5 w-5 dark:hidden" />
-              <Moon className="h-5 w-5 hidden dark:block" />
-            </button>
-
             <Link
               href="/docs"
-              className="text-sm font-bold text-text-body hover:text-primary transition-colors"
+              className="text-[15px] font-medium text-[#4B5563] hover:text-[#111111] transition-colors"
             >
               Login
             </Link>
             
             <Link
               href="/generate"
-              className="btn-gradient-hero font-bold text-sm px-4 py-2 rounded-lg shadow-sm hover:shadow transition-all duration-200"
+              className="btn-primary font-bold text-sm"
             >
               Start Building
             </Link>
           </div>
 
-          {/* Mobile Hamburguer button & Theme toggle */}
+          {/* Mobile Hamburger button */}
           <div className="flex items-center gap-2 lg:hidden">
-            {/* Dark Mode Toggle Mobile */}
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-lg text-text-muted hover:text-primary hover:bg-bg-subtle transition-all duration-200"
-              aria-label="Toggle theme"
-            >
-              <Sun className="h-5 w-5 dark:hidden" />
-              <Moon className="h-5 w-5 hidden dark:block" />
-            </button>
-
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-text-body hover:bg-bg-subtle transition-all"
+              className="p-2 rounded-lg text-text-body hover:bg-bg-default transition-standard"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -382,14 +380,14 @@ export function Navbar() {
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden w-full border-t border-border-default bg-bg-card px-4 pt-2 pb-6 space-y-3 shadow-lg animate-fade-in-up">
+        <div className="lg:hidden w-full border-t border-border-default bg-bg-card px-5 pt-2 pb-6 space-y-3 shadow-standard animate-fade-in-up">
           {NAV_ITEMS.map((item) => {
             if (item.label === 'Templates') {
               return (
                 <Link
                   key={item.label}
                   href="/templates"
-                  className="block px-3 py-2 rounded-lg text-base font-bold text-text-heading hover:bg-bg-subtle hover:text-primary"
+                  className="block px-3 py-2 rounded-lg text-base font-bold text-text-heading hover:bg-bg-default hover:text-[#FF6600]"
                 >
                   Templates
                 </Link>
@@ -405,7 +403,7 @@ export function Navbar() {
                     <a
                       key={sub.label}
                       href={sub.href}
-                      className="block px-6 py-1.5 rounded-lg text-sm font-semibold text-text-body hover:bg-bg-subtle hover:text-primary"
+                      className="block px-6 py-1.5 rounded-lg text-[15px] font-medium text-[#4B5563] hover:bg-bg-default hover:text-[#FF6600]"
                     >
                       {sub.label}
                     </a>
@@ -419,7 +417,7 @@ export function Navbar() {
                         <a
                           key={sub.label}
                           href={sub.href}
-                          className="block px-6 py-1.5 rounded-lg text-sm font-semibold text-text-body hover:bg-bg-subtle hover:text-primary"
+                          className="block px-6 py-1.5 rounded-lg text-[15px] font-medium text-[#4B5563] hover:bg-bg-default hover:text-[#FF6600]"
                         >
                           {sub.label}
                         </a>
@@ -434,23 +432,23 @@ export function Navbar() {
               <Link
                 key={item.label}
                 href={item.href || '#'}
-                className="block px-3 py-2 rounded-lg text-base font-bold text-text-heading hover:bg-bg-subtle hover:text-primary"
+                className="block px-3 py-2 rounded-lg text-base font-bold text-text-heading hover:bg-bg-default hover:text-[#FF6600]"
               >
                 {item.label}
               </Link>
             );
           })}
           
-          <div className="border-t border-border-subtle pt-4 space-y-2">
+          <div className="border-t border-border-default pt-4 space-y-2">
             <Link
               href="/docs"
-              className="block w-full text-center px-4 py-2 rounded-lg text-sm font-bold text-text-body border border-border-default hover:bg-bg-subtle"
+              className="block w-full text-center px-4 py-2 rounded-[var(--radius-sm)] text-[15px] font-medium text-text-body border border-border-default hover:bg-bg-default"
             >
               Login
             </Link>
             <Link
               href="/generate"
-              className="block w-full text-center btn-gradient-hero font-bold text-sm px-4 py-2 rounded-lg shadow-sm"
+              className="block w-full text-center btn-primary font-bold text-sm px-4 py-2"
             >
               Start Building
             </Link>

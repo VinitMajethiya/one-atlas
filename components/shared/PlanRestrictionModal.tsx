@@ -30,7 +30,7 @@ export function PlanRestrictionModal({ isOpen, onClose, requiredPlan = 'pro' }: 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="relative w-full max-w-md bg-bg-card border border-border-default rounded-3xl shadow-2xl overflow-hidden p-6 text-center animate-slide-in">
+      <div className="relative w-full max-w-md bg-bg-card border border-border-default rounded-3xl shadow-standard overflow-hidden p-6 text-center animate-slide-in">
         {/* Close Button */}
         <button 
           onClick={onClose}
@@ -83,7 +83,7 @@ export function PlanRestrictionModal({ isOpen, onClose, requiredPlan = 'pro' }: 
           <Link
             href="/pricing"
             onClick={onClose}
-            className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold text-xs py-3 rounded-xl flex items-center justify-center gap-1.5 shadow-md shadow-primary/20 hover:scale-[1.01] active:scale-[0.99] transition-all"
+            className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold text-xs py-3 rounded-xl flex items-center justify-center gap-1.5 shadow-standard shadow-primary/20 hover:scale-[1.01] active:scale-[0.99] transition-all"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Unlock Now</span>

@@ -7,17 +7,17 @@ export function EnterpriseTeaser() {
     {
       title: 'Advanced RBAC permissions',
       description: 'Restrict sensitive dashboard views by department, seniority level, or custom user groups.',
-      icon: <Users className="h-6 w-6 text-primary" />,
+      icon: <Users className="h-6 w-6 text-[#FF6600]" />,
     },
     {
       title: 'SAML Single Sign-On (SSO)',
       description: 'Hook into Okta, Azure AD, Clerk, or Google Workspace instantly to govern user access.',
-      icon: <Shield className="h-6 w-6 text-accent-pink" />,
+      icon: <Shield className="h-6 w-6 text-[#6B7280]" />,
     },
     {
       title: 'Private Cloud VPC Tunneling',
       description: 'Run app generation behind your firewall and query database endpoints via secure local VPC tunnels.',
-      icon: <Database className="h-6 w-6 text-accent-teal" />,
+      icon: <Database className="h-6 w-6 text-[#6B7280]" />,
     },
   ];
 
@@ -26,14 +26,14 @@ export function EnterpriseTeaser() {
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 bg-accent-lavender/40 border-b border-border-default transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-[60px] lg:py-[120px] bg-[#F5F5EE] border-b border-border-default transition-standard">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Area - Text & CTA */}
           <div className="lg:col-span-5 text-left">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary mb-3 block">Enterprise Ready</span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-text-heading mb-6 tracking-tight">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-primary mb-3 block">Enterprise Ready</span>
+            <h2 className="text-[48px] font-[650] leading-[1] tracking-[-0.03em] text-text-heading mb-6">
               Built for Scale & Compliance
             </h2>
             <p className="text-text-body font-medium leading-relaxed mb-8">
@@ -41,7 +41,7 @@ export function EnterpriseTeaser() {
             </p>
             <Link
               href="/enterprise"
-              className="group inline-flex items-center gap-2 btn-gradient-hero font-bold text-sm px-6 py-3.5 rounded-xl shadow transition-all"
+              className="btn-primary group inline-flex items-center gap-2"
             >
               <span>Learn about Enterprise</span>
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -52,8 +52,8 @@ export function EnterpriseTeaser() {
           <div className="lg:col-span-7 space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {features.map((f, idx) => (
-                <div key={idx} className="bg-bg-subtle border border-border-default rounded-xl p-5 text-left shadow-sm">
-                  <div className="p-2 w-10 h-10 rounded-lg bg-bg-card text-text-heading mb-4 flex items-center justify-center">
+                <div key={idx} className="bg-white border border-[#E5E7EB] rounded-[24px] p-[28px] text-left shadow-standard transition-standard">
+                  <div className="p-2 w-10 h-10 rounded-[var(--radius-sm)] bg-[#F5F5EE] border border-[#E5E7EB] text-[#111111] mb-4 flex items-center justify-center">
                     {f.icon}
                   </div>
                   <h4 className="font-bold text-text-heading text-sm mb-2">{f.title}</h4>

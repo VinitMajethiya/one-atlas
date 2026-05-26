@@ -1,76 +1,73 @@
 /**
- * Home Atlas design system — shared Tailwind class tokens.
+ * OneAtlas design system — shared Tailwind class tokens.
  * Colors are defined in app/globals.css (@theme inline).
  */
 
 export const ALERT_ERROR =
-  'bg-tint-pink text-accent-pink border border-accent-pink/25 dark:border-accent-pink/30 p-4 rounded-xl text-xs font-bold leading-relaxed';
+  'bg-bg-default text-primary border border-border-default p-4 rounded-[var(--radius-sm)] text-xs font-bold leading-relaxed';
 
 export const ALERT_SUCCESS =
-  'bg-tint-teal text-accent-green border border-accent-teal/25 p-4 rounded-xl text-xs font-bold text-center';
+  'bg-bg-default text-primary border border-border-default p-4 rounded-[var(--radius-sm)] text-xs font-bold text-center';
 
 export const STATUS_PILL = {
-  default: 'bg-bg-muted text-text-body border-border-default',
-  success:
-    'bg-tint-teal text-accent-green border-accent-teal/30 dark:text-accent-teal',
-  warning:
-    'bg-tint-yellow text-dark-navy border-accent-yellow/40 dark:text-accent-yellow',
-  danger:
-    'bg-tint-pink text-accent-pink border-accent-pink/30 dark:text-accent-pink',
+  default: 'bg-bg-default text-text-body border-border-default',
+  success: 'bg-bg-default text-primary border-border-default',
+  warning: 'bg-bg-default text-text-muted border-border-default',
+  danger: 'bg-bg-default text-primary border-border-default',
 } as const;
 
 /** Lucide icon name → text color class */
 export const TEMPLATE_ICON_CLASS: Record<string, string> = {
   BookOpen: 'text-primary',
-  LifeBuoy: 'text-accent-pink',
-  Bookmark: 'text-accent-orange',
-  Bell: 'text-accent-teal',
-  Video: 'text-accent-blue',
+  LifeBuoy: 'text-text-muted',
+  Bookmark: 'text-primary',
+  Bell: 'text-primary',
+  Video: 'text-primary',
   Briefcase: 'text-primary',
-  Users: 'text-accent-green',
-  Sliders: 'text-accent-yellow',
-  BarChart2: 'text-accent-pink',
-  Package: 'text-accent-orange',
-  HelpCircle: 'text-accent-cyan',
-  Zap: 'text-accent-yellow',
-  CheckSquare: 'text-accent-green',
+  Users: 'text-primary',
+  Sliders: 'text-text-muted',
+  BarChart2: 'text-primary',
+  Package: 'text-primary',
+  HelpCircle: 'text-text-muted',
+  Zap: 'text-primary',
+  CheckSquare: 'text-primary',
   Terminal: 'text-text-muted',
-  GitMerge: 'text-primary-light',
-  FileText: 'text-accent-blue',
+  GitMerge: 'text-primary',
+  FileText: 'text-text-muted',
   Code: 'text-primary',
-  Layers: 'text-accent-pink',
-  Activity: 'text-accent-teal',
-  DollarSign: 'text-accent-green',
-  Heart: 'text-accent-pink',
-  ShoppingBag: 'text-accent-orange',
-  Cloud: 'text-accent-cyan',
+  Layers: 'text-primary',
+  Activity: 'text-primary',
+  DollarSign: 'text-primary',
+  Heart: 'text-primary',
+  ShoppingBag: 'text-primary',
+  Cloud: 'text-text-muted',
 };
 
 export function templateIconClass(iconName?: string): string {
   return TEMPLATE_ICON_CLASS[iconName ?? ''] ?? 'text-primary';
 }
 
-/** Template card accent key → hover border */
+/** Template card accent key → hover border (literal hex to avoid CSS variable opacity issues) */
 export const TEMPLATE_BORDER_HOVER: Record<string, string> = {
-  indigo: 'hover:border-primary/30',
-  teal: 'hover:border-accent-teal/30',
-  amber: 'hover:border-accent-yellow/30',
-  rose: 'hover:border-accent-pink/30',
-  orange: 'hover:border-accent-orange/30',
-  sky: 'hover:border-accent-cyan/30',
+  indigo: 'hover:border-[#FFB380]',
+  teal: 'hover:border-[#FFB380]',
+  amber: 'hover:border-[#FFB380]',
+  rose: 'hover:border-[#FFB380]',
+  orange: 'hover:border-[#FFB380]',
+  sky: 'hover:border-[#FFB380]',
 };
 
 export function templateBorderHover(color: string): string {
-  return TEMPLATE_BORDER_HOVER[color] ?? 'hover:border-primary/30';
+  return TEMPLATE_BORDER_HOVER[color] ?? 'hover:border-[#FFB380]';
 }
 
 export const BUILDER_NODE_ICON_CLASS: Record<string, string> = {
   layout: 'text-primary',
-  table: 'text-accent-teal',
-  kanban: 'text-accent-yellow',
-  chart: 'text-accent-pink',
-  form: 'text-accent-orange',
-  nav: 'text-accent-cyan',
+  table: 'text-text-muted',
+  kanban: 'text-text-muted',
+  chart: 'text-primary',
+  form: 'text-primary',
+  nav: 'text-text-muted',
 };
 
 export function builderNodeIconClass(type: string): string {
@@ -80,28 +77,55 @@ export function builderNodeIconClass(type: string): string {
 /** Quick-start template chip styles on /generate */
 export const QUICK_TEMPLATE_CHIP: Record<string, string> = {
   'crm-workspace':
-    'border-primary/30 text-primary hover:bg-primary/5',
+    'border-border-default text-primary hover:bg-[#ECEEE7]',
   'hr-dashboard':
-    'border-accent-teal/30 text-accent-teal hover:bg-accent-teal/5',
+    'border-border-default text-primary hover:bg-[#ECEEE7]',
   'admin-panel':
-    'border-primary-light/30 text-primary-light hover:bg-primary-light/5',
+    'border-border-default text-primary hover:bg-[#ECEEE7]',
 };
 
 export const BADGE_CLASSES: Record<string, string> = {
-  Simple: 'bg-tint-teal text-accent-green border border-accent-teal/25',
-  Moderate: 'bg-tint-yellow text-dark-navy border border-accent-yellow/30',
-  Advanced: 'bg-tint-pink text-accent-pink border border-accent-pink/25',
-  CRM: 'bg-accent-lavender text-primary border border-primary/20',
-  HR: 'bg-tint-teal text-accent-green border border-accent-teal/25',
-  Admin: 'bg-accent-lavender text-dark-navy border border-border-default',
-  Analytics: 'bg-tint-pink text-accent-pink border border-accent-pink/25',
-  Inventory: 'bg-tint-orange text-accent-orange border border-accent-orange/25',
-  Support: 'bg-bg-subtle text-accent-cyan border border-accent-cyan/25',
+  Simple: 'bg-bg-default text-text-body border border-border-default',
+  Moderate: 'bg-bg-default text-text-body border border-border-default',
+  Advanced: 'bg-[#FFF0E6] text-primary border border-[#FFD6B3]',
+  CRM: 'bg-bg-default text-text-body border border-border-default',
+  HR: 'bg-bg-default text-text-body border border-border-default',
+  Admin: 'bg-bg-default text-text-body border border-border-default',
+  Analytics: 'bg-[#FFF0E6] text-primary border border-[#FFD6B3]',
+  Inventory: 'bg-[#FFF0E6] text-primary border border-[#FFD6B3]',
+  Support: 'bg-bg-default text-text-body border border-border-default',
 };
 
 export function badgeClasses(label: string): string {
   return (
     BADGE_CLASSES[label] ??
-    'bg-bg-muted text-text-muted border border-border-default'
+    'bg-bg-default text-text-muted border border-border-default'
   );
+}
+
+export function mapDbTemplateToFrontend(dbTemplate: any): any {
+  if (!dbTemplate) return null;
+  return {
+    ...dbTemplate,
+    authorVerified: dbTemplate.authorVerified ?? dbTemplate.author_verified ?? false,
+    priceType: dbTemplate.priceType ?? dbTemplate.price_type ?? 'free',
+    priceAmount: dbTemplate.priceAmount ?? dbTemplate.price_amount ?? 0,
+    cloneCount: dbTemplate.cloneCount ?? dbTemplate.clone_count ?? 0,
+    usageVelocity: dbTemplate.usageVelocity ?? dbTemplate.usage_velocity ?? 0,
+    aiReady: dbTemplate.aiReady ?? dbTemplate.ai_ready ?? false,
+    backendEnabled: dbTemplate.backendEnabled ?? dbTemplate.backend_enabled ?? false,
+    realtimeEnabled: dbTemplate.realtimeEnabled ?? dbTemplate.realtime_enabled ?? false,
+    deploymentReady: dbTemplate.deploymentReady ?? dbTemplate.deployment_ready ?? false,
+    permissionsRequired: dbTemplate.permissionsRequired ?? dbTemplate.permissions_required ?? [],
+    healthScore: dbTemplate.healthScore ?? dbTemplate.health_score ?? 0,
+    longDescription: dbTemplate.longDescription ?? dbTemplate.long_description ?? dbTemplate.description ?? '',
+  };
+}
+
+export function mapFeaturedToFrontend(feat: any): any {
+  if (!feat) return null;
+  return {
+    ...feat,
+    template: mapDbTemplateToFrontend(feat.template)
+  };
 }

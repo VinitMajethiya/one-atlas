@@ -28,8 +28,8 @@ const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export function Footer() {
   return (
-    <footer className="w-full bg-bg-subtle border-t border-border-default transition-colors duration-300 py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="w-full bg-[#F5F5EE] border-t border-border-default transition-standard py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8">
           <div className="col-span-2">
             <Link href="/" className="flex items-center gap-2 text-text-heading font-bold text-lg mb-4">

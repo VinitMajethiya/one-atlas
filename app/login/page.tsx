@@ -64,7 +64,7 @@ export default function LoginPage() {
       <Navbar />
       <main className="flex-grow bg-bg-default flex items-center justify-center py-16">
         <SectionWrapper className="w-full max-w-md">
-          <div className="bg-bg-card border border-border-default rounded-3xl p-8 shadow-xl text-center space-y-6">
+          <div className="bg-bg-card border border-border-default rounded-3xl p-8 shadow-standard text-center space-y-6">
             <div className="mx-auto w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
               <Shield className="w-6 h-6" />
             </div>
@@ -109,7 +109,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-primary hover:bg-primary/95 text-white font-bold text-xs py-3 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5"
+                className="w-full bg-primary hover:bg-primary/95 text-white font-bold text-xs py-3 rounded-xl transition-all shadow-standard flex items-center justify-center gap-1.5"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <span>Sign In with Credentials</span>}
                 <ArrowRight className="w-3.5 h-3.5" />

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { mapDbTemplateToFrontend } from '@/lib/theme';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -25,8 +26,10 @@ export async function GET(req: NextRequest) {
     prisma.template.count({ where }),
   ]);
 
+  const mappedTemplates = templates.map(mapDbTemplateToFrontend);
+
   return NextResponse.json({
-    data: templates,
+    data: mappedTemplates,
     meta: { total, page, limit, totalPages: Math.ceil(total / limit) },
   });
 }

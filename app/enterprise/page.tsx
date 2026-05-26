@@ -52,7 +52,7 @@ export default function EnterprisePage() {
             <div className="flex justify-center gap-4">
               <a
                 href="mailto:sales@mock-oneatlas.com"
-                className="bg-primary hover:bg-primary-light text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+                className="bg-primary hover:bg-primary-light text-white font-bold px-8 py-4 rounded-xl shadow-standard transition-standard"
               >
                 Talk to Sales
               </a>
@@ -120,7 +120,7 @@ export default function EnterprisePage() {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <a
                 href="mailto:sales@mock-oneatlas.com"
-                className="w-full sm:w-auto bg-white text-primary hover:bg-bg-subtle font-extrabold px-8 py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto bg-white text-primary hover:bg-bg-subtle font-extrabold px-8 py-4 rounded-xl shadow-standard transition-all flex items-center justify-center gap-2"
               >
                 <MessageSquare className="h-5 w-5" />
                 <span>Contact Enterprise Sales</span>

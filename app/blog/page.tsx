@@ -61,7 +61,7 @@ export default function BlogPage() {
             {filteredPosts.map((post) => (
               <article
                 key={post.id}
-                className="bg-bg-card border border-border-default rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300 flex flex-col justify-between"
+                className="bg-bg-card border border-border-default rounded-2xl overflow-hidden shadow-sm hover:border-primary/20 transition-standard flex flex-col justify-between"
               >
                 <div className="p-6 text-left">
                   {/* Category & Read Time */}

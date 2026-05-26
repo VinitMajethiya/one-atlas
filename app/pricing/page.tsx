@@ -42,10 +42,10 @@ export default function PricingPage() {
       <main className="flex-grow">
         
         {/* Pricing Hero */}
-        <SectionWrapper className="bg-bg-default grid-mesh pt-20 pb-12">
+        <SectionWrapper className="bg-bg-default pt-20 pb-12">
           <div className="max-w-4xl mx-auto text-center relative z-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary mb-3 block">Pricing Plans</span>
-            <h1 className="text-4xl md:text-6xl font-extrabold text-text-heading mb-6 tracking-tight">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-primary mb-3 block">Pricing Plans</span>
+            <h1 className="text-[40px] md:text-[56px] lg:text-[72px] font-bold leading-[0.95] tracking-[-0.04em] text-text-heading mb-6">
               Honest, Transparent Pricing
             </h1>
             <p className="text-base md:text-xl text-text-body font-medium leading-relaxed max-w-xl mx-auto mb-10">
@@ -53,19 +53,19 @@ export default function PricingPage() {
             </p>
 
             {/* Monthly / Annual Toggle */}
-            <div className="inline-flex items-center gap-3 bg-bg-subtle border border-border-default p-1.5 rounded-2xl shadow-sm">
+            <div className="inline-flex items-center gap-3 bg-white border border-border-default p-1.5 rounded-[var(--radius-sm)] shadow-standard">
               <button
                 onClick={() => setIsAnnual(false)}
-                className={`px-4 py-2 text-xs font-bold rounded-xl transition-all ${!isAnnual ? 'bg-primary text-white shadow-sm' : 'text-text-body hover:bg-bg-muted'}`}
+                className={!isAnnual ? 'btn-primary h-10 text-xs px-4 py-2' : 'btn-secondary h-10 text-xs px-4 py-2 border-none bg-transparent'}
               >
                 Billed Monthly
               </button>
               <button
                 onClick={() => setIsAnnual(true)}
-                className={`px-4 py-2 text-xs font-bold rounded-xl transition-all relative ${isAnnual ? 'bg-primary text-white shadow-sm' : 'text-text-body hover:bg-bg-muted'}`}
+                className={`relative ${isAnnual ? 'btn-primary h-10 text-xs px-4 py-2' : 'btn-secondary h-10 text-xs px-4 py-2 border-none bg-transparent'}`}
               >
                 Billed Annually
-                <span className="absolute -top-3 -right-6 bg-accent-pink text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full rotate-12">
+                <span className="absolute -top-3 -right-6 bg-primary text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-[var(--radius-sm)] rotate-12 shadow-sm">
                   -20%
                 </span>
               </button>
@@ -79,20 +79,20 @@ export default function PricingPage() {
             {PRICING_TIERS.map((tier) => (
               <div
                 key={tier.name}
-                className={`bg-bg-card border rounded-3xl p-8 text-left shadow-sm flex flex-col justify-between relative hover:shadow-md transition-all duration-300 ${
+                className={`bg-white border text-left shadow-standard flex flex-col justify-between relative transition-standard rounded-[24px] p-[28px] ${
                   tier.popular 
-                    ? 'border-primary ring-4 ring-primary/10 scale-100 md:scale-105 z-10' 
+                    ? 'border-[1.5px] border-[#FF6600] z-10' 
                     : 'border-border-default'
                 }`}
               >
                 {tier.popular && (
-                  <span className="absolute top-0 right-8 -translate-y-1/2 bg-primary text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
+                  <span className="absolute top-0 right-8 -translate-y-1/2 bg-primary text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-[var(--radius-sm)] shadow-standard">
                     Most Popular
                   </span>
                 )}
 
                 <div>
-                  <h3 className="font-extrabold text-text-heading text-2xl mb-2">{tier.name}</h3>
+                  <h3 className="font-bold text-text-heading text-2xl mb-2">{tier.name}</h3>
                   <p className="text-xs md:text-sm text-text-muted mb-8 leading-relaxed font-semibold">{tier.description}</p>
                   
                   <div className="flex items-baseline mb-8">
@@ -104,7 +104,7 @@ export default function PricingPage() {
                     )}
                   </div>
 
-                  <ul className="space-y-4 mb-8 border-t border-border-subtle pt-6">
+                  <ul className="space-y-4 mb-8 border-t border-border-default pt-6">
                     {tier.features.map((f) => (
                       <li key={f} className="flex items-start gap-3 text-xs md:text-sm text-text-body font-semibold">
                         <Check className="h-4.5 w-4.5 text-primary shrink-0 mt-0.5" />
@@ -116,11 +116,7 @@ export default function PricingPage() {
 
                 <Link
                   href={tier.priceMonthly === 9999 ? 'mailto:sales@mock-oneatlas.com' : '/templates'}
-                  className={`w-full text-center py-4 rounded-xl font-bold text-sm transition-all ${
-                    tier.popular
-                      ? 'bg-primary hover:bg-primary-light text-white shadow-md'
-                      : 'bg-bg-subtle hover:bg-bg-muted text-text-heading border border-border-default'
-                  }`}
+                  className={tier.popular ? 'btn-primary w-full' : 'btn-secondary w-full'}
                 >
                   {tier.cta}
                 </Link>
@@ -130,9 +126,9 @@ export default function PricingPage() {
         </SectionWrapper>
 
         {/* Feature Comparison Table */}
-        <SectionWrapper className="bg-bg-subtle border-t border-b border-border-default">
+        <SectionWrapper className="bg-[#F5F5EE] border-t border-b border-border-default">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-2xl md:text-4xl font-extrabold text-text-heading tracking-tight mb-4">
+            <h2 className="text-[48px] font-[650] leading-[1] tracking-[-0.03em] text-text-heading mb-4">
               Compare Platform Capabilities
             </h2>
             <p className="text-text-muted text-sm md:text-base font-semibold">
@@ -140,24 +136,24 @@ export default function PricingPage() {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto bg-bg-card border border-border-default rounded-3xl overflow-hidden shadow-sm">
+          <div className="max-w-4xl mx-auto bg-white border border-border-default rounded-[24px] overflow-hidden shadow-standard">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-border-default bg-bg-subtle/50 text-xs font-extrabold uppercase tracking-wider text-text-heading">
+                  <tr className="border-b border-border-default bg-[#F5F5EE]/50 text-xs font-extrabold uppercase tracking-wider text-text-heading">
                     <th className="p-5 pl-8">Features</th>
                     <th className="p-5">Free</th>
                     <th className="p-5">Pro</th>
                     <th className="p-5">Enterprise</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border-subtle text-xs md:text-sm font-semibold text-text-body">
+                <tbody className="divide-y divide-border-default text-xs md:text-sm font-semibold text-text-body">
                   {FEATURE_COMPARISON.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-bg-subtle/30 transition-colors">
+                    <tr key={idx} className="hover:bg-[#F5F5EE]/30 transition-colors">
                       <td className="p-5 pl-8 font-bold text-text-heading">{row.feature}</td>
-                      <td className="p-5">{row.free === '✔' ? <Check className="h-4 w-4 text-accent-teal" /> : row.free === '✘' ? <X className="h-4 w-4 text-text-muted" /> : row.free}</td>
-                      <td className="p-5">{row.pro === '✔' ? <Check className="h-4 w-4 text-accent-teal" /> : row.pro === '✘' ? <X className="h-4 w-4 text-text-muted" /> : row.pro}</td>
-                      <td className="p-5">{row.enterprise === '✔' ? <Check className="h-4 w-4 text-accent-teal" /> : row.enterprise}</td>
+                      <td className="p-5">{row.free === '✔' ? <Check className="h-4 w-4 text-primary" /> : row.free === '✘' ? <X className="h-4 w-4 text-text-muted" /> : row.free}</td>
+                      <td className="p-5">{row.pro === '✔' ? <Check className="h-4 w-4 text-primary" /> : row.pro === '✘' ? <X className="h-4 w-4 text-text-muted" /> : row.pro}</td>
+                      <td className="p-5">{row.enterprise === '✔' ? <Check className="h-4 w-4 text-primary" /> : row.enterprise}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -169,12 +165,12 @@ export default function PricingPage() {
         {/* Pricing FAQs */}
         <SectionWrapper className="bg-bg-default">
           <div className="max-w-3xl mx-auto text-left">
-            <h2 className="text-2xl md:text-4xl font-extrabold text-text-heading tracking-tight mb-12 text-center">
+            <h2 className="text-[48px] font-[650] leading-[1] tracking-[-0.03em] text-text-heading mb-12 text-center">
               Pricing FAQs
             </h2>
             <div className="space-y-6">
               {pricingFaqs.map((faq, idx) => (
-                <div key={idx} className="bg-bg-subtle border border-border-default rounded-2xl p-6 shadow-sm">
+                <div key={idx} className="bg-white border border-[#E5E7EB] rounded-[24px] p-[28px] shadow-standard">
                   <h3 className="font-bold text-text-heading text-sm md:text-base mb-2">{faq.q}</h3>
                   <p className="text-xs md:text-sm text-text-body font-semibold leading-relaxed">{faq.a}</p>
                 </div>

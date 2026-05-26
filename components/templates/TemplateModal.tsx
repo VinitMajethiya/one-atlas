@@ -22,15 +22,14 @@ export function TemplateModal() {
   const [workflowData, setWorkflowData] = useState<any[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [prevTemplateId, setPrevTemplateId] = useState<string | null>(null);
-
-  if (selectedTemplate && selectedTemplate.id !== prevTemplateId) {
-    setPrevTemplateId(selectedTemplate.id);
-    setActiveTab('overview');
-    setSchemaData(null);
-    setIntegrationsData([]);
-    setWorkflowData([]);
-  }
+  useEffect(() => {
+    if (selectedTemplate) {
+      setActiveTab('overview');
+      setSchemaData(null);
+      setIntegrationsData([]);
+      setWorkflowData([]);
+    }
+  }, [selectedTemplate]);
 
   useEffect(() => {
     if (!selectedTemplate) return;
@@ -135,7 +134,7 @@ export function TemplateModal() {
         <div className="absolute inset-0" onClick={closeTemplateDetails} />
 
         {/* Slide-over panel */}
-        <div className="relative w-full max-w-2xl h-full bg-bg-card border-l border-border-default shadow-2xl flex flex-col justify-between z-10 text-left animate-fade-in-up">
+        <div className="relative w-full max-w-2xl h-full bg-bg-card border-l border-border-default shadow-standard flex flex-col justify-between z-10 text-left animate-fade-in-up">
           
           {/* Header */}
           <div className="p-6 border-b border-border-default flex justify-between items-center bg-bg-subtle/50">
@@ -304,7 +303,7 @@ export function TemplateModal() {
                         {integrationsData.map((integration, idx) => (
                           <div 
                             key={idx}
-                            className="bg-bg-subtle/40 border border-border-default rounded-2xl p-4 flex gap-3 shadow-sm hover:shadow-md transition-all duration-200"
+                            className="bg-bg-subtle/40 border border-border-default rounded-2xl p-4 flex gap-3 shadow-sm transition-standard"
                           >
                             <div className="w-10 h-10 bg-primary/10 border border-primary/25 rounded-xl flex items-center justify-center text-primary shrink-0 font-bold uppercase text-[10px]">
                               {integration.name.slice(0, 2)}
@@ -404,7 +403,7 @@ export function TemplateModal() {
             <div className="flex gap-3 w-full sm:w-auto shrink-0 justify-end">
               <button
                 onClick={() => setIsCloneFlowOpen(true)}
-                className="bg-primary hover:bg-primary-light text-white font-bold text-xs px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-1.5"
+                className="bg-primary hover:bg-primary-light text-white font-bold text-xs px-6 py-3.5 rounded-xl shadow-standard transition-standard flex items-center justify-center gap-1.5"
               >
                 <Play className="h-4 w-4 fill-current animate-pulse" />
                 <span>Use Blueprint Template</span>

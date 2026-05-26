@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { mapDbTemplateToFrontend } from '@/lib/theme';
 
 export async function GET(req: NextRequest) {
   try {
@@ -26,7 +27,9 @@ export async function GET(req: NextRequest) {
       take: 5
     });
 
-    return NextResponse.json(templates, {
+    const mappedTemplates = templates.map(mapDbTemplateToFrontend);
+
+    return NextResponse.json(mappedTemplates, {
       headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=60' }
     });
   } catch (error) {

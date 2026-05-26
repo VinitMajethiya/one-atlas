@@ -57,10 +57,10 @@ export function GeneratingOverlay({ appName, onComplete }: GeneratingOverlayProp
   }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg-default grid-mesh transition-all duration-300">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg-default grid-mesh transition-standard">
       <div className="max-w-md w-full px-6 text-center">
         {/* Spinning glowing compass */}
-        <div className="relative w-20 h-20 mx-auto mb-8 flex items-center justify-center bg-primary/10 rounded-2xl border border-primary/20 dark:bg-primary/20 dark:border-primary/30">
+        <div className="relative w-20 h-20 mx-auto mb-8 flex items-center justify-center bg-primary/10 rounded-2xl border border-primary/20">
           <Compass className="h-10 w-10 text-primary animate-spin-slow" />
           <div className="absolute inset-0 bg-primary/10 rounded-2xl blur-lg pointer-events-none animate-pulse" />
         </div>
@@ -76,7 +76,7 @@ export function GeneratingOverlay({ appName, onComplete }: GeneratingOverlayProp
         {/* Progress bar container */}
         <div className="w-full bg-bg-subtle border border-border-default h-2.5 rounded-full overflow-hidden mb-8 shadow-inner">
           <div
-            className="h-full bg-gradient-hero transition-all duration-300"
+            className="h-full bg-gradient-hero transition-standard"
             style={{ width: `${progress}%` }}
           />
         </div>

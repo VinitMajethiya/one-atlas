@@ -19,7 +19,7 @@ export default function Loading() {
           </div>
 
           {/* Comparison Matrix Table Skeleton */}
-          <div className="overflow-x-auto rounded-3xl border border-border-default bg-bg-card shadow-lg animate-pulse">
+          <div className="overflow-x-auto rounded-3xl border border-border-default bg-bg-card shadow-standard animate-pulse">
             <table className="w-full border-collapse text-left">
               <thead>
                 <tr className="border-b border-border-default bg-bg-subtle/50">

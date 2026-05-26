@@ -127,7 +127,7 @@ export function TopBar() {
               {schema.appName}
             </h2>
           )}
-          <span className="bg-primary/10 text-primary border border-primary/20 dark:bg-primary/20 dark:text-primary-light font-bold text-[10px] px-1.5 py-0.5 rounded-full select-none">
+          <span className="bg-primary/10 text-primary border border-primary/20 font-bold text-[10px] px-1.5 py-0.5 rounded-full select-none">
             v{schema.version}
           </span>
         </div>
@@ -137,7 +137,7 @@ export function TopBar() {
       <div className="hidden md:flex items-center gap-2">
         <button
           onClick={toggleLeftPanel}
-          className={`p-1.5 rounded-lg border text-text-muted hover:text-primary hover:bg-bg-subtle transition-all duration-200 ${
+          className={`p-1.5 rounded-lg border text-text-muted hover:text-primary hover:bg-bg-subtle transition-standard ${
             leftPanelOpen ? 'bg-bg-muted border-border-default' : 'border-transparent'
           }`}
           title="Toggle Navigation Tree"
@@ -146,7 +146,7 @@ export function TopBar() {
         </button>
         <button
           onClick={toggleRightPanel}
-          className={`p-1.5 rounded-lg border text-text-muted hover:text-primary hover:bg-bg-subtle transition-all duration-200 ${
+          className={`p-1.5 rounded-lg border text-text-muted hover:text-primary hover:bg-bg-subtle transition-standard ${
             rightPanelOpen ? 'bg-bg-muted border-border-default' : 'border-transparent'
           }`}
           title="Toggle Properties Panel"
@@ -184,7 +184,7 @@ export function TopBar() {
       {/* Deploy Dialog Modal Overlay */}
       {deployOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in-up">
-          <div className="bg-bg-card border border-border-default rounded-2xl w-full max-w-md p-6 relative shadow-2xl text-left">
+          <div className="bg-bg-card border border-border-default rounded-2xl w-full max-w-md p-6 relative shadow-standard text-left">
             <button
               onClick={() => setDeployOpen(false)}
               className="absolute top-4 right-4 p-1.5 rounded-lg text-text-muted hover:text-text-heading hover:bg-bg-subtle transition-colors"

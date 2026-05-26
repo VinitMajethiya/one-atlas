@@ -45,7 +45,7 @@ export function ErrorState({ errorCode = 'GENERIC_ERROR', message = 'An unexpect
   }, [errorCode, message]);
 
   return (
-    <div className="max-w-md mx-auto my-8 p-6 bg-bg-card border border-accent-pink/20 hover:border-accent-pink/30 rounded-3xl shadow-xl flex flex-col items-center text-center transition-all duration-300">
+    <div className="max-w-md mx-auto my-8 p-6 bg-bg-card border border-accent-pink/20 hover:border-accent-pink/30 rounded-3xl shadow-standard flex flex-col items-center text-center transition-standard">
       <div className="p-4 bg-accent-pink/10 rounded-2xl text-accent-pink mb-4 animate-bounce">
         <AlertCircle className="w-8 h-8" />
       </div>

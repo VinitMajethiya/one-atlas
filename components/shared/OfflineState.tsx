@@ -27,7 +27,7 @@ export function OfflineState() {
   if (!isOffline) return null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[9999] bg-accent-pink text-white text-center py-2.5 px-4 shadow-md flex items-center justify-center gap-3 animate-slide-in font-sans">
+    <div className="fixed top-0 left-0 right-0 z-[9999] bg-accent-pink text-white text-center py-2.5 px-4 shadow-standard flex items-center justify-center gap-3 animate-slide-in font-sans">
       <div className="flex items-center gap-2">
         <WifiOff className="w-4 h-4 text-white animate-pulse" />
         <span className="text-xs font-bold font-mono uppercase tracking-wider">

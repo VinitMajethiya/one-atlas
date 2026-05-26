@@ -152,10 +152,10 @@ export function TemplateCard({ template }: TemplateCardProps) {
     <div
       onClick={handleCardClick}
       onMouseEnter={handleCardHover}
-      className={`group relative bg-bg-card border border-border-default rounded-3xl overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer select-none ${templateBorderHover(template.color)}`}
+      className={`group relative bg-white border border-[#E5E7EB] rounded-[24px] overflow-hidden flex flex-col justify-between shadow-standard hover:-translate-y-1 transition-standard cursor-pointer select-none ${templateBorderHover(template.color)}`}
     >
       {/* Top Graphic Panel */}
-      <div className="relative h-40 w-full bg-bg-subtle overflow-hidden border-b border-border-subtle shrink-0">
+      <div className="relative h-40 w-full bg-[#F5F5EE] overflow-hidden border-b border-border-default shrink-0">
         {template.screenshots && template.screenshots[0] ? (
           <img 
             src={template.screenshots[0]} 
@@ -164,22 +164,22 @@ export function TemplateCard({ template }: TemplateCardProps) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-tr from-primary/10 via-primary/5 to-accent-blue/10 flex items-center justify-center">
+          <div className="w-full h-full bg-[#F5F5EE] flex items-center justify-center">
             {getIcon(template.icon)}
           </div>
         )}
 
         {/* Floating Price Badge */}
-        <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-lg text-white font-bold text-[10px] uppercase tracking-wider shadow-sm">
+        <div className="absolute top-3 left-3 bg-black/60 border border-white/10 px-2.5 py-1 rounded-lg text-white font-bold text-[10px] uppercase tracking-wider shadow-sm">
           {template.priceType === 'free' ? 'Free' : `₹${Math.round(template.priceAmount * 80).toLocaleString('en-IN')}/mo`}
         </div>
 
         {/* Favorite Save Button */}
         <button
           onClick={handleSaveToggle}
-          className={`absolute top-3 right-3 p-2 rounded-xl backdrop-blur-md border shadow-sm transition-all ${
+          className={`absolute top-3 right-3 p-2 rounded-xl border shadow-sm transition-standard ${
             isSaved 
-              ? 'bg-accent-pink/20 border-accent-pink/40 text-accent-pink' 
+              ? 'bg-[#FFF0E6] border-[#FFD6B3] text-primary' 
               : 'bg-black/60 border-white/10 text-white/70 hover:text-white hover:scale-105'
           }`}
         >
@@ -189,10 +189,10 @@ export function TemplateCard({ template }: TemplateCardProps) {
         {/* Compare Checkbox */}
         <button
           onClick={handleCompareClick}
-          className="absolute bottom-3 left-3 p-2 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 text-white/70 hover:text-white flex items-center gap-1 shadow-sm transition-all"
+          className="absolute bottom-3 left-3 p-2 rounded-lg bg-black/60 border border-white/10 text-white/70 hover:text-white flex items-center gap-1 shadow-sm transition-standard"
         >
           {activeCompared ? (
-            <CheckSquare className="w-3.5 h-3.5 text-accent-blue" />
+            <CheckSquare className="w-3.5 h-3.5 text-primary" />
           ) : (
             <Square className="w-3.5 h-3.5" />
           )}
@@ -200,10 +200,10 @@ export function TemplateCard({ template }: TemplateCardProps) {
         </button>
 
         {/* Health Score Overlay Badge */}
-        <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md border border-white/10 px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
+        <div className="absolute bottom-3 right-3 bg-black/60 border border-white/10 px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
           <span className="text-[9px] text-white/60 font-bold font-mono">HEALTH</span>
           <span className={`text-[10px] font-extrabold font-mono ${
-            template.healthScore >= 95 ? 'text-accent-blue' : template.healthScore >= 90 ? 'text-amber-400' : 'text-accent-pink'
+            template.healthScore >= 95 ? 'text-primary' : template.healthScore >= 90 ? 'text-amber-400' : 'text-text-muted'
           }`}>
             {template.healthScore}%
           </span>
@@ -211,7 +211,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
       </div>
 
       {/* Main Details Panel */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
+      <div className="p-[28px] flex-1 flex flex-col justify-between">
         <div className="space-y-3.5">
           {/* Header row metadata */}
           <div className="flex justify-between items-center text-[10px] text-text-muted font-bold font-mono uppercase tracking-wider">
@@ -223,7 +223,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
           </div>
 
           <div>
-            <h3 className="text-base font-extrabold text-text-heading group-hover:text-primary transition-colors leading-tight mb-1">
+            <h3 className="text-[22px] font-semibold text-text-heading group-hover:text-primary transition-colors leading-tight mb-1">
               {template.name}
             </h3>
             <p className="text-xs text-text-muted font-semibold leading-relaxed line-clamp-2">
@@ -234,7 +234,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
           {/* Tech Stack Pills (Limit to top 3) */}
           <div className="flex flex-wrap gap-1.5 pt-1">
             {template.tags.slice(0, 3).map((tag, idx) => (
-              <span key={idx} className="bg-bg-subtle border border-border-subtle text-text-muted font-bold text-[10px] px-2 py-0.5 rounded-md uppercase font-mono tracking-wide">
+              <span key={idx} className="bg-bg-subtle border border-border-default text-text-muted font-bold text-[10px] px-2 py-0.5 rounded-md uppercase font-mono tracking-wide">
                 {tag}
               </span>
             ))}
@@ -242,7 +242,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
         </div>
 
         {/* Middle Divider */}
-        <div className="h-px bg-border-subtle my-4 w-full" />
+        <div className="h-px bg-border-default my-4 w-full" />
 
         {/* Rating and Clone Count Stats */}
         <div className="flex justify-between items-center text-xs font-semibold text-text-muted mb-2">
@@ -258,14 +258,14 @@ export function TemplateCard({ template }: TemplateCardProps) {
         {/* Author badge footer */}
         <div className="flex items-center justify-between mt-3">
           <div className="flex items-center gap-1.5">
-            <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-primary to-accent-blue flex items-center justify-center text-[9px] font-bold text-white font-mono uppercase shadow-sm">
+            <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-[9px] font-bold text-white font-mono uppercase shadow-sm">
               {template.author.slice(0, 2)}
             </div>
             <span className="text-[10px] text-text-heading font-extrabold leading-none">
               {template.author}
             </span>
             {template.authorVerified && (
-              <ShieldCheck className="w-3.5 h-3.5 text-accent-blue" />
+              <ShieldCheck className="w-3.5 h-3.5 text-primary" />
             )}
           </div>
         </div>

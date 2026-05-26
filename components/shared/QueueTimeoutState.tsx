@@ -12,7 +12,7 @@ interface QueueTimeoutStateProps {
 
 export function QueueTimeoutState({ jobType = 'deployment', jobId, onRetry, onCancel }: QueueTimeoutStateProps) {
   return (
-    <div className="max-w-md mx-auto my-8 p-6 bg-bg-card border border-border-default rounded-3xl shadow-xl flex flex-col items-center text-center">
+    <div className="max-w-md mx-auto my-8 p-6 bg-bg-card border border-border-default rounded-3xl shadow-standard flex flex-col items-center text-center">
       <div className="p-4 bg-amber-500/10 rounded-2xl text-amber-500 mb-4 animate-pulse">
         <Timer className="w-8 h-8" />
       </div>
@@ -53,7 +53,7 @@ export function QueueTimeoutState({ jobType = 'deployment', jobId, onRetry, onCa
         {onRetry && (
           <button
             onClick={onRetry}
-            className="flex-1 bg-primary hover:bg-primary/95 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md shadow-primary/10 hover:scale-[1.01] active:scale-[0.99]"
+            className="flex-1 bg-primary hover:bg-primary/95 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-standard shadow-primary/10 hover:scale-[1.01] active:scale-[0.99]"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Retry Connection</span>

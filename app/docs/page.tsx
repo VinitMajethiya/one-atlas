@@ -285,7 +285,7 @@ curl -X POST https://api.oneatlas.com/v1/apps \\
                         onClick={() => setActiveArticleId(item.id)}
                         className={`w-full text-left px-3 py-2 rounded-lg text-xs md:text-sm font-semibold transition-colors flex items-center justify-between group ${
                           isActive
-                            ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light'
+                            ? 'bg-primary/10 text-primary  '
                             : 'text-text-body hover:bg-bg-subtle hover:text-primary'
                         }`}
                       >

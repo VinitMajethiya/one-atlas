@@ -154,7 +154,7 @@ function WorkflowBuilderPage() {
             <button
               onClick={saveWorkflow}
               disabled={saving}
-              className="bg-primary hover:bg-primary/95 disabled:opacity-50 text-white font-bold text-xs py-3 px-5 rounded-xl shadow-md flex items-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition-all"
+              className="bg-primary hover:bg-primary/95 disabled:opacity-50 text-white font-bold text-xs py-3 px-5 rounded-xl shadow-standard flex items-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition-all"
             >
               {saving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
               <span>Save Workflow Configuration</span>
@@ -196,7 +196,7 @@ function WorkflowBuilderPage() {
             </div>
 
             {/* Middle Main Canvas Area */}
-            <div className="lg:col-span-2 border border-border-default bg-bg-card/40 rounded-3xl p-6 shadow-sm overflow-y-auto min-h-[400px] flex flex-col justify-start relative bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px]">
+            <div className="lg:col-span-2 border border-border-default bg-bg-card/40 rounded-3xl p-6 shadow-sm overflow-y-auto min-h-[400px] flex flex-col justify-start relative bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px]">
               {blocks.length === 0 ? (
                 <div className="flex-grow flex flex-col items-center justify-center text-center p-8 space-y-3">
                   <Sliders className="w-12 h-12 text-text-muted animate-pulse" />
@@ -211,7 +211,7 @@ function WorkflowBuilderPage() {
                     <React.Fragment key={block.id}>
                       <div
                         onClick={() => setSelectedBlockId(block.id)}
-                        className={`w-full max-w-md p-4 bg-bg-card border rounded-2xl flex justify-between items-center shadow-sm cursor-pointer select-none hover:shadow-md transition-all ${
+                        className={`w-full max-w-md p-4 bg-bg-card border rounded-2xl flex justify-between items-center shadow-sm cursor-pointer select-none  transition-all ${
                           selectedBlockId === block.id 
                             ? 'border-primary shadow-primary/5 ring-1 ring-primary/20' 
                             : 'border-border-default hover:border-primary/50'
